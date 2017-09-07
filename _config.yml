@@ -2,7 +2,26 @@ theme: jekyll-theme-architect
 title: Vincenzo Coia's homepage
 description: A website containing all things Vincenzo.
 
+## I used the UBC-MDS.github.io's _config file as a template for the things below.
+
 ## Navigation bar:
 navbar-links:
   Contact: "contact"
 
+## Footer
+author:
+  name: Vincenzo Coia
+  email: "vincen.coia@stat.ubc.ca"
+  github: VincenzoCoia
+  twitter: VincenzoCoia
+  linkedin: VincenzoCoia
+
+# Select which links to show in the footer
+footer-links-active:
+  rss: false
+  facebook: false
+  email: true
+  twitter: true
+  github: true
+  linkedin: true
+  stackoverflow: false
