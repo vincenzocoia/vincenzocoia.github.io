@@ -2,6 +2,10 @@ theme: jekyll-theme-architect
 title: Vincenzo Coia's homepage
 description: A website containing all things Vincenzo.
 
+webrick:
+  headers:
+    My-Header: Content-Type
+
 ## I used the UBC-MDS.github.io's _config file as a template for the things below.
 
 ## Navigation bar:
