@@ -1,7 +1,6 @@
 ---
+layout: default
 ---
-
-{% include file.ext %}
 
 Hi!
 
