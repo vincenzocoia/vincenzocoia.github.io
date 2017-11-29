@@ -1,7 +1,5 @@
 ---
 layout: default
-common-css:
-  - "/css/main.css"
 ---
 
 Hi!
