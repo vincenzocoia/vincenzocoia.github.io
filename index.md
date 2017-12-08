@@ -8,6 +8,8 @@ I'm a teaching fellow in the UBC Dept. of Statistics.
 
 I teach data science. I do statistical research in my spare time.
 
+Bear with me as a learn github pages and construct this website.
+
 ## Contact/Follow Me
 
 Want to get in touch? Here are various ways you can reach me.
