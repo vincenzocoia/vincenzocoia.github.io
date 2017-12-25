@@ -92,6 +92,6 @@ p <- ggplot() +
     theme_minimal() +
     theme(axis.text=element_blank())
 p
-ggsave(p, filename="404.png", width=2, height=1)
+ggsave(p, filename="404.png", width=2, height=1, dpi=1000)
 
 
