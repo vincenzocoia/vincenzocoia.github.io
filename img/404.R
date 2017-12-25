@@ -1,4 +1,5 @@
 library(tidyverse)
+library(RColorBrewer)
 set.seed(2)
 ## Define corners of 4:
 #'     4
@@ -13,7 +14,7 @@ x4 <- c(0, 4)
 ## Standard deviation of "scatter" about the digits:
 sd <- 0.2
 ## Density of points contained in 1 unit length:
-dens <- 25
+dens <- 15
 ## Gap between letter boxes:
 gap <- 1.5
 ## --------------------
@@ -77,18 +78,20 @@ dat404 <- rbind(four() %>%
 n_lm <- 50
 datlm <- tibble(V1 = runif(n_lm)*13-7.5+4, 
                 V2= -1.5 + 0.5*V1 + rnorm(n_lm)*0.7)
+cols <- brewer.pal(n=6, name="Paired")[c(1, 6)]
+
 
 p <- ggplot() +
     geom_point(data=datlm, mapping=aes(x=V1, y=V2),
-               colour="blue", alpha=0.2) +
+               colour=cols[1], alpha=1/3, size=1/2, symbol=".") +
     geom_point(data=dat404, mapping=aes(x=V1, y=V2),
-               colour="red", alpha=0.1) +
+               colour=cols[2], alpha=0.2, size=1/2, symbol=".") +
     labs(x="", y="") +
     lims(y=c(-4.5, 4.5), x=c(NA, 10.5)) + # Excuse the magic numbers. 
     coord_equal() +
     theme_minimal() +
     theme(axis.text=element_blank())
 p
-ggsave(p, filename="404.png", width=3, height=1.5)
+ggsave(p, filename="404.png", width=2, height=1)
 
 
