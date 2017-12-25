@@ -13,7 +13,7 @@ x4 <- c(0, 4)
 ## Standard deviation of "scatter" about the digits:
 sd <- 0.2
 ## Density of points contained in 1 unit length:
-dens <- 50
+dens <- 25
 ## Gap between letter boxes:
 gap <- 1.5
 ## --------------------
@@ -50,7 +50,10 @@ rod <- function(x1, x2, denspts=dens, sigma=sd) {
         shift(x1)
 }
 oh <- function(width, height, denspts=dens, sigma=sd) {
-    len <- 2*pi*mean(c(width, height))
+    ## Use approximate perimeter of oval
+    t1 <- 3*(width + height)/2
+    t2 <- (3*width+height)*(width+3*height)/4
+    len <- pi*(t1 - sqrt(t2))
     n <- len * denspts
     theta <- runif(n)*2*pi
     r_adj <- rnorm(n)*sigma
@@ -79,13 +82,13 @@ p <- ggplot() +
     geom_point(data=datlm, mapping=aes(x=V1, y=V2),
                colour="blue", alpha=0.2) +
     geom_point(data=dat404, mapping=aes(x=V1, y=V2),
-               colour="red", alpha=0.2) +
+               colour="red", alpha=0.1) +
     labs(x="", y="") +
     lims(y=c(-4.5, 4.5), x=c(NA, 10.5)) + # Excuse the magic numbers. 
     coord_equal() +
     theme_minimal() +
     theme(axis.text=element_blank())
 p
-ggsave(p, filename="404.png", width=5, height=2.5)
+ggsave(p, filename="404.png", width=3, height=1.5)
 
 
