@@ -1,12 +1,16 @@
 ---
 layout: page
 title: About me
+subtitle: Why you'd want to go on a date with me
 ---
 
-Hi!
+My name is Inigo Montoya. I have the following qualities:
 
-I'm a teaching fellow in the UBC Dept. of Statistics.
+- I rock a great mustache
+- I'm extremely loyal to my family
 
-I teach data science. I do statistical research in my spare time.
+What else do you need?
 
-Bear with me as I learn github pages and construct this website. I'll be putting things like lecture notes and blog posts, so that (1) my students can refer back to notes on a more steady source, (2) others might benefit from my notes, and (3) I can refer back to my own notes to remember what I was thinking at some point in time.
+### my history
+
+To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
