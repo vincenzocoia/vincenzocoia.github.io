@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Writing for the Public
+title: "Hello World! Here's why I'm writing for you."
 tags: [hello-world, vincenzo-coia]
 ---
 
@@ -29,5 +29,3 @@ Some things you might expect to see on this site are:
 - How and why to use copulas for regression/machine learning
 
 I hope you'll find this website/blog useful. Have you had the itch to write for the public? Please share your experience and your feedback in the comments section below!
-
-__Posted December 30, 2017__
