@@ -190,7 +190,7 @@ x <- iris$Petal.Width
 hist(x)
 ```
 
-![](cm005-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](./cm005-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ``` r
 table(x)
