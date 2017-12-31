@@ -31,6 +31,8 @@ Some things you might expect to see on this site are:
 
 I hope you'll find this website/blog useful. Have you had the itch to write for the public? Please share your experience and your feedback in the comments section below!
 
+__Posted December 30, 2017__
+
 {% if page.comments %}
 <div id="disqus_thread"></div>
 <script>
