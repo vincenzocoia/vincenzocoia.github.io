@@ -9,7 +9,7 @@ I find myself writing a lot. Usually, I squirrel my notes away in my local file 
 
 I'm hoping to write for the public, for three main reasons:
 
-1. __You (hopefully) gain something of value__. I'm just drawn to outreach!
+1. __You (hopefully) gain something of value__. And that makes me happy, too.
 2. __It forces me to clarify my thoughts__. Even though I write regularly, putting content online forces me to make my notes clearer.
 3. __It encourages me to write more often__. Because when a note is just for me, there's less incentive for me to write it in the first place.
 
