@@ -34,6 +34,10 @@ layout: base
       <article role="main" class="blog-post">
         {{ content }}
       </article>
+      
+      <p class="post-meta">
+      Posted on {{ post.date | date: "%B %-d, %Y" }}
+      </p>
 
       {% if page.tags.size > 0 %}
         <div class="blog-tags">
