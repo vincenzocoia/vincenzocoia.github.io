@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Writing for the Public
-image: /img/20171220-whistler.jpg
 tags: [hello-world, vincenzo-coia]
 ---
 
