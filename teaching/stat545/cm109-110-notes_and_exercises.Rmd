@@ -3,7 +3,7 @@ title: "cm109 and cm110 Notes and Exercises"
 subtitle: "Write your own R package -- Lecture Version"
 date: 'November 21 and 23, 2017'
 output: 
-    html_document:
+    github_document:
         toc: true
 ---
 

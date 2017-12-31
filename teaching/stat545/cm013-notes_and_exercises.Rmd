@@ -3,7 +3,7 @@ title: "cm013 Notes and Exercises"
 date: "October 17, 2017"
 author: "Vincenzo Coia"
 output: 
-    html_document:
+    github_document:
         toc: true
 ---
 

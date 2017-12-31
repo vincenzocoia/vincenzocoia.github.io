@@ -2,7 +2,7 @@
 title: "cm005 Notes and Exercises"
 date: "September 19, 2017"
 output: 
-    html_document:
+    github_document:
         toc: true
 ---
 
