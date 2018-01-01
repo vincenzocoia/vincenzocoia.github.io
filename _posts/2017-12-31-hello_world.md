@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hello World! Here's why I'm writing for you."
+title: "Hello, World! Here's why I'm writing for you."
 tags: [hello-world, vincenzo-coia]
 ---
 

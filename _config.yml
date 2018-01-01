@@ -9,8 +9,8 @@ description: My notes, for you.
 navbar-links:
   About Me: "aboutme"
   Teaching:
-    - STAT545 (2017F): "http://vincenzocoia.github.io/stat545-2017/"
-    - BAIT 509: "http://vincenzocoia.github.io/bait509-2017/"
+    - STAT545/547: "http://vincenzocoia.github.io/teaching/stat545/"
+    - BAIT 509: "http://vincenzocoia.github.io/teaching/bait509/"
   Home: "http://vincenzocoia.github.io"
 
 # Image to show in the navigation bar - image must be a square (width = height)
