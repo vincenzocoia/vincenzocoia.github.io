@@ -8,7 +8,8 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.width=5, fig.height=3, fig.align="center")
+knitr::opts_chunk$set(fig.width=5, fig.height=3, fig.align="center",
+                      fig.path='cm013/images/')
 ```
 
 Today we'll talk about a collection of plotting-related things. These notes consist of my own musings, along with ideas from Jenny's notes here:
