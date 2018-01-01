@@ -62,14 +62,14 @@ ggplot(gapminder, aes(year, lifeExp)) +
     geom_jitter(alpha=0.5)
 ```
 
-<img src="cm013/images/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 ``` r
 ggplot(gapminder, aes(year, lifeExp)) + 
     geom_line(aes(group=country), alpha=0.2)
 ```
 
-<img src="cm013/images/unnamed-chunk-2-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-2-2.png" style="display: block; margin: auto;" />
 
 The first line is repetitive. Let's assign the first line to a variable, to avoid repeating ourselves:
 
@@ -78,13 +78,13 @@ p <- ggplot(gapminder, aes(year, lifeExp))
 p + geom_jitter(alpha=0.5)
 ```
 
-<img src="cm013/images/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 ``` r
 p + geom_line(aes(group=country), alpha=0.2)
 ```
 
-<img src="cm013/images/unnamed-chunk-3-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-3-2.png" style="display: block; margin: auto;" />
 
 #### One-time data wrangling
 
@@ -100,7 +100,7 @@ gapminder %>%
     geom_path()
 ```
 
-<img src="cm013/images/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 But then you have to re-wrangle the data for your downstream analyses!
 
@@ -114,7 +114,7 @@ ggplot(gapminder_chile, aes(gdpPercap, lifeExp)) +
     geom_path()
 ```
 
-<img src="cm013/images/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 Now you can run further analyses on `gapminder_chile`.
 
@@ -137,7 +137,7 @@ p <- p + geom_point(alpha=0.5)
 p
 ```
 
-<img src="cm013/images/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 This relies on you *always* executing these lines from top to bottom -- and I can assure you, when programming interactively, this does not always happen.
 
@@ -150,7 +150,7 @@ p3 <- p2 + geom_point(alpha=0.5)
 p3
 ```
 
-<img src="cm013/images/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
 But even better would be to get rid of the chain of `p`'s altogether. They're just confusing and make the code hard to read.
 
@@ -162,7 +162,7 @@ ggplot(gapminder, aes(year, lifeExp)) +
     geom_point(alpha=0.5)
 ```
 
-<img src="cm013/images/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 ### 1.2 Keep stuff in data frames
 
@@ -369,7 +369,7 @@ for (i in 1){
 }
 ```
 
-<img src="cm013/images/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
 
 PS: when working interactively, `print` is usually run for you "behind the scenes".
 
@@ -392,7 +392,7 @@ Don't like the default colour scheme that comes with `ggplot2`? Let's say we wan
         scale_y_continuous("GDP Per Capita"))
 ```
 
-<img src="cm013/images/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 ``` r
 (p2 <- ggplot(gapminder, aes(gdpPercap, lifeExp)) +
@@ -400,7 +400,7 @@ Don't like the default colour scheme that comes with `ggplot2`? Let's say we wan
         scale_x_log10())
 ```
 
-<img src="cm013/images/unnamed-chunk-18-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-18-2.png" style="display: block; margin: auto;" />
 
 ``` r
 (p3 <- gapminder %>% 
@@ -414,7 +414,7 @@ Don't like the default colour scheme that comes with `ggplot2`? Let's say we wan
         scale_x_log10())
 ```
 
-<img src="cm013/images/unnamed-chunk-18-3.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-18-3.png" style="display: block; margin: auto;" />
 
 Each of these plots represent different types of scales. Here are the scales, and the corresponding `ggplot2` scales to modify the colours:
 
@@ -434,7 +434,7 @@ my_cols <- c("red", "blue", "green", "wheat3", "orange")
 p1 + scale_fill_manual(values=my_cols)
 ```
 
-<img src="cm013/images/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # You can even name the colour vector according the levels:
@@ -442,7 +442,7 @@ names(my_cols) <- c("Europe", "Americas", "Africa", "Asia", "Oceania")
 p1 + scale_fill_manual(values=my_cols)
 ```
 
-<img src="cm013/images/unnamed-chunk-19-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-19-2.png" style="display: block; margin: auto;" />
 
 The sequential plot:
 
@@ -450,7 +450,7 @@ The sequential plot:
 p2 + scale_colour_gradient(low="black", high="red")
 ```
 
-<img src="cm013/images/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
 
 The diverging plot:
 
@@ -458,7 +458,7 @@ The diverging plot:
 p3 + scale_colour_gradient2(low="blue", mid="white", high="red")
 ```
 
-<img src="cm013/images/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 ### 3.2 Identifying Colours in R
 
@@ -479,7 +479,7 @@ You could also specify the hexadecimal colour.
 p1 + scale_fill_manual(values=c("#9b5123", "#5dd8a6", "#11ad52", "#dde91d", "#0113d7"))
 ```
 
-<img src="cm013/images/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
 
 ### 3.3 Palettes
 
@@ -492,7 +492,7 @@ library(RColorBrewer)
 display.brewer.all()
 ```
 
-<img src="cm013/images/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-24-1.png" style="display: block; margin: auto;" />
 
 Notice that they're separated into the three types of scales.
 
@@ -504,7 +504,7 @@ Let's display and print the hexadecimal codes of the `Dark2` palette -- the firs
 display.brewer.pal(n=5, "Dark2")
 ```
 
-<img src="cm013/images/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-25-1.png" style="display: block; margin: auto;" />
 
 ``` r
 brewer.pal(n=5, "Dark2")
@@ -518,7 +518,7 @@ Go ahead and put this into the qualitative plot:
 p1 + scale_fill_manual(values=brewer.pal(n=5, "Dark2"))
 ```
 
-<img src="cm013/images/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-26-1.png" style="display: block; margin: auto;" />
 
 We can also use the functions that are built-in to `ggplot2`:
 
@@ -529,19 +529,19 @@ We can also use the functions that are built-in to `ggplot2`:
 p1 + scale_fill_brewer(palette="Dark2")
 ```
 
-<img src="cm013/images/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
 
 ``` r
 p2 + scale_colour_distiller(palette="Greens", direction=1)
 ```
 
-<img src="cm013/images/unnamed-chunk-27-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-27-2.png" style="display: block; margin: auto;" />
 
 ``` r
 p3 + scale_colour_distiller(palette="Spectral")
 ```
 
-<img src="cm013/images/unnamed-chunk-27-3.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-27-3.png" style="display: block; margin: auto;" />
 
 Other useful R packages:
 
@@ -558,13 +558,13 @@ library(viridis)
 p2 + scale_colour_viridis(option="inferno")
 ```
 
-<img src="cm013/images/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-28-1.png" style="display: block; margin: auto;" />
 
 ``` r
 p3 + scale_colour_viridis()
 ```
 
-<img src="cm013/images/unnamed-chunk-28-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-28-2.png" style="display: block; margin: auto;" />
 
 4 Exercise Set 1
 ================
@@ -581,7 +581,7 @@ ggplot(gapminder, aes(lifeExp)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-<img src="cm013/images/unnamed-chunk-29-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-29-1.png" style="display: block; margin: auto;" />
 
 1.  Make a trend plot/spaghetti plot of life Expectancies over time for each country. Highlight Rwanda in red (ensure the legend shows this, too).
 
@@ -595,7 +595,7 @@ ggplot(gapminder, aes(year, lifeExp)) +
     colour_layer
 ```
 
-<img src="cm013/images/unnamed-chunk-30-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-30-1.png" style="display: block; margin: auto;" />
 
 BONUS: make all countries besides Rwanda have alpha transparency of 0.2, and Rwanda be non-transparent.
 
@@ -609,7 +609,7 @@ ggplot(gapminder, aes(year, lifeExp)) +
                          guide=FALSE)
 ```
 
-<img src="cm013/images/unnamed-chunk-31-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-31-1.png" style="display: block; margin: auto;" />
 
 5 Adding layers as a list
 =========================
@@ -629,7 +629,7 @@ ggplot(gapminder, aes(gdpPercap, lifeExp)) +
     my_layer
 ```
 
-<img src="cm013/images/unnamed-chunk-32-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-32-1.png" style="display: block; margin: auto;" />
 
 You can also save multiple layers in a *single R variable* -- a list.
 
@@ -641,7 +641,7 @@ ggplot(gapminder, aes(year, lifeExp)) +
     multiple_layers
 ```
 
-<img src="cm013/images/unnamed-chunk-33-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-33-1.png" style="display: block; margin: auto;" />
 
 This becomes really useful when you want to plot multiple layers iteratively. Let's plot `f(x)=sin(k*x)` where `k` ranges from 1 to 4:
 
@@ -654,7 +654,7 @@ ggplot(data.frame(x=c(0, 2*pi)), aes(x)) +
     scale_colour_manual(labels=1:4)
 ```
 
-<img src="cm013/images/unnamed-chunk-34-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-34-1.png" style="display: block; margin: auto;" />
 
 Making a legend in this case requires some hard-coding. See [this Stack Overflow page](https://stackoverflow.com/questions/19219411/stat-function-and-legends-create-plot-with-two-separate-colour-legends-mapped-t) for advice.
 
@@ -670,13 +670,13 @@ p <- gapminder %>%
 p + geom_point(shape="%", size=5)
 ```
 
-<img src="cm013/images/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
 
 ``` r
 p + geom_point(shape='"', size=5)
 ```
 
-<img src="cm013/images/unnamed-chunk-35-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-35-2.png" style="display: block; margin: auto;" />
 
 Or, you can specify a ["`p`lotting `ch`aracter" (pch)](http://www.endmemo.com/program/R/pchsymbols.php) by its symbol number. Let's try `21`.
 
@@ -684,14 +684,14 @@ Or, you can specify a ["`p`lotting `ch`aracter" (pch)](http://www.endmemo.com/pr
 p + geom_point(shape=21, size=5)
 ```
 
-<img src="cm013/images/unnamed-chunk-36-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-36-1.png" style="display: block; margin: auto;" />
 
 ``` r
 # Also works:
 p + geom_point(pch=21, size=5)
 ```
 
-<img src="cm013/images/unnamed-chunk-36-2.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-36-2.png" style="display: block; margin: auto;" />
 
 21-pch is great when used in conjunction with a `size` aesthetic:
 
@@ -703,7 +703,7 @@ gapminder %>%
     scale_x_log10()
 ```
 
-<img src="cm013/images/unnamed-chunk-37-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-37-1.png" style="display: block; margin: auto;" />
 
 Exercise Set 2
 --------------
@@ -723,7 +723,7 @@ Exercise Set 2
                       guide=FALSE))
 ```
 
-<img src="cm013/images/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
+<img src="cm013-notes_and_exercises_files/figure-markdown_github/unnamed-chunk-38-1.png" style="display: block; margin: auto;" />
 
 1.  Save the above plot to file, as a `pdf` and `png`.
 
