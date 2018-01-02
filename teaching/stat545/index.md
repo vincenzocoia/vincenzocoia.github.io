@@ -6,6 +6,8 @@ subtitle: "Data wrangling, exploration, and analysis with R"
 
 Here are the notes and exercises I used in class for [__STAT 545A/547M__](http://stat545.com/) in the Fall of 2017. 
 
+**For the official STAT 545 website, see <http://stat545.com/>**
+
 ### STAT 545
 
 Note: I didn't make notes and exercises for lectures 1, 2, and 4
