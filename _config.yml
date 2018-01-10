@@ -69,7 +69,7 @@ url-pretty: "vincenzocoia.github.io"
 disqus: "vincenzocoia-github-io"
 
 # Fill in your Google Analytics ID to track your website using GA
-google_analytics: "111476782"
+google_analytics: "UA-111476782-1"
 
 # Google Tag Manager ID
 #gtm: ""
