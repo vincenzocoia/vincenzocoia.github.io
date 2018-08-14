@@ -4,11 +4,12 @@ title: "Collaboration with Version Control: Git and GitHub"
 tags: [git, github, version control, collaboration, workflow]
 ---
 
-[I developed and delivered this mini-lesson as part of instructional skills training at UBC]
-
 Does [this](http://phdcomics.com/comics/archive_print.php?comicid=1531) happen to you? What about bouncing files back and forth amongst collaborators through email? Or even keeping track of your own files between multiple devices?
 
 Do you currently have a way of handling these sometimes frustrating scenarios? Any horror stories?
+
+[I developed and delivered this mini-lesson as part of instructional skills training at UBC]
+
 
 ## Learning Outcomes
 
@@ -55,7 +56,7 @@ Although git and GitHub always work, they work best with plain-text files. If yo
 
 What areas of your own life could benefit from version control with Git and GitHub? 
 
-__Activity__: Check your email inbox for emails with attachments to get a sense of the areas of your life that might benefit from version control. Pick a partner, and share and initiatives that you think could benefit from version control. Share with the class. 
+Check your email inbox for emails with attachments to get a sense of the areas of your life that might benefit from version control.
 
 Next time you go to transfer a file, be mindful of the cognitive load that comes with the file transfer. You might be better off using a version control system like git and GitHub.
 
