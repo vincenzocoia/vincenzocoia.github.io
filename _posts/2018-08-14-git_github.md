@@ -35,7 +35,6 @@ There are cloud-based services that provide both file storage and a nice interfa
 
 Save like crazy. Commit frequently. Push before you're interrupted by a fire.
 
-[Questions? Demo: remove this line!]
 
 ## How exactly are my versioning and collaboration problems solved?
 
