@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Collaborative with Version Control with Git and GitHub"
+title: "Collaboration with Version Control with Git and GitHub"
 tags: [git, github, version control, collaboration, workflow]
 ---
 
