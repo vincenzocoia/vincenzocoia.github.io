@@ -1,6 +1,6 @@
 ---
 title: "The Binomial Distribution"
-output: github_document
+output: html_document
 ---
 
 [ ] __Materials__: Paper and pen/pencil.
@@ -17,6 +17,8 @@ output: github_document
 [ ] Pre-quiz done!
 
 ## Share your answers
+
+What did you all get?
 
 How did you come up with those numbers?
 
@@ -69,7 +71,7 @@ __Activity__:
 1. [ ] Let's work through Q1 together
 2. [ ] You do Q2 on your own. Write it down!
 3. [ ] Share/revise answers with peer.
-4. [ ] Communicate answers
+4. [ ] Communicate answers (answers below)
 
 [ ] Using the formula = done!
 
@@ -81,3 +83,12 @@ __Activity__:
     - getting to work in less than 30 minutes (vs. not)
     - passing a course (vs. not)
     - etc...
+
+## Answers
+
+1. ...
+    1. 1/6 = 0.1667
+    2. 1/36 = 0.02778
+2. ...
+    1. 0.0546875
+    2. (1 - prob of never works) = 1 - 0.0078125 = 0.9921875
