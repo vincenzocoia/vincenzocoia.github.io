@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # CV of Vincenzo Coia
 
 email: vincenzo.coia@gmail.com
@@ -51,16 +46,16 @@ Department of Statistics
 The University of British Columbia    
 Vancouver, BC    
 
-2012/05 2012/08    
-2011/05 2011/08    
-2010/05 2010/08    
+2012/05 - 2012/08    
+2011/05 - 2011/08    
+2010/05 - 2010/08    
 **Extreme value modelling**    
 Supervisor: Dr. Mei Ling Huang    
 Department of Mathematics    
 Brock University    
 St. Catharines, ON    
 
-2010/09 2011/06    
+2010/09 - 2011/06    
 **Quantum monte carlo simulations**    
 Supervisors: Dr. Stuart Rothstein; Dr. Wai Kong (John) Yuen    
 Department of Chemistry and Department of Mathematics    
@@ -74,7 +69,7 @@ UBC:
 
 - **SCIE 300: Communicating Science** (5x)    
 
-Brock Univeristy:
+Brock University:
 
 - **MATH 4P82/5P82: Non-parametric Statistics**
 - **MATH 3P82: Regression Analysis**
@@ -84,22 +79,22 @@ Brock Univeristy:
 
 ### Volunteer Positions
 
-2016/09 2016/02    
+2016/09 - 2016/02    
 **Science World at TELUS World of Science **    
 Vancouver, BC    
 78.15 hours    
 
-2013/10 2014/05    
+2013/10 - 2014/05    
 **Beaty Biodiversity Museum: Events Volunteer**    
 Vancouver, BC    
 35.0 hours    
 
-2013/04 2013/09    
+2013/04 - 2013/09    
 **UBC Farm**    
 Vancouver, BC    
 102.5 hours    
 
-2011/06 2011/08    
+2011/06 - 2011/08    
 **Project S.H.A.R.E. community garden**    
 Niagara Falls, ON    
 15.0 hours   
@@ -207,9 +202,9 @@ Niagara Falls, ON
 
 Dept. of Statistics, The University of British Columbia:
 
-- 2016/05 2016/06: **Search committee member (for CRC 2 faculty position)**
+- 2016/05 - 2016/06: **Search committee member (for CRC 2 faculty position)**
 - 2015/04/30: **Organizer of the "[How to Write an Awesome Abstract](http://stat.ubc.ca/~vincen.coia/abstractworkshop.html)" workshop**
-- 2014/06 2015/05: **Organizer of the [SFU/UBC Joint Seminar](http://stat.ubc.ca/~vincen.coia/seminar.html)**
-- 2014/06 2014/09: **Organizer of the Graduate Student Trip**
-- 2014/04 2015/05: **Co-founder of the Graduate Writing Forums**
-- 2013/06 2014/05: **Statistics Graduate Student Representative**
+- 2014/06 - 2015/05: **Organizer of the [SFU/UBC Joint Seminar](http://stat.ubc.ca/~vincen.coia/seminar.html)**
+- 2014/06 - 2014/09: **Organizer of the Graduate Student Trip**
+- 2014/04 - 2015/05: **Co-founder of the Graduate Writing Forums**
+- 2013/06 - 2014/05: **Statistics Graduate Student Representative**
