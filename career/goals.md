@@ -35,6 +35,6 @@ For the future, I intend to also collaborate with software development teams. I 
 
 _I'm passionate about spreading data literacy to the world._
 
-Currently, my main focus is on developing teaching material for the MDS program, and sharing that publicly.
+Currently, my main focus is on teaching in the MDS program.
 
 For the future, I intend to also hold data science workshops at research centers and other organizations. I intend to volunteer for data science outreach programs.
