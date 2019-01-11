@@ -17,9 +17,9 @@ For the future, I intend to also have long-term collaborations with various orga
 
 I'm passionate about discovering better ways to do data science, with application in mind.
 
-Currently, my main focus is on reframing statistics from the perspective of applications. For example, why the typical "assumptions" of linear regression are not actually needed, and (rather) what we gain when these assumptions become closer to the truth. 
+Currently, my main focus is on reframing statistics from the perspective of applications. For example, why the typical "assumptions" of linear regression are not actually needed, and (rather) what we gain when the reality more closely reflects these assumptions.
 
-Another focus is on bringing to light the importance of measuring tail index reduction in the regression context, in addition to the standard variance-reduction measurements such as the coefficient of determination. One approach of doing this is through quantile regression using vine copulas.   
+Another focus is on bringing to light the importance of finding indicators of extreme events by measuring tail index reduction in the regression context, and not just the typical variance-reduction measurements such as the coefficient of determination. One approach of doing this is through quantile regression using vine copulas.   
 
 ### Development
 
