@@ -7,7 +7,7 @@ Over the years, I've discovered that my ideal career is composed of four interre
 
 ### Application
 
-I'm passionate about applying data science to address real problems.
+_I'm passionate about applying data science to address real problems._
 
 Currently, my main focus is on mentoring MDS students for their capstone projects -- a 2-month-long project that students complete in collaboration with various organizations. 
 
@@ -15,7 +15,7 @@ For the future, I intend to also have long-term collaborations with various orga
 
 ### Research
 
-I'm passionate about discovering better ways to do data science, with application in mind.
+_I'm passionate about discovering better ways to do data science, with application in mind._
 
 Currently, my main focus is on reframing statistics from the perspective of applications. For example, why the typical "assumptions" of linear regression are not actually needed, and (rather) what we gain when the reality more closely reflects these assumptions.
 
@@ -23,7 +23,7 @@ Another focus is on bringing to light the importance of finding indicators of ex
 
 ### Development
 
-I'm passionate about turning new research into programs and tools that are accessible to the public.
+_I'm passionate about turning new research into programs and tools that are accessible to the public._
 
 Currently, my main focus is on developing the Master of Data Science (MDS) program at The University of British Columbia (Vancouver). I'm involved with bettering the teaching and the content of the program, especially focussing on the statistical perspective, often integrated with machine learning. I'm also working on turning our material and lesson plans into a public-facing resource.
 
@@ -33,7 +33,7 @@ For the future, I intend to also collaborate with software development teams. I 
 
 ### Teaching
 
-I'm passionate about spreading data literacy to the world.
+_I'm passionate about spreading data literacy to the world._
 
 Currently, my main focus is on developing teaching material for the MDS program, and sharing that publicly.
 
