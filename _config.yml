@@ -10,7 +10,7 @@ navbar-links:
   About Me: "aboutme"
   Teaching:
     - STAT545/547: "https://stat545.com/Classroom/"
-    - BAIT 509: "vincenzocoia.github.io/BAIT509"
+    - BAIT 509: "https://vincenzocoia.github.io/BAIT509"
   Career:
     - Goals: "http://vincenzocoia.github.io/career/goals/"
     - CV: "http://vincenzocoia.github.io/career/cv/"
