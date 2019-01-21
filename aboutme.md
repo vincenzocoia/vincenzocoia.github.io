@@ -5,7 +5,7 @@ title: About me
 
 Hi!
 
-I'm a data scientist at the University of British Columbia, Vancouver. My primary focus is the development and delivery of the [Master of Data Science program](https://masterdatascience.science.ubc.ca/). 
+I'm a data scientist at the University of British Columbia, Vancouver. My primary focus is the development and delivery of the Master of Data Science program. 
 
 My hobbies include outdoor recreation such as hiking, birding, skiing, fishing, canoeing, and others. 
 
