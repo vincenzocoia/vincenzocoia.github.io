@@ -7,7 +7,7 @@ Over the years, I've discovered that my ideal career is composed of four interre
 
 ### Application
 
-_I'm passionate about applying data science to address real problems._
+_I'm passionate about addressing real problems with data science._
 
 Currently, my main focus is on mentoring MDS students for their capstone projects -- a 2-month-long project that students complete in collaboration with various organizations. 
 
