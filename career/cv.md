@@ -1,4 +1,7 @@
-# CV of Vincenzo Coia
+---
+layout: page
+title: Vincenzo Coia's CV
+---
 
 email: vincenzo.coia@gmail.com
 
