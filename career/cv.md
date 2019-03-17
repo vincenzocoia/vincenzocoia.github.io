@@ -5,6 +5,17 @@ title: Vincenzo Coia's CV
 
 email: vincenzo.coia@gmail.com
 
+## Work Experience
+
+2017/01 - present    
+**Postdoctoral Teaching and Learning Fellow**    
+Masters of Data Science Program, the University of British Columbia    
+Vancouver, BC    
+
+2009/05 - 2014/05    
+**Short-term statistical consulting** (6 projects)    
+UBC and private    
+
 ## Education
 
 **PhD in Statistics**    
@@ -29,16 +40,28 @@ Concentration in Statistics
 Brock University    
 Conferred "With First-Class Standing" on June 7, 2011    
 
-## Work Experience
+### Volunteer Positions
 
-2017/01 - present    
-**Postdoctoral Teaching and Learning Fellow**    
-Masters of Data Science Program, the University of British Columbia    
+2016/09 - 2016/02    
+**Science World at TELUS World of Science **    
 Vancouver, BC    
+78.15 hours    
 
-2009/05 - 2014/05    
-**Short-term statistical consulting** (6 projects)    
-UBC and private    
+2013/10 - 2014/05    
+**Beaty Biodiversity Museum: Events Volunteer**    
+Vancouver, BC    
+35.0 hours    
+
+2013/04 - 2013/09    
+**UBC Farm**    
+Vancouver, BC    
+102.5 hours    
+
+2011/06 - 2011/08    
+**Project S.H.A.R.E. community garden**    
+Niagara Falls, ON    
+15.0 hours   
+
 
 ### Research Assistantships
 
@@ -68,6 +91,8 @@ St. Catharines, ON
 
 ### Teaching Assistantships
 
+__Duration__: From the latter part of my undergrad, to the end of my PhD.
+
 UBC:
 
 - **SCIE 300: Communicating Science** (5x)    
@@ -79,28 +104,6 @@ Brock University:
 - **MATH 4P81/5P81: Sampling Theory**
 - **MATH 3P81: Experimental Design** (2x)
 - **MATH 2F40: Mathematics Integrated w/ Computers and Applications II**
-
-### Volunteer Positions
-
-2016/09 - 2016/02    
-**Science World at TELUS World of Science **    
-Vancouver, BC    
-78.15 hours    
-
-2013/10 - 2014/05    
-**Beaty Biodiversity Museum: Events Volunteer**    
-Vancouver, BC    
-35.0 hours    
-
-2013/04 - 2013/09    
-**UBC Farm**    
-Vancouver, BC    
-102.5 hours    
-
-2011/06 - 2011/08    
-**Project S.H.A.R.E. community garden**    
-Niagara Falls, ON    
-15.0 hours   
 
 
 ## Publications and Talks
