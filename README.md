@@ -1,3 +1,5 @@
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 My website, where I put my public files.
 
 This website is based off of the boilerplate called [Beautiful Jekyll](https://github.com/daattali/beautiful-jekyll) provided by [Dean Attali](http://deanattali.com/). Thanks, Dean!

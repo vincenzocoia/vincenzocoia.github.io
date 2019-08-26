@@ -1,0 +1,234 @@
+---
+title: "The squared error has friends, too!"
+author: "Dr. Vincenzo Coia, UBC"
+date: '2019-03-16'
+output: ioslides_presentation
+---
+
+
+
+<p>I was invited to the SFU/UBC Joint Seminar in Spring 2019 where I gave this talk.</p>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
+<div id="who-am-i" class="section level1">
+<h1>Who am I?</h1>
+</div>
+<div id="quiz" class="section level1">
+<h1>Quiz</h1>
+<div id="true-or-false" class="section level2">
+<h2>True or False:</h2>
+<ul>
+<li>The least squares estimator is derived by maximizing the likelihood.</li>
+</ul>
+</div>
+<div id="true-or-false-1" class="section level2">
+<h2>True or False:</h2>
+<ul>
+<li>The least squares estimator is derived by maximizing the likelihood.</li>
+<li>If errors are not Gaussian, we can’t use least squares to estimate our regression coefficients.</li>
+</ul>
+</div>
+<div id="true-or-false-2" class="section level2">
+<h2>True or False:</h2>
+<ul>
+<li>The least squares estimator is derived by maximizing the likelihood.</li>
+<li>If errors are not Gaussian, we can’t use least squares to estimate our regression coefficients.</li>
+</ul>
+<p><strong>Answers</strong>: Both FALSE!</p>
+</div>
+<div id="question" class="section level2">
+<h2>Question:</h2>
+<p>When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?</p>
+</div>
+<div id="question-1" class="section level2">
+<h2>Question:</h2>
+<p>When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?</p>
+<p><strong>Answer</strong>: The mean of Y given X.</p>
+</div>
+</div>
+<div id="concept-1" class="section level1">
+<h1>Concept #1</h1>
+<p>We minimize the SSE in regression because it’s a proper scoring rule for the mean.</p>
+<hr />
+<p>On the board, lets:</p>
+<ol style="list-style-type: decimal">
+<li>Write ybar as a minimization problem.</li>
+<li>Extend to regression</li>
+</ol>
+</div>
+<div id="concept-2" class="section level1">
+<h1>Concept #2</h1>
+<p>When doing regression, we ought to consider quantiles, too!</p>
+<hr />
+<p>Consider Y = monthly expenditure (in $). Interpretation of quantities:</p>
+<ul>
+<li>median:</li>
+<li>low-quantile:</li>
+<li>high-quantile:</li>
+<li>mean:</li>
+</ul>
+<hr />
+<p>Consider Y = monthly expenditure (in $). Interpretation of quantities:</p>
+<ul>
+<li>median: There’s a 50-50 chance that you’ll have to pay more than this.</li>
+<li>low-quantile:</li>
+<li>high-quantile:</li>
+<li>mean:</li>
+</ul>
+<hr />
+<p>Consider Y = monthly expenditure (in $). Interpretation of quantities:</p>
+<ul>
+<li>median: There’s a 50-50 chance that you’ll have to pay more than this.</li>
+<li>low-quantile: You’ll “at least” have to pay this much.</li>
+<li>high-quantile:</li>
+<li>mean:</li>
+</ul>
+<hr />
+<p>Consider Y = monthly expenditure (in $). Interpretation of quantities:</p>
+<ul>
+<li>median: There’s a 50-50 chance that you’ll have to pay more than this.</li>
+<li>low-quantile: You’ll “at least” have to pay this much.</li>
+<li>high-quantile: You’ll “at most” have to pay this much.</li>
+<li>mean:</li>
+</ul>
+<hr />
+<p>Consider Y = monthly expenditure (in $). Interpretation of quantities:</p>
+<ul>
+<li>median: There’s a 50-50 chance that you’ll have to pay more than this.</li>
+<li>low-quantile: You’ll “at least” have to pay this much.</li>
+<li>high-quantile: You’ll “at most” have to pay this much.</li>
+<li>mean: Multiply by <code>m</code> to estimate total $ after <code>m</code> months.</li>
+</ul>
+</div>
+<div id="concept-3" class="section level1">
+<h1>Concept #3</h1>
+<p>Each quantile has its own proper scoring rule that we can use instead of the squared error.</p>
+<hr />
+<p>On the board:</p>
+<ol style="list-style-type: decimal">
+<li>Write median as an optimization problem</li>
+<li>Extend to generic quantile</li>
+<li>Extend to regression</li>
+</ol>
+<hr />
+<p>The “check function”:</p>
+<p><img src="/post/20190316-ubc-sfu_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
+</div>
+<div id="concept-4" class="section level1">
+<h1>Concept #4</h1>
+<p>Make a distributional assumption to reduce estimation uncertainty.</p>
+<div id="univariate-estimation" class="section level2">
+<h2>Univariate Estimation</h2>
+<p>If you have a univariate sample <span class="math inline">\(Y_1, \ldots, Y_n\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Distributional Assumption?</th>
+<th>Estimation Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="univariate-estimation-1" class="section level2">
+<h2>Univariate Estimation</h2>
+<p>If you have a univariate sample <span class="math inline">\(Y_1, \ldots, Y_n\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Distributional Assumption?</th>
+<th>Estimation Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td>“sample versions”: ybar, s^2, <code>quantile()</code>, …</td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td>MLE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="regression-setting" class="section level2">
+<h2>Regression setting</h2>
+<p>If you have a univariate sample <span class="math inline">\(Y_1, \ldots, Y_n\)</span> AND predictors:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Distributional Assumption?</th>
+<th>Estimation Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="regression-setting-1" class="section level2">
+<h2>Regression setting</h2>
+<p>If you have a univariate sample <span class="math inline">\(Y_1, \ldots, Y_n\)</span> AND predictors:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Distributional Assumption?</th>
+<th>Estimation Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No</td>
+<td>Optimize scoring rule for desired quantity.</td>
+</tr>
+<tr class="even">
+<td>Yes</td>
+<td>MLE</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="return-of-the-quiz" class="section level1">
+<h1>Return of the Quiz</h1>
+<div id="return-of-the-quiz-1" class="section level2">
+<h2>Return of the Quiz</h2>
+<p>Can we see why these are false?</p>
+<ul>
+<li>The least squares estimator is derived by maximizing the likelihood.</li>
+<li>If errors are not Gaussian, we can’t use least squares to estimate our regression coefficients.</li>
+</ul>
+</div>
+</div>
+<div id="time-left" class="section level1">
+<h1>Time left?</h1>
+<div id="time-left-1" class="section level2">
+<h2>Time left?</h2>
+<p>Give two ways to estimate the conditional variance.</p>
+<p><strong>Hint</strong>: Think about the definition of variance.</p>
+<p>Talk to your neighbour for 1 minute</p>
+</div>
+</div>
+<div id="resources" class="section level1">
+<h1>Resources</h1>
+<p>This talk was inspired by the activity generated by <a href="https://vincenzocoia.github.io/20180218-mean/">my blog post “The missing question in supervised learning”</a>.</p>
+<p>For proper scoring rules, see <a href="https://www.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf">Gneiting, T., and Raftery, A.E. (2007) “Strictly Proper Scoring Rules, Prediction, and Estimation”. Journal of the American Statistical Association, 102:477</a></p>
+</div>

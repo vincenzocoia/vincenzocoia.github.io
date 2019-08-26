@@ -1,0 +1,1 @@
+Some images here were grabbed from the web, for use in my blog. They are referenced in the respective blog post.

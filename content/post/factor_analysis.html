@@ -1,0 +1,135 @@
+---
+title: "Factor Analysis"
+author: "Vincenzo Coia"
+date: '2019-01-21'
+output: html_document
+---
+
+
+
+<pre class="r"><code>## Here&#39;s a little tutorial on how to use the `factanal` function for Factor Analysis.
+
+## Let&#39;s make a data frame using actual factors:
+set.seed(3847)
+F1 &lt;- rnorm(100)
+F2 &lt;- rnorm(100)
+X1 &lt;- F1 + F2 + rnorm(100)/5
+X2 &lt;- 4*F1 * rnorm(100)
+X3 &lt;- -6*F1 * rnorm(100)/4
+X4 &lt;- F2 + rnorm(100)
+X5 &lt;- 4*F2 - 0.5*F1 * rnorm(100)
+dat &lt;- data.frame(X1=X1, X2=X2, X3=X3, X4=X4, X5=X5)
+
+## Let&#39;s do a factor analysis with k=2 factors. There are two main ways you can do this.
+k &lt;- 2
+
+## Method 1: via the data.
+## Just indicate the data in the first argument, and specify the number of factors
+##  in the `factors` argument.
+## Note that loadings that are &quot;essentially zero&quot; are indicated as blanks.
+factanal(dat, factors=k)</code></pre>
+<pre><code>## 
+## Call:
+## factanal(x = dat, factors = k)
+## 
+## Uniquenesses:
+##    X1    X2    X3    X4    X5 
+## 0.375 0.005 0.947 0.487 0.035 
+## 
+## Loadings:
+##    Factor1 Factor2
+## X1  0.790         
+## X2  0.160   0.985 
+## X3  0.119  -0.198 
+## X4  0.715         
+## X5  0.976  -0.110 
+## 
+##                Factor1 Factor2
+## SS loadings      2.128   1.024
+## Proportion Var   0.426   0.205
+## Cumulative Var   0.426   0.630
+## 
+## Test of the hypothesis that 2 factors are sufficient.
+## The chi square statistic is 0.93 on 1 degree of freedom.
+## The p-value is 0.336</code></pre>
+<pre class="r"><code>## Method 2: via the covariance matrix.
+## Indicate the covariance matrix in the `covmat` argument. 
+## Note: this method doesn&#39;t have as many features, such as hypothesis testing,
+##  built into it. But the results are the same.s
+factanal(factors=k, covmat=cov(dat))</code></pre>
+<pre><code>## 
+## Call:
+## factanal(factors = k, covmat = cov(dat))
+## 
+## Uniquenesses:
+##    X1    X2    X3    X4    X5 
+## 0.375 0.005 0.947 0.487 0.035 
+## 
+## Loadings:
+##    Factor1 Factor2
+## X1  0.790         
+## X2  0.160   0.985 
+## X3  0.119  -0.198 
+## X4  0.715         
+## X5  0.976  -0.110 
+## 
+##                Factor1 Factor2
+## SS loadings      2.128   1.024
+## Proportion Var   0.426   0.205
+## Cumulative Var   0.426   0.630
+## 
+## The degrees of freedom for the model is 1 and the fit was 0.0097</code></pre>
+<pre class="r"><code>## Another important thing to note is how to do *rotations*. There are two
+##  built-in rotations available via the `rotations` argument -- they are
+##  &quot;none&quot; and &quot;varimax&quot; (default). So the plain factor analysis results
+##  without rotation is:
+factanal(dat, factors=k, rotation = &quot;none&quot;)</code></pre>
+<pre><code>## 
+## Call:
+## factanal(x = dat, factors = k, rotation = &quot;none&quot;)
+## 
+## Uniquenesses:
+##    X1    X2    X3    X4    X5 
+## 0.375 0.005 0.947 0.487 0.035 
+## 
+## Loadings:
+##    Factor1 Factor2
+## X1  0.784   0.101 
+## X2          0.997 
+## X3  0.151  -0.175 
+## X4  0.712         
+## X5  0.981         
+## 
+##                Factor1 Factor2
+## SS loadings      2.106   1.046
+## Proportion Var   0.421   0.209
+## Cumulative Var   0.421   0.630
+## 
+## Test of the hypothesis that 2 factors are sufficient.
+## The chi square statistic is 0.93 on 1 degree of freedom.
+## The p-value is 0.336</code></pre>
+<pre class="r"><code>## You can extract the loadings vector by extracting the list component
+##  entitled `loadings`. There&#39;s a weird print call associated with the
+##  object, but it&#39;s really just a matrix, as the last call indicates.
+fit &lt;- factanal(dat, factors=k, rotation = &quot;none&quot;)
+fit$loadings</code></pre>
+<pre><code>## 
+## Loadings:
+##    Factor1 Factor2
+## X1  0.784   0.101 
+## X2          0.997 
+## X3  0.151  -0.175 
+## X4  0.712         
+## X5  0.981         
+## 
+##                Factor1 Factor2
+## SS loadings      2.106   1.046
+## Proportion Var   0.421   0.209
+## Cumulative Var   0.421   0.630</code></pre>
+<pre class="r"><code>fit$loadings[1:5, 1:2]</code></pre>
+<pre><code>##         Factor1     Factor2
+## X1  0.783885737  0.10136519
+## X2 -0.009679362  0.99744995
+## X3  0.151115775 -0.17503806
+## X4  0.711852604  0.08077992
+## X5  0.980910146  0.05733956</code></pre>
