@@ -3,11 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/authors/admin/</loc>
+    <loc>/tutorials/20190316-ubc-sfu/</loc>
+    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/</loc>
+    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
+    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tutorials/factor_analysis/</loc>
+    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/contour_plots/</loc>
+    <lastmod>2017-02-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorials/mixture_distributions/</loc>
+    <lastmod>2017-02-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/admin/</loc>
+  </url>
+  
+  <url>
+    <loc>/career/teaching/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/notes/stat545cm003/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/notes/binomial/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/notes/organizing_proj_dir/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/notes/yes_and/</loc>
     <priority>0</priority>
   </url>
   
@@ -17,7 +69,65 @@
   </url>
   
   <url>
+    <loc>/tutorials/cart/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/ensembles/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/svm/</loc>
+  </url>
+  
+  <url>
+    <loc>/career/goals/</loc>
+  </url>
+  
+  <url>
+    <loc>/career/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/_posts/2018-08-14-git_github/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/gam_in_r/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/kmeans_in_r/</loc>
+  </url>
+  
+  <url>
+    <loc>/_posts/2017-12-31-hello_world/</loc>
+  </url>
+  
+  <url>
+    <loc>/notes/yes_and/</loc>
+  </url>
+  
+  <url>
+    <loc>/_posts/2018-01-05-backpack/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/jags/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/effective_plotting/</loc>
+  </url>
+  
+  <url>
+    <loc>/notes/</loc>
     <priority>0</priority>
   </url>
   
@@ -27,7 +137,111 @@
   </url>
   
   <url>
+    <loc>/tutorials/useful_linalg_results/</loc>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/notes/binomial/</loc>
+  </url>
+  
+  <url>
+    <loc>/_posts/2018-02-18-mean/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/</loc>
+  </url>
+  
+  <url>
+    <loc>/tutorials/varimax/</loc>
+  </url>
+  
+  <url>
+    <loc>/career/cv/</loc>
+  </url>
+  
+  <url>
+    <loc>/_posts/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/backpack/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/collaboration/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/efficiency/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/git/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/github/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/hello-world/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/mean/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/median/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/no-fuss/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/probabilistic-forecasting/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/quantile/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/supervised-learning/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/version-control/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/vincenzo-coia/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/workflow/</loc>
     <priority>0</priority>
   </url>
   

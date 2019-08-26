@@ -47,6 +47,8 @@ user_groups:
 - Example2
 ---
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 Hi!
 
 I'm a data scientist at the University of British Columbia, Vancouver. My primary focus is the development and delivery of the Master of Data Science program. 
@@ -55,21 +57,10 @@ My hobbies include outdoor recreation such as hiking, birding, skiing, fishing, 
 
 Preferred personal pronouns: he/him/his
 
-## Skills
+Some of the things I do:
 
 - I solve problems using statistics, machine learning, and data visualizations.
 - I interact with students to make data science more approachable.
 - I use R, git, and friends to help me do these things. 
 
 I can also identify birds, and other things about nature.
-
-## Education
-
-- PhD, MSc, BSc in Statistics
-- BSc in Biology (Earth Science minor)
-
-(Yes, two BSc's)
-
-## More
-
-Want to learn more about my career and goals? Check out the "career" tab!

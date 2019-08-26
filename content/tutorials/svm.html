@@ -1,0 +1,233 @@
+---
+title: 'BAIT 509 Class Meeting 09'
+subtitle: "Support Vector Machines"
+date: "Monday, March 26, 2018"
+output: 
+    html_document:
+        keep_md: true
+        toc: true
+        toc_depth: 2
+        number_sections: true
+        theme: cerulean
+        toc_float: true
+---
+
+
+
+<div id="overview" class="section level1">
+<h1>Overview</h1>
+<ul>
+<li>Maximal Margin Classifier, and hyperplanes</li>
+<li>Support Vector Classifiers (SVC)</li>
+<li>Support Vector Machines (SVM)</li>
+<li>Extensions to multiple classes</li>
+<li>SVM’s in python</li>
+<li>Feedback on Assignment 1</li>
+<li>Lab: work on Assignment 3</li>
+</ul>
+</div>
+<div id="the-setup" class="section level1">
+<h1>The setup</h1>
+<p>Today, we’ll dicuss a new method for <strong>binary classification</strong> – that is, classification when there are two categories. The method is called <strong>Support Vector Machines</strong>. We’ll build up to it by considering two special cases:</p>
+<ol style="list-style-type: decimal">
+<li>The Maximal Margin Classifier (too restrictive to use in practice)</li>
+<li>The Support Vector Classifier (linear version of SVM)</li>
+</ol>
+<p>We’ll demonstrate concepts when there are two predictors, because it’s more difficult to visualize in higher dimensions. But concepts generalize.</p>
+<p>Let’s start by loading some useful R packages to demonstrate concepts.</p>
+<pre class="r"><code>suppressPackageStartupMessages(library(tidyverse))</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
+<pre class="r"><code>knitr::opts_chunk$set(fig.width=6, fig.height=3, fig.align=&quot;center&quot;)</code></pre>
+</div>
+<div id="maximal-margin-classifier" class="section level1">
+<h1>Maximal Margin Classifier</h1>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<p>Consider the following two-predictor example. The response can take on one of two categories: “A” or “B”. Also consider the three classifiers, where above a line we predict “B”, and below, we predict “A”:</p>
+<p><img src="/tutorials/svm_files/figure-html/unnamed-chunk-2-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Each line perfectly classifies the training data – which one would you prefer, and why?</p>
+</div>
+<div id="the-method" class="section level2">
+<h2>The Method</h2>
+<p>The Maximal Margin Classifier only applies when the two groups can be perfectly separated on the training set by:</p>
+<ul>
+<li>a dividing line (if we have 2 predictors),</li>
+<li>a dividing plane (if we have 3 predictors),</li>
+<li>or in general, we need a <strong>dividing hyperplane</strong>.</li>
+</ul>
+<p>We choose the line/hyperplane so that the observations closest to the line/hyperplane are as far away as possible. This minimizes the chance that a new observation will be misclassified.</p>
+<p>We can say this another way. Notice that, for any given line, we can define the “widest slab” before touching an observation. Here are the widest slabs for the above cases:</p>
+<p><img src="/tutorials/svm_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The Maximal Marginal Classifier <em>chooses the line whose slab width is maximal</em>. Half the “slab width” is called the <strong>margin</strong>, so this classifier <strong>maximizes the margin</strong>. There are algorithms to do this maximization.</p>
+<p>With this in mind, we can order the above three lines from best to worst: Line 2 is the worst, and Line 3 is the best.</p>
+<p>Notice that there are only three observations that define the slab for Line 3 – these are called <strong>support vectors</strong>.</p>
+<p><strong>But:</strong> a perfect linear classification almost never happens with real data, but this is an important setup before moving on to support vector machines.</p>
+</div>
+<div id="making-predictions-and-confidence" class="section level2">
+<h2>Making Predictions, and Confidence</h2>
+<p>We can classify new points as follows:</p>
+<ol style="list-style-type: decimal">
+<li>If <span class="math inline">\((x1,x2)\)</span> lies above the line, predict “B”.</li>
+<li>If <span class="math inline">\((x1,x2)\)</span> lies below the line, predict “A”.</li>
+</ol>
+<p><img src="/tutorials/svm_files/figure-html/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>But, we need a way to automate this, since orientation is not always natural with a hyperplane (for example, we have to switch to “left and right” if the dividing line is vertical).</p>
+<p>The idea here is to write the equation of the line/hyperplane as <span class="math display">\[ \beta_0 x_1 + \beta_1 x_2 + \beta_3 = 0. \]</span> We can then classify based on the sign of the left-hand-side of the equation. Note that this can be written in the usual <code>y=mx+b</code> format as <span class="math display">\[ x_2 = \left(-\frac{\beta_0}{\beta_1}\right) x_1 + \left(- \frac{\beta_3}{\beta_1}\right), \]</span> but this is only useful for plotting.</p>
+<p>For the above classifier, the line is <span class="math display">\[ 0.59 x_1 - 0.66 x_2 + 0.46 = 0, \]</span> and we classify “B” whenever <span class="math display">\[ 0.59 x_1 - 0.66 x_2 + 0.46 &lt; 0, \]</span> and “A” whenever <span class="math display">\[ 0.59 x_1 - 0.66 x_2 + 0.46 &gt; 0. \]</span> You can figure out which is which by just trying a point that you know the classification of.</p>
+<p>This equation also gives us a measure of <strong>confidence</strong> in our classification – the further the magnitude of the left-hand-side is from 0, the further away from the separating hyperplane it is.</p>
+</div>
+</div>
+<div id="support-vector-classifiers" class="section level1">
+<h1>Support Vector Classifiers</h1>
+<p>Support Vector Classifiers (or SVC) are more realistic in the sense that they don’t require perfect separability of the data.</p>
+<p>Consider now the following data:</p>
+<p><img src="/tutorials/svm_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>A SVC fits a line (or in general, a hyperplane) that “best” separates the data in some way. The idea, as before, is to <em>choose the line that results in the biggest margin</em>. The only problem is, there’s no such thing as a maximal margin for a given line anymore. Let’s work on defining that.</p>
+<p>Here’s an example of a line and a margin (not necessarily a “maximal” margin – just some random margin that I chose). The dividing line is the middle one, so above this line is a “B” prediction. We’ll call the upper and lower lines the “margin boundaries”.</p>
+<p><img src="/tutorials/svm_files/figure-html/unnamed-chunk-6-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>The idea is to calculate a <strong>total penalty</strong> associated with each observation with this line-margin combination, like so:</p>
+<ol style="list-style-type: decimal">
+<li>Observations that are both correctly classified and outside of the “slab” do not receive any penalty.</li>
+<li>Observations that are correctly classified, but within the margin, receive a penalty equal to the <em>proportion of the way through the margin</em> they are.
+<ul>
+<li>This means that observations lying on the classification boundary receive a penalty of 1, because they are entirely one margin width away from its margin boundary.</li>
+</ul></li>
+<li>Step (2) can be generalized to observations that are misclassified – they receive a penalty equal to the number of margin widths they are away from their margin boundary.
+<ul>
+<li>This means that an “A” that’s on B’s margin boundary will receive a penalty of 2.</li>
+</ul></li>
+</ol>
+<p>The numbered observations in the above plot receive a penalty:</p>
+<ul>
+<li>Penalty between 0 and 1: observations 2,3,5</li>
+<li>Penalty between 1 and 2: observation 6</li>
+<li>Penalty greater than 2: 1 and 4.</li>
+</ul>
+<p>Add up the penalties to obtain a total penalty.</p>
+<p>If we <em>choose</em> a maximum allowable total penalty, say <span class="math inline">\(C\)</span>, then for any line, there’s a set of margin widths that result in a penalty less than <span class="math inline">\(C\)</span>. The maximal margin for that line is the biggest margin.</p>
+<p>Again, the algorithm chooses the line that has the <em>biggest maximal margin</em>, for a given total penalty <span class="math inline">\(C\)</span>.</p>
+<p>Note that, for the above plot, observations 1-6 are called <strong>support vectors</strong>, because they are the only ones to contribute to a penalty.</p>
+</div>
+<div id="in-class-exercises" class="section level1">
+<h1>In-class exercises</h1>
+<p>Consider the following data, decision boundary, and margin boundaries.</p>
+<p><img src="/tutorials/svm_files/figure-html/unnamed-chunk-7-1.png" width="480" style="display: block; margin: auto;" /></p>
+<ol style="list-style-type: decimal">
+<li>Construct the decision rule according to this classification boundary. How would you classify a new observation that has <span class="math inline">\(x_1=6\)</span> and <span class="math inline">\(x_2=10\)</span>?</li>
+</ol>
+<blockquote>
+<p>If <code>x1&lt;7.5</code>, then “A”. Else “B”. For the above example, since <code>x1=6&lt;7.5</code>, we would classify “A”.</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>What size is the margin here?</li>
+</ol>
+<blockquote>
+<p>The margin width is 2 units.</p>
+</blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>Which observations receive a penalty? Which observations are the support vectors?</li>
+</ol>
+<blockquote>
+<p>The observations that receive a penalty are 6,7,8,9,10. These are also the support vectors, by definition.</p>
+</blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>What is the total penalty here?</li>
+</ol>
+<blockquote>
+<p>The penalty, added in order of observations 6-10, is 0.25+0.25+1.25+1.75+2.25 = 5.75.</p>
+</blockquote>
+<ol start="5" style="list-style-type: decimal">
+<li>Can I choose a bigger margin if my total allowable penalty is 6?</li>
+</ol>
+<blockquote>
+<p>Yes – increasing the margin will eventually lead to an increase in penalty, which is allowable.</p>
+</blockquote>
+<ol start="6" style="list-style-type: decimal">
+<li>Are the data separable? If so, what are the support vectors?</li>
+</ol>
+<blockquote>
+<p>The data are separable – as such, we can apply a maximal margin classifier to it. The support vectors would be 4,8,9.</p>
+</blockquote>
+</div>
+<div id="support-vector-machines" class="section level1">
+<h1>Support Vector Machines</h1>
+<p>Quite often, a linear boundary is not useful for classification. Take the below extreme example:</p>
+<p><img src="/tutorials/svm_files/figure-html/unnamed-chunk-8-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Recall in linear regression, we can fit other shapes besides lines by transforming the predictors, such as adding powers of the predictor to get polynomials.</p>
+<p>We can do this to get non-linear decision boundaries on the original predictor space, but it’s usually quite computationally expensive. The way to fix the problem is beyond the scope of this course, but the idea is to use <strong>kernel functions</strong>. The kernel function typically has a hyperparameter associated with it. Two of the most popular examples:</p>
+<ol style="list-style-type: decimal">
+<li>The polynomial kernel, with hyperparameter = the degree of the polynomial.</li>
+<li>The radial kernel, which has hyperparameter typically denoted “gamma” (a positive number).
+<ul>
+<li>Uses nearby training data for classification, where larger values of gamma allow for data to be further.</li>
+</ul></li>
+</ol>
+<p>Note that SVC and Maximum Margin Classification are special cases of SVM.</p>
+</div>
+<div id="multi-class-prediction" class="section level1">
+<h1>Multi-class Prediction</h1>
+<p>If there are more than two classes to predict, we can use one of two approaches to do the classification. Suppose there are <span class="math inline">\(K\)</span> categories.</p>
+<div id="approach-1-one-vs-one-or-all-pairs" class="section level2">
+<h2>Approach 1: One-vs-one, or all-pairs</h2>
+<p>This approach fits an SVM to all pairs of categories. That is:</p>
+<ol style="list-style-type: decimal">
+<li>Subset the data to only include two of the <span class="math inline">\(K\)</span> categories.</li>
+<li>Fit SVM</li>
+<li>Repeat 1-2 for all possible pairs.</li>
+</ol>
+<p>Classification is made using the “popular vote”.</p>
+</div>
+<div id="approach-2-one-vs-all" class="section level2">
+<h2>Approach 2: One-vs-all</h2>
+<p>This approach fits an SVM for each category against “other”. That’s <span class="math inline">\(K\)</span> SVM’s in total. That is:</p>
+<ol style="list-style-type: decimal">
+<li>Choose a category <span class="math inline">\(j\)</span>. Lump all other categories into one category called “other”.</li>
+<li>Fit SVM</li>
+<li>Repeat 1-2 for all <span class="math inline">\(K\)</span> choices of <span class="math inline">\(j\)</span>.</li>
+</ol>
+<p>Remember the measure of “confidence” introduced in 4.3, as the absolute value of the left-hand-side of the equation of the hyperplane? We choose the category that results in the highest confidence score.</p>
+</div>
+</div>
+<div id="svm-in-python" class="section level1">
+<h1>SVM in python</h1>
+<p>The scikit-learn documentation for running SVM’s in python is available <a href="http://scikit-learn.org/stable/modules/svm.html">here</a>.</p>
+<p>In general, the machine learning paradigm in python (at least with scikit-learn, the go-to machine learning library) is to</p>
+<ol style="list-style-type: decimal">
+<li>Initialize the method.</li>
+<li>Fit the model.</li>
+<li>Query the fit.</li>
+</ol>
+<p>You can run classification in python with the <code>sklearn.svm</code> bundle of methods. From this bundle, the method <code>SVC</code> is useful for SVM’s (despite its name), and <code>LinearSVC</code> is a special case when the classification boundary is linear (what we’ve been calling SVC).</p>
+<p>Load <code>SVC</code> like so:</p>
+<pre><code>from sklearn import svm</code></pre>
+<p>Let’s use a dataset from the documentation</p>
+<pre><code>from sklearn.datasets import make_classification
+X, y = make_classification(n_features=4, random_state=0)</code></pre>
+<p><code>X</code> is a matrix of the predictors (as a list of lists), with predictors in the columns, and observations in the rows. <code>y</code> is a list of labels/categories, with length equal to the number of rows of <code>X</code>.</p>
+<p>Let’s use scikit-learn.</p>
+<ol style="list-style-type: decimal">
+<li>Initialize the model.</li>
+</ol>
+<p>We’ll store the initialization in a variable called <code>my_model</code>. We can use the defaul of SVC, like so:</p>
+<pre><code>my_model = SVC()</code></pre>
+<p>Or I could have specified hyperparameters here. For example, specify <code>SVC(C=10, kernel=&quot;rbf&quot;)</code> for a penalty of <span class="math inline">\(C=10\)</span>, using the radial basis function kernel (you can use the <code>gamma</code> argument to control gamma, too). More details are in the documentation.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit the model.</li>
+</ol>
+<p>This is typically done in scikit-learn by appending <code>.fit(X, y)</code> to your initialized model, where <code>X</code> and <code>y</code> are as above.</p>
+<pre><code>my_model.fit(X, y)</code></pre>
+<p>Recall that, with python, the above code modifies the object <code>my_model</code>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Query the fit</li>
+</ol>
+<p>Now we can go ahead and do things with the fit, such as make predictions:</p>
+<pre><code>my_model.predict(X_new)</code></pre>
+<p>If <code>X_new</code> is like <code>X</code> (possibly with a different number of rows), then predictions will be made on this new data set. Note that this above code <em>does not</em> modify <code>my_model</code>, like appending <code>.fit</code> does.</p>
+<p>We can calculate accuracy:</p>
+<pre><code>my_model.score(X_new, y_new)</code></pre>
+<p>where <code>y_new</code> is like <code>y</code>, but for <code>X_new</code>.</p>
+<p>We can also calculate the distance to the decision boundary by appending <code>.decision_function</code>:</p>
+<pre><code>my_model.decision_function(X)</code></pre>
+</div>

@@ -21,14 +21,14 @@
   
   
 
-  <meta name="author" content="Nelson Bighetti">
+  <meta name="author" content="Vincenzo Coia">
 
   
   
   
     
   
-  <meta name="description" content="Professor of Artificial Intelligence">
+  <meta name="description" content="Lecturer of Data Science">
 
   
   <link rel="alternate" hreflang="en-us" href="/">
@@ -41,7 +41,7 @@
   
   
   
-  <meta name="theme-color" content="#2962ff">
+  <meta name="theme-color" content="rgb(251, 191, 183)">
   
 
   
@@ -69,8 +69,6 @@
     
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
-    
 
     
 
@@ -78,22 +76,36 @@
 
   
   
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono|Lora:400,700|Roboto:400,700&display=swap">
   
 
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.dd629241ea9333c62c071f4a25f829ff.css">
+  <link rel="stylesheet" href="/css/academic.min.ea73d1703b3b3f029dd47ab826d4e3a6.css">
 
   
 
   
   
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-111476782-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
   
 
   
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Academic">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Vincenzo Coia">
   
 
   <link rel="manifest" href="/index.webmanifest">
@@ -112,13 +124,16 @@
   
   <meta property="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="Academic">
+  <meta property="twitter:site" content="@VincenzoCoia">
+  <meta property="twitter:creator" content="@VincenzoCoia">
+  
+  <meta property="og:site_name" content="Vincenzo Coia">
   <meta property="og:url" content="/">
-  <meta property="og:title" content="Academic">
-  <meta property="og:description" content="Professor of Artificial Intelligence"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:title" content="Vincenzo Coia">
+  <meta property="og:description" content="Lecturer of Data Science"><meta property="og:image" content="/img/icon-192.png">
   <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
   
-    
+    <meta property="og:updated_time" content="2019-03-16T00:00:00&#43;00:00">
   
 
   
@@ -130,7 +145,7 @@
 
 
 
-  <title>Academic</title>
+  <title>Vincenzo Coia</title>
 
 </head>
 
@@ -173,7 +188,7 @@
   <div class="container">
 
     
-      <a class="navbar-brand" href="/">Academic</a>
+      <a class="navbar-brand" href="/">Vincenzo Coia</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
               data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -212,7 +227,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#hero" data-target="#hero"><span>Demo</span></a>
+          <a class="nav-link " href="/#about" data-target="#about"><span>About</span></a>
         </li>
 
         
@@ -241,7 +256,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#posts" data-target="#posts"><span>Posts</span></a>
+          <a class="nav-link " href="/#teaching" data-target="#teaching"><span>Teaching</span></a>
         </li>
 
         
@@ -270,7 +285,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#projects" data-target="#projects"><span>Projects</span></a>
+          <a class="nav-link " href="/#tutorials" data-target="#tutorials"><span>Tutorials</span></a>
         </li>
 
         
@@ -299,7 +314,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#featured" data-target="#featured"><span>Publications</span></a>
+          <a class="nav-link " href="/#career" data-target="#career"><span>Career</span></a>
         </li>
 
         
@@ -311,6 +326,8 @@
         
         
           
+            
+          
         
 
         
@@ -321,7 +338,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/courses/"><span>Courses</span></a>
+          <a class="nav-link " href="https://interpreting-regression.netlify.com/" target="_blank" rel="noopener"><span>Book</span></a>
         </li>
 
         
@@ -447,23 +464,22 @@
 
 
 
-<div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person" itemref="person-email person-telephone person-address">
+<div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person" itemref="person-email person-address">
   <div class="col-12 col-lg-4">
     <div id="profile">
 
       
-      
-      <img class="portrait" src="/authors/admin/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+      <img class="portrait" src="https://s.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=200')" itemprop="image" alt="Avatar">
       
 
       <div class="portrait-title">
-        <h2 itemprop="name">Nelson Bighetti</h2>
-        <h3 itemprop="jobTitle">Professor of Artificial Intelligence</h3>
+        <h2 itemprop="name">Vincenzo Coia</h2>
+        <h3 itemprop="jobTitle">Lecturer of Data Science</h3>
 
         
         <h3 itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
           
-          <span itemprop="name">Stanford University</span>
+          <span itemprop="name">The University of British Columbia</span>
           
         </h3>
         
@@ -502,7 +518,7 @@
           
         
         <li>
-          <a itemprop="sameAs" href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+          <a itemprop="sameAs" href="https://twitter.com/VincenzoCoia" target="_blank" rel="noopener">
             <i class="fab fa-twitter big-icon"></i>
           </a>
         </li>
@@ -510,6 +526,8 @@
         
         
         
+          
+        
         
         
         
@@ -517,8 +535,8 @@
           
         
         <li>
-          <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
-            <i class="ai ai-google-scholar big-icon"></i>
+          <a itemprop="sameAs" href="https://www.linkedin.com/in/vincenzocoia" target="_blank" rel="noopener">
+            <i class="fas fa-linkedin big-icon"></i>
           </a>
         </li>
         
@@ -534,7 +552,7 @@
           
         
         <li>
-          <a itemprop="sameAs" href="https://github.com/gcushen" target="_blank" rel="noopener">
+          <a itemprop="sameAs" href="https://github.com/vincenzocoia" target="_blank" rel="noopener">
             <i class="fab fa-github big-icon"></i>
           </a>
         </li>
@@ -548,9 +566,25 @@
     
     <h1>Biography</h1>
 
-    <p>Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.</p>
+    <p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img src="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg" alt="License: CC BY 4.0" /></a></p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.</p>
+<p>Hi!</p>
+
+<p>I&rsquo;m a data scientist at the University of British Columbia, Vancouver. My primary focus is the development and delivery of the Master of Data Science program.</p>
+
+<p>My hobbies include outdoor recreation such as hiking, birding, skiing, fishing, canoeing, and others.</p>
+
+<p>Preferred personal pronouns: he/him/his</p>
+
+<p>Some of the things I do:</p>
+
+<ul>
+<li>I solve problems using statistics, machine learning, and data visualizations.</li>
+<li>I interact with students to make data science more approachable.</li>
+<li>I use R, git, and friends to help me do these things.</li>
+</ul>
+
+<p>I can also identify birds, and other things about nature.</p>
 
 
     <div class="row">
@@ -560,11 +594,15 @@
         <h3>Interests</h3>
         <ul class="ul-interests">
           
-          <li>Artificial Intelligence</li>
+          <li>Distributional Forecasting</li>
           
-          <li>Computational Linguistics</li>
+          <li>Repurposing Statistics for Data Science</li>
           
-          <li>Information Retrieval</li>
+          <li>Software Engineering</li>
+          
+          <li>Extreme Quantile Regression</li>
+          
+          <li>Flood Forecasting</li>
           
         </ul>
       </div>
@@ -578,24 +616,32 @@
           <li>
             <i class="fa-li fas fa-graduation-cap"></i>
             <div class="description">
-              <p class="course">PhD in Artificial Intelligence, 2012</p>
-              <p class="institution">Stanford University</p>
+              <p class="course">PhD in Statistics, 2017</p>
+              <p class="institution">The University of British Columbia</p>
             </div>
           </li>
           
           <li>
             <i class="fa-li fas fa-graduation-cap"></i>
             <div class="description">
-              <p class="course">MEng in Artificial Intelligence, 2009</p>
-              <p class="institution">Massachusetts Institute of Technology</p>
+              <p class="course">MSc in Mathematical Statistics, 2012</p>
+              <p class="institution">Brock University</p>
             </div>
           </li>
           
           <li>
             <i class="fa-li fas fa-graduation-cap"></i>
             <div class="description">
-              <p class="course">BSc in Artificial Intelligence, 2008</p>
-              <p class="institution">Massachusetts Institute of Technology</p>
+              <p class="course">BSc in Biology with Earth Science, 2011</p>
+              <p class="institution">Brock University</p>
+            </div>
+          </li>
+          
+          <li>
+            <i class="fa-li fas fa-graduation-cap"></i>
+            <div class="description">
+              <p class="course">BSc in Mathematics and Statistics, 2011</p>
+              <p class="institution">Brock University</p>
             </div>
           </li>
           
@@ -615,6 +661,9 @@
       
 
     
+    
+    
+    <script src="/js/mathjax-config.js"></script>
     
 
     
@@ -637,11 +686,11 @@
 
       
       
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
     
 
     
-    
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
     
 
     
@@ -695,6 +744,8 @@
     
 
     
+    
+    <script id="dsq-count-scr" src="https://vincenzocoia-github-io.disqus.com/count.js" async></script>
     
 
     

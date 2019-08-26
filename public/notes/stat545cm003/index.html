@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.4.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Vincenzo Coia">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Getting Started with GitHub and git &ndash; with RStudio September 12, 2017
+Today, we&rsquo;ll aim to:
+ have a github repo set up have that repo cloned locally get fluent in RStudio&rsquo;s git client if time permits: RMarkdown  Working on GitHub  Let&rsquo;s start with a survey of github. Let&rsquo;s use the MDS public repo as an example. Notice&hellip;  Directory: You can see a directory of files, along with a README (in other folders, too).">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/notes/stat545cm003/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="rgb(251, 191, 183)">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono|Lora:400,700|Roboto:400,700&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.ea73d1703b3b3f029dd47ab826d4e3a6.css">
+
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-111476782-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/notes/stat545cm003/">
+
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@VincenzoCoia">
+  <meta property="twitter:creator" content="@VincenzoCoia">
+  
+  <meta property="og:site_name" content="Vincenzo Coia">
+  <meta property="og:url" content="/notes/stat545cm003/">
+  <meta property="og:title" content=" | Vincenzo Coia">
+  <meta property="og:description" content="Getting Started with GitHub and git &ndash; with RStudio September 12, 2017
+Today, we&rsquo;ll aim to:
+ have a github repo set up have that repo cloned locally get fluent in RStudio&rsquo;s git client if time permits: RMarkdown  Working on GitHub  Let&rsquo;s start with a survey of github. Let&rsquo;s use the MDS public repo as an example. Notice&hellip;  Directory: You can see a directory of files, along with a README (in other folders, too)."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="twitter:image" content="/img/icon-192.png"><meta property="og:locale" content="en-us">
+  
+    
+    
+  
+
+  
+
+
+  
+
+
+
+
+
+  <title> | Vincenzo Coia</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Vincenzo Coia</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav mr-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#teaching"><span>Teaching</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#tutorials"><span>Tutorials</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#career"><span>Career</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+            
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="https://interpreting-regression.netlify.com/" target="_blank" rel="noopener"><span>Book</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name"></h1>
+
+  
+
+  
+    
+
+
+
+<meta content="" itemprop="datePublished">
+<meta content="" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jan 1, 0001</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/notes/stat545cm003/&amp;text=" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/notes/stat545cm003/&amp;t=" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=&amp;body=/notes/stat545cm003/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/notes/stat545cm003/&amp;title=" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%20/notes/stat545cm003/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/notes/stat545cm003/&amp;title=" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<h1 id="getting-started-with-github-and-git-with-rstudio">Getting Started with GitHub and git &ndash; with RStudio</h1>
+
+<p><strong>September 12, 2017</strong></p>
+
+<p>Today, we&rsquo;ll aim to:</p>
+
+<ul>
+<li>have a github repo set up</li>
+<li>have that repo cloned locally</li>
+<li>get fluent in RStudio&rsquo;s git client</li>
+<li>if time permits: RMarkdown</li>
+</ul>
+
+<h2 id="working-on-github">Working on GitHub</h2>
+
+<ul>
+<li>Let&rsquo;s start with a survey of github. Let&rsquo;s use the <a href="https://github.com/UBC-MDS/public" target="_blank">MDS public repo</a> as an example. Notice&hellip;
+
+<ul>
+<li><strong>Directory</strong>: You can see a directory of files, along with a <em>README</em> (in other folders, too).
+
+<ul>
+<li>Can&rsquo;t make folders on gh&hellip; need to make locally.</li>
+</ul></li>
+<li><strong>File Rendering</strong>: GitHub renders certain file types nicely.
+
+<ul>
+<li>Markdown! csv/tsv! pdf!</li>
+<li>Not html :(</li>
+<li>Basically get a free website. <a href="http://happygitwithr.com/repo-browsability.html" target="_blank">Make it browsable!</a>.</li>
+</ul></li>
+<li><strong>Editing</strong>: Use the &ldquo;pen&rdquo; icon. Then &ldquo;commit&rdquo;. Not so good for big changes (can&rsquo;t save) &ndash; we&rsquo;ll see how to make changes locally later.</li>
+<li><strong>Commits</strong>: List that shows the entire &ldquo;history&rdquo; of the project since you initiated git. See at the repo&rsquo;s &ldquo;home&rdquo; directory.</li>
+<li><strong>diffs</strong>: Click on a commit to see what was changed!</li>
+<li>File <strong>History</strong> and <strong>Blame</strong>: History shows the commit history of the file; blame shows who did what.</li>
+<li><strong>Issues</strong>: A way for open dialogue to happen amongst your team.</li>
+</ul></li>
+<li>Exercise 1:
+
+<ul>
+<li>Create a new public github repo.</li>
+<li>Initiate with a README file.</li>
+<li>Edit the README file by adding some new text.</li>
+</ul></li>
+<li>Exercise 2: Navigate to the <a href="https://github.com/STAT545-UBC/STAT545-UBC.github.io" target="_blank">github repo that makes the stat545.com website</a>. Investigate the file <code>cm001_course-intro-sw-install-account-signup.md</code> in the main repo.
+
+<ul>
+<li>When was the last change made? By whom?</li>
+<li>What was added on line 10 in the most recent change?</li>
+<li>Who was the last person to change line 17?</li>
+<li>When was the first commit made? By whom? What did the file look like after that change?</li>
+</ul></li>
+<li>Exercise 3: Collaboration
+
+<ul>
+<li>Add your neighbour as a collaborator to your github repo. Go to Settings -&gt; Collaborators, and type in their github username.</li>
+<li>Modify <em>your neighbour&rsquo;s</em> README by adding some text, like &ldquo;<my name> was here.&rdquo;</li>
+<li>Add an issue titled something like &ldquo;README should be reviewed&rdquo; and tag the repo owner by preceding their username with <code>@</code>.</li>
+<li>Repo owners: check your email. You should have a notification. Close the issue (or comment+close).
+
+<ul>
+<li>NOTE: Click &ldquo;Watch&rdquo; to be notified of issues even if your aren&rsquo;t tagged!</li>
+</ul></li>
+</ul></li>
+<li>Exercise 4: <strong>If there&rsquo;s enough time</strong>: forking.
+
+<ul>
+<li><em>Fork</em> your <em>other</em> neighbour&rsquo;s repo by navigating to their repo and clicking &ldquo;fork&rdquo;.
+
+<ul>
+<li>You&rsquo;ll have your own copy of their repo on your account.</li>
+</ul></li>
+<li>Add a new file called <code>testing.md</code>, and add some text to it.</li>
+<li>Make a pull request by clicking <code>pull request</code>. Be sure to leave a comment.</li>
+<li>Owners of the repo: Accept the pull request.</li>
+</ul></li>
+
+<li><p>What happened in Exercise 4? A <em>separate copy</em> of the repo was modified, and <em>merged</em> to the main repo.</p></li>
+
+<li><p>Some plain markdown</p></li>
+</ul>
+
+<h2 id="working-locally">Working Locally</h2>
+
+<ul>
+<li>Clone! Or, you could start new. See JB&rsquo;s Happy book for different orderings.
+
+<ul>
+<li><code>git init</code> if you&rsquo;re starting from an existing project!! Otherwise, you&rsquo;ll try to version everything!</li>
+</ul></li>
+<li>Set up git with RStudio. Cache credentials. Link to gh.
+
+<ul>
+<li>git is a program with no interface. RStudio/others provide an interface, on your computer.</li>
+<li><code>install.packages(&quot;knitr&quot;)</code></li>
+</ul></li>
+<li>New R script; compile notebook.</li>
+<li>Stage, commit, pull, push.</li>
+<li>Advanced stuff:
+
+<ul>
+<li>FYI: Alternatives to git: bare repo on your own server.</li>
+<li>Branch. Revert. Merge. Merge conflicts.</li>
+<li>Do via source tree, or bash.</li>
+</ul></li>
+</ul>
+
+<h2 id="r-markdown">R Markdown</h2>
+
+<p>A start, if we get to it!</p>
+
+<ul>
+<li>Differences between markdown and R markdown.
+
+<ul>
+<li>latex (what is? Super useful for theses.)</li>
+<li>code chunks!</li>
+</ul></li>
+<li>How to render: <code>rmarkdown::render</code> or click &ldquo;knit&rdquo;.</li>
+<li>What gets created? Rmd -&gt; md -&gt; html/pdf. <a href="https://speakerdeck.com/jennybc/happy-git-and-github-for-the-user?slide=56" target="_blank">this slide</a>
+
+<ul>
+<li><code>output_format: github_document</code>. Others are available&hellip;</li>
+</ul></li>
+<li>YAML header.</li>
+</ul>
+
+<h2 id="lessons">Lessons</h2>
+
+<ul>
+<li>Working with git:
+
+<ul>
+<li>local repository: a self-contained project on your computer</li>
+<li>remote repository: that project on some &ldquo;cloud&rdquo;, like GitHub, BitBucket, your own server, &hellip;</li>
+<li>git client: program on your computer that helps you use git (commit, push, pull, &hellip;)</li>
+</ul></li>
+<li>Adopt git in your workflow! This means:
+
+<ul>
+<li>Dedicate a self-contained directory to your project.</li>
+<li>Set up an R project for the directory.</li>
+<li>Set up git for that directory.</li>
+<li><strong>Save</strong> perpetually, <strong>commit</strong> often, <strong>pull/push</strong> (to github) periodically!</li>
+</ul></li>
+<li>git can be painful.
+
+<ul>
+<li>Problems? Often best to just burn it down and start fresh&hellip;</li>
+<li>Documentation difficult to read. Check out [this parody]((<a href="https://git-man-page-generator.lokaltog.net/" target="_blank">https://git-man-page-generator.lokaltog.net/</a>) of github documentation.</li>
+<li>Use a git client to make it easier to work with git. RStudio, Source Tree, GitHub desktop, &hellip;</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+
+
+    
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Vincenzo Coia</a></h5>
+      <h6 class="card-subtitle">Lecturer of Data Science</h6>
+      <p class="card-text" itemprop="description">I&rsquo;m a data scientist at the University of British Columbia, Vancouver.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/VincenzoCoia" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://www.linkedin.com/in/vincenzocoia" target="_blank" rel="noopener">
+              <i class="fas fa-linkedin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/vincenzocoia" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://vincenzocoia-github-io.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.16bbb3750feb7244c9bc409a5a4fe678.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

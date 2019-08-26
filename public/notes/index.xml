@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes | Vincenzo Coia</title>
+    <link>/notes/</link>
+      <atom:link href="/notes/index.xml" rel="self" type="application/rss+xml" />
+    <description>Notes</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>/img/icon-192.png</url>
+      <title>Notes</title>
+      <link>/notes/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>/notes/stat545cm003/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/notes/stat545cm003/</guid>
+      <description>
+
+&lt;h1 id=&#34;getting-started-with-github-and-git-with-rstudio&#34;&gt;Getting Started with GitHub and git &amp;ndash; with RStudio&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;September 12, 2017&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Today, we&amp;rsquo;ll aim to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;have a github repo set up&lt;/li&gt;
+&lt;li&gt;have that repo cloned locally&lt;/li&gt;
+&lt;li&gt;get fluent in RStudio&amp;rsquo;s git client&lt;/li&gt;
+&lt;li&gt;if time permits: RMarkdown&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;working-on-github&#34;&gt;Working on GitHub&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Let&amp;rsquo;s start with a survey of github. Let&amp;rsquo;s use the &lt;a href=&#34;https://github.com/UBC-MDS/public&#34; target=&#34;_blank&#34;&gt;MDS public repo&lt;/a&gt; as an example. Notice&amp;hellip;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Directory&lt;/strong&gt;: You can see a directory of files, along with a &lt;em&gt;README&lt;/em&gt; (in other folders, too).
+
+&lt;ul&gt;
+&lt;li&gt;Can&amp;rsquo;t make folders on gh&amp;hellip; need to make locally.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;File Rendering&lt;/strong&gt;: GitHub renders certain file types nicely.
+
+&lt;ul&gt;
+&lt;li&gt;Markdown! csv/tsv! pdf!&lt;/li&gt;
+&lt;li&gt;Not html :(&lt;/li&gt;
+&lt;li&gt;Basically get a free website. &lt;a href=&#34;http://happygitwithr.com/repo-browsability.html&#34; target=&#34;_blank&#34;&gt;Make it browsable!&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Editing&lt;/strong&gt;: Use the &amp;ldquo;pen&amp;rdquo; icon. Then &amp;ldquo;commit&amp;rdquo;. Not so good for big changes (can&amp;rsquo;t save) &amp;ndash; we&amp;rsquo;ll see how to make changes locally later.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Commits&lt;/strong&gt;: List that shows the entire &amp;ldquo;history&amp;rdquo; of the project since you initiated git. See at the repo&amp;rsquo;s &amp;ldquo;home&amp;rdquo; directory.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;diffs&lt;/strong&gt;: Click on a commit to see what was changed!&lt;/li&gt;
+&lt;li&gt;File &lt;strong&gt;History&lt;/strong&gt; and &lt;strong&gt;Blame&lt;/strong&gt;: History shows the commit history of the file; blame shows who did what.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Issues&lt;/strong&gt;: A way for open dialogue to happen amongst your team.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Exercise 1:
+
+&lt;ul&gt;
+&lt;li&gt;Create a new public github repo.&lt;/li&gt;
+&lt;li&gt;Initiate with a README file.&lt;/li&gt;
+&lt;li&gt;Edit the README file by adding some new text.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Exercise 2: Navigate to the &lt;a href=&#34;https://github.com/STAT545-UBC/STAT545-UBC.github.io&#34; target=&#34;_blank&#34;&gt;github repo that makes the stat545.com website&lt;/a&gt;. Investigate the file &lt;code&gt;cm001_course-intro-sw-install-account-signup.md&lt;/code&gt; in the main repo.
+
+&lt;ul&gt;
+&lt;li&gt;When was the last change made? By whom?&lt;/li&gt;
+&lt;li&gt;What was added on line 10 in the most recent change?&lt;/li&gt;
+&lt;li&gt;Who was the last person to change line 17?&lt;/li&gt;
+&lt;li&gt;When was the first commit made? By whom? What did the file look like after that change?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Exercise 3: Collaboration
+
+&lt;ul&gt;
+&lt;li&gt;Add your neighbour as a collaborator to your github repo. Go to Settings -&amp;gt; Collaborators, and type in their github username.&lt;/li&gt;
+&lt;li&gt;Modify &lt;em&gt;your neighbour&amp;rsquo;s&lt;/em&gt; README by adding some text, like &amp;ldquo;&lt;my name&gt; was here.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Add an issue titled something like &amp;ldquo;README should be reviewed&amp;rdquo; and tag the repo owner by preceding their username with &lt;code&gt;@&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Repo owners: check your email. You should have a notification. Close the issue (or comment+close).
+
+&lt;ul&gt;
+&lt;li&gt;NOTE: Click &amp;ldquo;Watch&amp;rdquo; to be notified of issues even if your aren&amp;rsquo;t tagged!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Exercise 4: &lt;strong&gt;If there&amp;rsquo;s enough time&lt;/strong&gt;: forking.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Fork&lt;/em&gt; your &lt;em&gt;other&lt;/em&gt; neighbour&amp;rsquo;s repo by navigating to their repo and clicking &amp;ldquo;fork&amp;rdquo;.
+
+&lt;ul&gt;
+&lt;li&gt;You&amp;rsquo;ll have your own copy of their repo on your account.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Add a new file called &lt;code&gt;testing.md&lt;/code&gt;, and add some text to it.&lt;/li&gt;
+&lt;li&gt;Make a pull request by clicking &lt;code&gt;pull request&lt;/code&gt;. Be sure to leave a comment.&lt;/li&gt;
+&lt;li&gt;Owners of the repo: Accept the pull request.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;What happened in Exercise 4? A &lt;em&gt;separate copy&lt;/em&gt; of the repo was modified, and &lt;em&gt;merged&lt;/em&gt; to the main repo.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Some plain markdown&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;working-locally&#34;&gt;Working Locally&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Clone! Or, you could start new. See JB&amp;rsquo;s Happy book for different orderings.
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git init&lt;/code&gt; if you&amp;rsquo;re starting from an existing project!! Otherwise, you&amp;rsquo;ll try to version everything!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Set up git with RStudio. Cache credentials. Link to gh.
+
+&lt;ul&gt;
+&lt;li&gt;git is a program with no interface. RStudio/others provide an interface, on your computer.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;install.packages(&amp;quot;knitr&amp;quot;)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;New R script; compile notebook.&lt;/li&gt;
+&lt;li&gt;Stage, commit, pull, push.&lt;/li&gt;
+&lt;li&gt;Advanced stuff:
+
+&lt;ul&gt;
+&lt;li&gt;FYI: Alternatives to git: bare repo on your own server.&lt;/li&gt;
+&lt;li&gt;Branch. Revert. Merge. Merge conflicts.&lt;/li&gt;
+&lt;li&gt;Do via source tree, or bash.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;r-markdown&#34;&gt;R Markdown&lt;/h2&gt;
+
+&lt;p&gt;A start, if we get to it!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Differences between markdown and R markdown.
+
+&lt;ul&gt;
+&lt;li&gt;latex (what is? Super useful for theses.)&lt;/li&gt;
+&lt;li&gt;code chunks!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;How to render: &lt;code&gt;rmarkdown::render&lt;/code&gt; or click &amp;ldquo;knit&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;What gets created? Rmd -&amp;gt; md -&amp;gt; html/pdf. &lt;a href=&#34;https://speakerdeck.com/jennybc/happy-git-and-github-for-the-user?slide=56&#34; target=&#34;_blank&#34;&gt;this slide&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;output_format: github_document&lt;/code&gt;. Others are available&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;YAML header.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;lessons&#34;&gt;Lessons&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Working with git:
+
+&lt;ul&gt;
+&lt;li&gt;local repository: a self-contained project on your computer&lt;/li&gt;
+&lt;li&gt;remote repository: that project on some &amp;ldquo;cloud&amp;rdquo;, like GitHub, BitBucket, your own server, &amp;hellip;&lt;/li&gt;
+&lt;li&gt;git client: program on your computer that helps you use git (commit, push, pull, &amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Adopt git in your workflow! This means:
+
+&lt;ul&gt;
+&lt;li&gt;Dedicate a self-contained directory to your project.&lt;/li&gt;
+&lt;li&gt;Set up an R project for the directory.&lt;/li&gt;
+&lt;li&gt;Set up git for that directory.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Save&lt;/strong&gt; perpetually, &lt;strong&gt;commit&lt;/strong&gt; often, &lt;strong&gt;pull/push&lt;/strong&gt; (to github) periodically!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;git can be painful.
+
+&lt;ul&gt;
+&lt;li&gt;Problems? Often best to just burn it down and start fresh&amp;hellip;&lt;/li&gt;
+&lt;li&gt;Documentation difficult to read. Check out [this parody]((&lt;a href=&#34;https://git-man-page-generator.lokaltog.net/&#34; target=&#34;_blank&#34;&gt;https://git-man-page-generator.lokaltog.net/&lt;/a&gt;) of github documentation.&lt;/li&gt;
+&lt;li&gt;Use a git client to make it easier to work with git. RStudio, Source Tree, GitHub desktop, &amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/notes/binomial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/notes/binomial/</guid>
+      <description>
+
+&lt;h1 id=&#34;the-binomial-distribution&#34;&gt;The Binomial Distribution&lt;/h1&gt;
+
+&lt;p&gt;[ ] &lt;strong&gt;Materials&lt;/strong&gt;: Paper and pen/pencil.&lt;/p&gt;
+
+&lt;h2 id=&#34;pre-quiz&#34;&gt;Pre-quiz&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Suppose you have 6-sided and fair dice. What&amp;rsquo;s the probability of rolling:
+
+&lt;ol&gt;
+&lt;li&gt;A 3 on the roll of a die?&lt;/li&gt;
+&lt;li&gt;Snake-eyes? (i.e., two 1&amp;rsquo;s after rolling two dice).&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;On a given day, there&amp;rsquo;s a 50% chance that your toaster works. What&amp;rsquo;s the probability that&amp;hellip;
+
+&lt;ol&gt;
+&lt;li&gt;your toaster works exactly one day in a given week?&lt;/li&gt;
+&lt;li&gt;BONUS: your toaster works at least one day in a given week?&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;[ ] Pre-quiz done!&lt;/p&gt;
+
+&lt;h2 id=&#34;share-your-answers&#34;&gt;Share your answers&lt;/h2&gt;
+
+&lt;p&gt;How did you come up with those numbers?&lt;/p&gt;
+
+&lt;p&gt;These can all be calculated using the __Binomial distribution_!&lt;/p&gt;
+
+&lt;p&gt;Anyone familiar?&lt;/p&gt;
+
+&lt;p&gt;[ ] Sharing done!&lt;/p&gt;
+
+&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;
+
+&lt;p&gt;By the end of the lesson, when faced with the task of computing a probability, learners are anticipated to be able to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Identify whether the probability can be computed using the binomial distribution.&lt;/li&gt;
+&lt;li&gt;Apply the binomial distribution formula to compute the probability.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[ ] Objectives done!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Can the Binomial distribution be used to compute a probability?
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You need two ingredients.&lt;/p&gt;
+
+&lt;h3 id=&#34;ingredient-1&#34;&gt;Ingredient #1:&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Outcome = number of &amp;ldquo;wins&amp;rdquo; of independent &amp;ldquo;games&amp;rdquo;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question&lt;/strong&gt;: What are the &amp;ldquo;games&amp;rdquo; in the pre-quiz questions? What&amp;rsquo;s a &amp;ldquo;win&amp;rdquo;?&lt;/p&gt;
+
+&lt;ul class=&#34;task-list&#34;&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; I&amp;rsquo;ll do Q1&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Can you do Q2?&lt;/label&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[ ] Ingredient 1 done!&lt;/p&gt;
+
+&lt;h3 id=&#34;ingredient-2&#34;&gt;Ingredient #2:&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;The probability of winning a game stays the same across games.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;[ ] &lt;strong&gt;Question&lt;/strong&gt;: What are the probabilities of winning a game for Q1 and Q2? Are they the same across games?&lt;/p&gt;
+
+&lt;p&gt;[ ] Ingredient 2 done! All ingredients done!&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;How to use the Binomial distribution to compute a probability
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Formula for &lt;em&gt;x&lt;/em&gt; wins out of &lt;em&gt;n&lt;/em&gt; games. Probability of success &lt;em&gt;p&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;$$\frac{n!}{x!(n-x)!}p^x(1-p)^{n-x}$$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Activity&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ol class=&#34;task-list&#34;&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Let&amp;rsquo;s work through Q1 together&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; You do Q2 on your own. Write it down!&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Share/revise answers with peer.&lt;/label&gt;&lt;/li&gt;
+&lt;li&gt;&lt;label&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Communicate answers&lt;/label&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;[ ] Using the formula = done!&lt;/p&gt;
+
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use the binomial distribution to compute probability of number of &amp;ldquo;wins&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;A &amp;ldquo;win&amp;rdquo; can be &lt;em&gt;so many things&lt;/em&gt;!
+
+&lt;ul&gt;
+&lt;li&gt;rain (vs. not rain)&lt;/li&gt;
+&lt;li&gt;getting to work in less than 30 minutes (vs. not)&lt;/li&gt;
+&lt;li&gt;passing a course (vs. not)&lt;/li&gt;
+&lt;li&gt;etc&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/notes/organizing_proj_dir/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/notes/organizing_proj_dir/</guid>
+      <description>&lt;p&gt;For many years, I&amp;rsquo;ve been looking for a clean and sensible way to organize my analytical project files and folders. But being mindful of file organization isn&amp;rsquo;t enough, as my half-organized PhD-related files an attest.&lt;/p&gt;
+
+&lt;p&gt;What is a &amp;ldquo;good&amp;rdquo; organization system, anyway? Your project folder should have the following traits.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Navigable&lt;/strong&gt;. Someone going to your project folder should know what&amp;rsquo;s there and where to find it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reproducible&lt;/strong&gt;. Someone that&amp;rsquo;s not current-you should be able to reproduce the analysis. Ideally, with the stroke of a button.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self-containted&lt;/strong&gt;. All files related to the analysis should be in your project folder.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Your project folder is essentially all files that are necessary (and useful) for creating the final manuscript.&lt;/p&gt;
+
+&lt;p&gt;But usually, there are other files that are specific to you, and not required by the manuscript, such as research and meeting notes. I&amp;rsquo;ve therefore found that it&amp;rsquo;s useful to keep &lt;em&gt;two&lt;/em&gt; folders: your project file, and a companion &lt;em&gt;developer&amp;rsquo;s folder&lt;/em&gt; personal to yourself.&lt;/p&gt;
+
+&lt;p&gt;Don&amp;rsquo;t be afraid to duplicate files! For example, your BibTeX documentary should live in the project folder &amp;ndash; even if you only ever draw on one central bibliography. But, this file should be considered as &lt;em&gt;output&lt;/em&gt;, not a file to be mofidied in itself. For example, make an &lt;code&gt;automator&lt;/code&gt; script to update the bibliography from your central bibiography, and put that script in your developer&amp;rsquo;s folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.ubc.ca/ubc-mds-2017/general/blob/master/general_lab_instructions.md&#34; target=&#34;_blank&#34;&gt;https://github.ubc.ca/ubc-mds-2017/general/blob/master/general_lab_instructions.md&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Code files contributing to my analysis go in the &lt;code&gt;src&lt;/code&gt; directory.&lt;/li&gt;
+&lt;li&gt;Project organization files go in the root directory. This includes:
+
+&lt;ul&gt;
+&lt;li&gt;A Makefile or shell scripts This does not include except for the driver scripts (Shell script and Makefile which call your analysis scripts).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;all rendered documents and visualizations you create live in the &lt;code&gt;results&lt;/code&gt; directory&lt;/li&gt;
+&lt;li&gt;any data present goes in the &lt;code&gt;data&lt;/code&gt; directory&lt;/li&gt;
+&lt;li&gt;answers to written questions live in the &lt;code&gt;doc&lt;/code&gt; directory.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/notes/yes_and/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/notes/yes_and/</guid>
+      <description>
+
+&lt;h1 id=&#34;improv-and-life&#34;&gt;Improv and Life&lt;/h1&gt;
+
+&lt;p&gt;Who&amp;rsquo;s seen improv shows? Knows lessons?&lt;/p&gt;
+
+&lt;h2 id=&#34;learning-objective&#34;&gt;Learning Objective&lt;/h2&gt;
+
+&lt;p&gt;By the end of today&amp;rsquo;s lesson, using two activities based on improv theatre, learners are anticipated to&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Demonstrate how saying yes to ideas opens up new possibilities in work and life.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;activity-1-yes-and-yeah-but&#34;&gt;Activity #1: Yes, and&amp;hellip;; Yeah, but&amp;hellip;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Part 1:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pair up.&lt;/li&gt;
+&lt;li&gt;Someone starts: &amp;ldquo;Hey! Let&amp;rsquo;s [activity]!!&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Go back and forth: &amp;ldquo;Yes! And, [&amp;hellip;]&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;I&amp;rsquo;ll stop you after 1 minute.&lt;/li&gt;
+&lt;li&gt;Rule: you &lt;em&gt;must&lt;/em&gt; give an &lt;em&gt;overly&lt;/em&gt; enthusiastic &amp;ldquo;yes&amp;rdquo;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Part 2:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Same thing, but say &amp;ldquo;yeah, but&amp;hellip;&amp;rdquo;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rule: appear displeased with the others&amp;rsquo; suggestion.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Discussion:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Any take-aways?&lt;/li&gt;
+&lt;li&gt;When is either useful?&lt;/li&gt;
+&lt;li&gt;Which type of person are you?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;activity-2-story-time&#34;&gt;Activity #2: Story time&lt;/h2&gt;
+
+&lt;p&gt;Teams: one big team of 5.&lt;/p&gt;
+
+&lt;p&gt;Goal: Build a cohesive story in a team, using 5 parts.&lt;/p&gt;
+
+&lt;p&gt;Each person gets a component of the story:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Setting&lt;/li&gt;
+&lt;li&gt;characters&lt;/li&gt;
+&lt;li&gt;problem&lt;/li&gt;
+&lt;li&gt;stakes&lt;/li&gt;
+&lt;li&gt;solution&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Discussion&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Any take-aways?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Saying yes in group settings leads to new opportunities!&lt;/p&gt;
+
+&lt;p&gt;Use &amp;ldquo;yeah, but&amp;hellip;&amp;rdquo; to refine ideas.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Improv and Life</title>
+      <link>/notes/yes_and/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/notes/yes_and/</guid>
+      <description>
+
+
+&lt;p&gt;Who’s seen improv shows? Knows lessons?&lt;/p&gt;
+&lt;div id=&#34;learning-objective&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Learning Objective&lt;/h2&gt;
+&lt;p&gt;By the end of today’s lesson, using two activities based on improv theatre, learners are anticipated to&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Demonstrate how saying yes to ideas opens up new possibilities in work and life.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;activity-1-yes-and-yeah-but&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Activity #1: Yes, and…; Yeah, but…&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Part 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pair up.&lt;/li&gt;
+&lt;li&gt;Someone starts: “Hey! Let’s [activity]!!”&lt;/li&gt;
+&lt;li&gt;Go back and forth: “Yes! And, […]”.&lt;/li&gt;
+&lt;li&gt;I’ll stop you after 1 minute.&lt;/li&gt;
+&lt;li&gt;Rule: you &lt;em&gt;must&lt;/em&gt; give an &lt;em&gt;overly&lt;/em&gt; enthusiastic “yes”.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Part 2:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Same thing, but say “yeah, but…”&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rule: appear displeased with the others’ suggestion.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Discussion:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Any take-aways?&lt;/li&gt;
+&lt;li&gt;When is either useful?&lt;/li&gt;
+&lt;li&gt;Which type of person are you?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;activity-2-story-time&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Activity #2: Story time&lt;/h2&gt;
+&lt;p&gt;Teams: one big team of 5.&lt;/p&gt;
+&lt;p&gt;Goal: Build a cohesive story in a team, using 5 parts.&lt;/p&gt;
+&lt;p&gt;Each person gets a component of the story:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting&lt;/li&gt;
+&lt;li&gt;characters&lt;/li&gt;
+&lt;li&gt;problem&lt;/li&gt;
+&lt;li&gt;stakes&lt;/li&gt;
+&lt;li&gt;solution&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Discussion&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Any take-aways?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Saying yes in group settings leads to new opportunities!&lt;/p&gt;
+&lt;p&gt;Use “yeah, but…” to refine ideas.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Binomial Distribution</title>
+      <link>/notes/binomial/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/notes/binomial/</guid>
+      <description>
+
+
+&lt;p&gt;[ ] &lt;strong&gt;Materials&lt;/strong&gt;: Paper and pen/pencil.&lt;/p&gt;
+&lt;div id=&#34;pre-quiz&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pre-quiz&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Suppose you have 6-sided and fair dice. What’s the probability of rolling:
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;A 3 on the roll of a die?&lt;/li&gt;
+&lt;li&gt;Snake-eyes? (i.e., two 1’s after rolling two dice).&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;On a given day, there’s a 50% chance that your toaster works. What’s the probability that…
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;your toaster works exactly one day in a given week?&lt;/li&gt;
+&lt;li&gt;BONUS: your toaster works at least one day in a given week?&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[ ] Pre-quiz done!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;share-your-answers&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Share your answers&lt;/h2&gt;
+&lt;p&gt;What did you all get?&lt;/p&gt;
+&lt;p&gt;How did you come up with those numbers?&lt;/p&gt;
+&lt;p&gt;These can all be calculated using the __Binomial distribution_!&lt;/p&gt;
+&lt;p&gt;Anyone familiar?&lt;/p&gt;
+&lt;p&gt;[ ] Sharing done!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;learning-objectives&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Learning Objectives&lt;/h2&gt;
+&lt;p&gt;By the end of the lesson, when faced with the task of computing a probability, learners are anticipated to be able to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify whether the probability can be computed using the binomial distribution.&lt;/li&gt;
+&lt;li&gt;Apply the binomial distribution formula to compute the probability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[ ] Objectives done!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;can-the-binomial-distribution-be-used-to-compute-a-probability&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. Can the Binomial distribution be used to compute a probability?&lt;/h2&gt;
+&lt;p&gt;You need two ingredients.&lt;/p&gt;
+&lt;div id=&#34;ingredient-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Ingredient #1:&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Outcome = number of “wins” of independent “games”.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Question&lt;/strong&gt;: What are the “games” in the pre-quiz questions? What’s a “win”?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[ ] I’ll do Q1&lt;/li&gt;
+&lt;li&gt;[ ] Can you do Q2?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[ ] Ingredient 1 done!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ingredient-2&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Ingredient #2:&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;The probability of winning a game stays the same across games.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;[ ] &lt;strong&gt;Question&lt;/strong&gt;: What are the probabilities of winning a game for Q1 and Q2? Are they the same across games?&lt;/p&gt;
+&lt;p&gt;[ ] Ingredient 2 done! All ingredients done!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;how-to-use-the-binomial-distribution-to-compute-a-probability&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. How to use the Binomial distribution to compute a probability&lt;/h2&gt;
+&lt;p&gt;Formula for &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt; wins out of &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt; games. Probability of success &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{n!}{x!(n-x)!}p^x(1-p)^{n-x}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Activity&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;[ ] Let’s work through Q1 together&lt;/li&gt;
+&lt;li&gt;[ ] You do Q2 on your own. Write it down!&lt;/li&gt;
+&lt;li&gt;[ ] Share/revise answers with peer.&lt;/li&gt;
+&lt;li&gt;[ ] Communicate answers (answers below)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;[ ] Using the formula = done!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;summary&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Use the binomial distribution to compute probability of number of “wins”.&lt;/li&gt;
+&lt;li&gt;A “win” can be &lt;em&gt;so many things&lt;/em&gt;!
+&lt;ul&gt;
+&lt;li&gt;rain (vs. not rain)&lt;/li&gt;
+&lt;li&gt;getting to work in less than 30 minutes (vs. not)&lt;/li&gt;
+&lt;li&gt;passing a course (vs. not)&lt;/li&gt;
+&lt;li&gt;etc…&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;answers&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Answers&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;…
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;1/6 = 0.1667&lt;/li&gt;
+&lt;li&gt;1/36 = 0.02778&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;…
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;0.0546875&lt;/li&gt;
+&lt;li&gt;(1 - prob of never works) = 1 - 0.0078125 = 0.9921875&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

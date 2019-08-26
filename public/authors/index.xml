@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Authors | Academic</title>
+    <title>Authors | Vincenzo Coia</title>
     <link>/authors/</link>
       <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
@@ -17,9 +17,25 @@
       <link>/authors/admin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>/authors/admin/</guid>
-      <description>&lt;p&gt;Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;https://creativecommons.org/licenses/by/4.0/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg&#34; alt=&#34;License: CC BY 4.0&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.&lt;/p&gt;
+&lt;p&gt;Hi!&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m a data scientist at the University of British Columbia, Vancouver. My primary focus is the development and delivery of the Master of Data Science program.&lt;/p&gt;
+
+&lt;p&gt;My hobbies include outdoor recreation such as hiking, birding, skiing, fishing, canoeing, and others.&lt;/p&gt;
+
+&lt;p&gt;Preferred personal pronouns: he/him/his&lt;/p&gt;
+
+&lt;p&gt;Some of the things I do:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I solve problems using statistics, machine learning, and data visualizations.&lt;/li&gt;
+&lt;li&gt;I interact with students to make data science more approachable.&lt;/li&gt;
+&lt;li&gt;I use R, git, and friends to help me do these things.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I can also identify birds, and other things about nature.&lt;/p&gt;
 </description>
     </item>
     

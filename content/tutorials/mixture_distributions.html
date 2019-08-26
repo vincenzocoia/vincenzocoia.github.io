@@ -1,0 +1,98 @@
+---
+title: "Mixture distributions"
+author: "Vincenzo Coia"
+date: '2017-02-22'
+output: pdf_document
+---
+
+
+
+<p>This tutorial introduces the concept of a <em>mixture distribution</em>. We’ll look at a basic example first, using intuition, and then describe mixture distributions mathematically. See the very end for a summary of the learning points.</p>
+<div id="intuition" class="section level2">
+<h2>Intuition</h2>
+<p>Let’s start by looking at a basic experiment:</p>
+<ol style="list-style-type: decimal">
+<li>Flip a coin.</li>
+<li>If the outcome is heads, generate a <code>N(0,1)</code> random variable. If the outcome is tails, generate a <code>N(4,1)</code> random variable. We’ll let <span class="math inline">\(X\)</span> denote the final result.</li>
+</ol>
+<p><span class="math inline">\(X\)</span> is a random variable with some distribution (spoiler: it’s a mixture distribution). Let’s perform the experiment 1000 times to get 1000 realizations of <span class="math inline">\(X\)</span>, and make a histogram to get a sense of the distribution <span class="math inline">\(X\)</span> follows. To make sure the histogram represents an estimate of the density, we’ll make sure the area of the bars add to 1 (with the <code>..density..</code> option).</p>
+<pre class="r"><code>suppressMessages(library(ggplot2))</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2</code></pre>
+<pre class="r"><code>set.seed(44)
+X &lt;- numeric(0)
+coin &lt;- integer(0)
+for (i in 1:1000) {
+    coin[i] &lt;- rbinom(1, size=1, prob=0.5)  # flip a coin. 0=heads, 1=tails.
+    if (coin[i] == 0) {   # heads
+        X[i] &lt;- rnorm(1, mean=0, sd=1)
+    } else {           # tails
+        X[i] &lt;- rnorm(1, mean=4, sd=1)
+    }
+}
+(p &lt;- qplot(X, ..density.., geom=&quot;histogram&quot;, bins=30))</code></pre>
+<p><img src="/tutorials/mixture_distributions_files/figure-html/unnamed-chunk-1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Let’s try to reason our way to figuring out the overall density. Keep in mind that this density (like all densities) is <em>one curve</em>. We’ll say we’ve succeeded at finding the density if our density is close to the histogram.</p>
+<p>It looks like the histogram is made up of two normal distributions “superimposed”. These ought to be related to the <code>N(0,1)</code> and <code>N(4,1)</code> distributions, so to start, let’s plot these two Gaussian densities overtop of the histogram.</p>
+<pre class="r"><code>ggplot(data.frame(X=X), aes(X)) +
+    geom_histogram(aes(y=..density..), bins=30) +
+    stat_function(fun=function(x) dnorm(x, mean=0, sd=1), 
+                  mapping=aes(colour=&quot;Heads&quot;)) +
+    stat_function(fun=function(x) dnorm(x, mean=4, sd=1), 
+                  mapping=aes(colour=&quot;Tails&quot;)) +
+    scale_color_discrete(&quot;Coin Flip&quot;)</code></pre>
+<p><img src="/tutorials/mixture_distributions_files/figure-html/unnamed-chunk-2-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Well, the two Gaussian distributions are in the correct location, and it even looks like they have the correct spread, but they’re too tall.</p>
+<p>Something to note at this point: the two curves plotted above are <em>separate (component) distributions</em>. We’re trying to figure out the distribution of <span class="math inline">\(X\)</span> – which, again, is a single curve, and is estimated by the histogram. At this point, we only suspect that the distribution of <span class="math inline">\(X\)</span> is some combination of these two Gaussian distributions.</p>
+<p>So, why are the Gaussian curves too tall? Because each one represents the distribution <em>if we only ever flip either heads or tails</em> (for example, the red distribution happens when we only ever flip heads). But since we flip heads half of the time, and tails half of the time, these probabilities (more accurately, densities) ought to be reduced by half. Let’s add these “semi” component distributions to the plot:</p>
+<pre class="r"><code>(p &lt;- ggplot(data.frame(X=X), aes(X)) +
+    geom_histogram(aes(y=..density..), bins=30) +
+    stat_function(fun=function(x) dnorm(x, mean=0, sd=1)*0.5, 
+                  mapping=aes(colour=&quot;Heads&quot;, linetype=&quot;Semi&quot;)) +
+    stat_function(fun=function(x) dnorm(x, mean=4, sd=1)*0.5, 
+                  mapping=aes(colour=&quot;Tails&quot;, linetype=&quot;Semi&quot;)) +
+    stat_function(fun=function(x) dnorm(x, mean=0, sd=1), 
+                  mapping=aes(colour=&quot;Heads&quot;, linetype=&quot;Full&quot;)) +
+    stat_function(fun=function(x) dnorm(x, mean=4, sd=1), 
+                  mapping=aes(colour=&quot;Tails&quot;, linetype=&quot;Full&quot;)) +
+    scale_color_discrete(&quot;Coin Flip&quot;) +
+    scale_linetype_discrete(&quot;Distribution&quot;))</code></pre>
+<p><img src="/tutorials/mixture_distributions_files/figure-html/unnamed-chunk-3-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Looks like they line up quite nicely!</p>
+<p>But these two curves are still separate – we need <em>one</em> overall curve if we are to find the distribution of <span class="math inline">\(X\)</span>. So we need to combine them somehow. It might look at first that we can just take the upper-most of the ‘semi’ curves (i.e., the maximum of the two), but looking in between the two curves reveals that the histogram is actually larger than either curve here. It turns out that the two ‘semi’ curves are <em>added</em> to get the final curve:</p>
+<pre class="r"><code>p + stat_function(fun=function(x) dnorm(x, mean=0, sd=1)*0.5 + 
+                      dnorm(x, mean=4, sd=1)*0.5,
+                  mapping=aes(linetype=&quot;Full&quot;))</code></pre>
+<p><img src="/tutorials/mixture_distributions_files/figure-html/unnamed-chunk-4-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>The intuition behind adding the densities is that an outcome for <span class="math inline">\(X\)</span> comes from <em>both</em> components, so both contribute some density.</p>
+<p>Even though the random variable <span class="math inline">\(X\)</span> is made up of two components, at the end of the day, it’s still overall just a random variable with some density. And like all densities, the density of <span class="math inline">\(X\)</span> is just one curve. But, this density happens to be <em>made up of</em> the components, as we’ll see next.</p>
+</div>
+<div id="general-scenario" class="section level2">
+<h2>General Scenario</h2>
+<p>The two normal distributions from above are called <em>component distributions</em>. In general, we can have any number of these (not just two) to make a mixture distribution. And, instead of selecting the component distribution with coin tosses, they’re chosen according to some generic probabilities called the <em>mixture probabilities</em>.</p>
+<p>In general, here’s how we make a mixture distribution with <span class="math inline">\(K\)</span> component Gaussian distributions with densities <span class="math inline">\(\phi_1(x), \ldots, \phi_K(x)\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Choose one of the <span class="math inline">\(K\)</span> components, randomly, with mixture probabilities <span class="math inline">\(\pi_1, \ldots, \pi_K\)</span> (which, by necessity, add to 1).</li>
+<li>Generate a random variable from the selected component distribution. Call the result <span class="math inline">\(X\)</span>.</li>
+</ol>
+<p>Note: we can use more than just Gaussian component distributions! But this tutorial won’t demonstrate that.</p>
+<p>That’s how we <em>generate</em> a random variable with a mixture distribution, but what’s its density? We can derive that by the law of total probability. Let <span class="math inline">\(C\)</span> be the selected component number; then the component distributions are actually the distribution of <span class="math inline">\(X\)</span> <em>conditional</em> on the component number. We get: <span class="math display">\[ f_X\left(x\right) = \sum_{k=1}^{K} f_{X|C}\left(x \mid c\right) P\left(C=c\right) = \sum_{k=1}^{K} \phi_k\left(x\right) \pi_k. \]</span></p>
+<div id="notes" class="section level4">
+<h4>Notes:</h4>
+<ul>
+<li>The intuition described in the previous section matches up with this result. For <span class="math inline">\(K=2\)</span> components determined by a coin toss <span class="math inline">\((\pi_1=\pi_2=0.5),\)</span> we have <span class="math display">\[ f_X\left(x\right) = \phi\left(x\right)0.5 + \phi\left(x-4\right)0.5, \]</span> which is the black curve in the previous plot.</li>
+<li>This tutorial works with univariate data. But mixture distributions can be multivariate, too. A <span class="math inline">\(d\)</span>-variate mixture distribution can be made by replacing the component distributions with <span class="math inline">\(d\)</span>-variate distributions. Just be sure to distinguish between the dimension of the data <span class="math inline">\(d\)</span> and the number of components <span class="math inline">\(K\)</span>.</li>
+<li>We <em>could</em> just describe a mixture distribution by its density, just like we can describe a normal distribution by its density. But, describing mixture distributions by its <strong>component distributions</strong> together with the <strong>mixture probabilities</strong>, we obtain an excellent <em>interpretation</em> of the mixture distribution. This interpretation is (it’s also called a <em>data generating process</em>): (1) randomly choose a component, and (2) generate from that component. This interpretation is useful for cluster analysis, because the data clusters can be thought of as being generated by the component distributions, and the proportion of data in each cluster is determined by the mixture probabilities.</li>
+</ul>
+</div>
+</div>
+<div id="learning-points" class="section level2">
+<h2>Learning Points</h2>
+<ul>
+<li>A mixture distribution can be described by its mixing probabilities <span class="math inline">\(\pi_1, \ldots, \pi_K\)</span> and component distributions <span class="math inline">\(\phi_1(x), \ldots, \phi_K(x)\)</span>.</li>
+<li>A mixture distribution can also be described by a single density (like all continuous random variables).
+<ul>
+<li>This density is a single curve if data are univariate; a single “surface” if the data are bivariate; and higher dimensional surfaces if the data are higher dimensional.</li>
+</ul></li>
+<li>To get the density from the mixing probabilities and component distributions, we can use the formula indicated in the above section (based on the law of total probability).</li>
+</ul>
+</div>

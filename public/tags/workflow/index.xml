@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>workflow | Vincenzo Coia</title>
+    <link>/tags/workflow/</link>
+      <atom:link href="/tags/workflow/index.xml" rel="self" type="application/rss+xml" />
+    <description>workflow</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <image>
+      <url>/img/icon-192.png</url>
+      <title>workflow</title>
+      <link>/tags/workflow/</link>
+    </image>
+    
+    <item>
+      <title>Collaboration with Version Control: Git and GitHub</title>
+      <link>/_posts/2018-08-14-git_github/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/_posts/2018-08-14-git_github/</guid>
+      <description>
+
+&lt;p&gt;Does &lt;a href=&#34;http://phdcomics.com/comics/archive_print.php?comicid=1531&#34; target=&#34;_blank&#34;&gt;this&lt;/a&gt; happen to you? What about bouncing files back and forth amongst collaborators through email? Or even keeping track of your own files between multiple devices?&lt;/p&gt;
+
+&lt;p&gt;Do you currently have a way of handling these sometimes frustrating scenarios? Any horror stories?&lt;/p&gt;
+
+&lt;p&gt;[I developed and delivered this mini-lesson as part of instructional skills training at UBC]&lt;/p&gt;
+
+&lt;h2 id=&#34;learning-outcomes&#34;&gt;Learning Outcomes&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Version control&lt;/strong&gt; is a powerful solution to these regular dilemmas. By the end of this very brief lesson, learners are anticipated to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Understand the central concepts and values of version control&lt;/li&gt;
+&lt;li&gt;Identify areas of your own work that can benefit from version control&lt;/li&gt;
+&lt;li&gt;Name the prominent version control software, and one prominent cloud-based hosting service&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;what-is-version-control-git&#34;&gt;What is Version Control? Git?&lt;/h2&gt;
+
+&lt;p&gt;Version control is a widely used solution for keeping track of files between devices and collaborators over time. The most prominent software is called &amp;ldquo;git&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;I like to think of git as the next level to saving a file. Just like regular &lt;em&gt;file saving&lt;/em&gt; has (hopefully) become a regular part of your workflow, version control requires you to regularly make snapshots of your files. These snapshots are called &lt;em&gt;commits&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Save like crazy. Commit frequently.&lt;/p&gt;
+
+&lt;p&gt;Though, commits aren&amp;rsquo;t really &amp;ldquo;snapshots&amp;rdquo;. Git doesn&amp;rsquo;t actually store an entire copy of your file each time you commit! Only the changes (or &lt;em&gt;diffs&lt;/em&gt;) are stored, so there&amp;rsquo;s no need to sweat any storage demands!&lt;/p&gt;
+
+&lt;h2 id=&#34;what-is-github&#34;&gt;What is GitHub?&lt;/h2&gt;
+
+&lt;p&gt;There are cloud-based services that provide both file storage and a nice interface for git built into them. Perhaps the most prominent of these services is &lt;a href=&#34;https://github.com&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt; (others are &lt;a href=&#34;https://bitbucket.org/&#34; target=&#34;_blank&#34;&gt;Bitbucket&lt;/a&gt; and &lt;a href=&#34;https://about.gitlab.com/&#34; target=&#34;_blank&#34;&gt;GitLab&lt;/a&gt;). The added step here is to &lt;em&gt;push&lt;/em&gt; changes from your computer up to GitHub.&lt;/p&gt;
+
+&lt;p&gt;Save like crazy. Commit frequently. Push before you&amp;rsquo;re interrupted by a fire.&lt;/p&gt;
+
+&lt;h2 id=&#34;how-exactly-are-my-versioning-and-collaboration-problems-solved&#34;&gt;How exactly are my versioning and collaboration problems solved?&lt;/h2&gt;
+
+&lt;p&gt;In many ways!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Easily identify changes: file changes are highlighted by GitHub. No more detective work to see exactly what was changed in a file.&lt;/li&gt;
+&lt;li&gt;Retrievable history: you can easily reconstruct your files as they were at any point along the commit history.
+
+&lt;ul&gt;
+&lt;li&gt;No more need to keep loads of file versions!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;No more uncertainty as to who has the most up-to-date files. They&amp;rsquo;re on GitHub!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Personally, I&amp;rsquo;ve been using GitHub more and more, if only for the peace of mind of having a retrievable history, and a record of how my thoughts progress over time. And maybe it&amp;rsquo;s just me, but I also find that dedicating myself to committing keeps me focussed, because they force me to think about what I&amp;rsquo;m doing (instead of just doing it).&lt;/p&gt;
+
+&lt;h2 id=&#34;other-tools&#34;&gt;Other tools&lt;/h2&gt;
+
+&lt;p&gt;Although git and GitHub always work, they work best with plain-text files. If you work with the Office suite of tools like Word, you should first of all &lt;a href=&#34;http://ricardo.ecn.wfu.edu/~cottrell/wp.html&#34; target=&#34;_blank&#34;&gt;consider whether you should really be using this&lt;/a&gt;. If you still want to use Office, then perhaps consider options built into the Office tools, or Google docs.&lt;/p&gt;
+
+&lt;h2 id=&#34;back-to-you&#34;&gt;Back to you&lt;/h2&gt;
+
+&lt;p&gt;What areas of your own life could benefit from version control with Git and GitHub?&lt;/p&gt;
+
+&lt;p&gt;Check your email inbox for emails with attachments to get a sense of the areas of your life that might benefit from version control.&lt;/p&gt;
+
+&lt;p&gt;Next time you go to transfer a file, be mindful of the cognitive load that comes with the file transfer. You might be better off using a version control system like git and GitHub.&lt;/p&gt;
+
+&lt;h2 id=&#34;learning-more&#34;&gt;Learning More&lt;/h2&gt;
+
+&lt;p&gt;If you want to learn more, I recommend starting with a cloud-based service like GitHub. It&amp;rsquo;s a gentle introduction to the subject, and is easier to use than plain git, and has plenty of helpful &lt;a href=&#34;https://guides.github.com/&#34; target=&#34;_blank&#34;&gt;guides&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

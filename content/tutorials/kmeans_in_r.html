@@ -1,0 +1,216 @@
+---
+title: "DSCI 563 Lab1 Tutorial: k-means"
+author: "Vincenzo Coia"
+output: github_document
+---
+
+
+
+<p>This tutorial discusses the implementation of <span class="math inline">\(k\)</span>-means (and variants) in R.</p>
+<p>Let’s use a simulated dataset. Throughout, we’ll take <span class="math inline">\(k=3\)</span> groups.</p>
+<pre class="r"><code>suppressMessages(library(ggplot2))</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2</code></pre>
+<pre class="r"><code>set.seed(345)
+x &lt;- rnorm(250)
+y &lt;- rnorm(250)
+## Shift group 2:
+x[51:150] &lt;- x[51:150] + 2.5
+y[51:150] &lt;- y[51:150] - 1
+## Shift group 3:
+x[151:250] &lt;- x[151:250] - 1.5
+y[151:250] &lt;- y[151:250] - 1.5
+## Plot:
+dat &lt;- data.frame(x=x, y=y)
+qplot(x, y, alpha=I(0.5))</code></pre>
+<p><img src="/tutorials/kmeans_in_r_files/figure-html/unnamed-chunk-1-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div id="k-means" class="section level2">
+<h2><span class="math inline">\(k\)</span>-means</h2>
+<div id="basics" class="section level3">
+<h3>Basics</h3>
+<p>Let’s fit a <span class="math inline">\(k\)</span>-means algorithm to the data with the <code>kmeans</code> function, to <span class="math inline">\(k=3\)</span> groups. Indicate the data first, then <span class="math inline">\(k\)</span> in the second (<code>centers</code>) argument.</p>
+<pre class="r"><code>set.seed(22)
+(fit1 &lt;- kmeans(dat, 3))</code></pre>
+<pre><code>## K-means clustering with 3 clusters of sizes 60, 87, 103
+## 
+## Cluster means:
+##            x          y
+## 1  0.3725131  0.2750934
+## 2  2.5109499 -1.2199721
+## 3 -1.5793637 -1.5174017
+## 
+## Clustering vector:
+##   [1] 1 3 3 3 1 3 3 1 2 1 1 1 1 1 1 1 1 2 3 1 1 1 3 3 1 1 3 1 1 1 1 1 1 3 1
+##  [36] 1 1 1 1 1 1 1 3 1 1 1 1 1 1 1 2 2 2 2 2 2 1 3 2 2 2 2 2 1 2 2 2 2 2 2
+##  [71] 2 2 2 2 1 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 1 2 2 2 2
+## [106] 2 2 2 2 2 1 2 2 2 2 2 2 1 2 2 2 2 2 2 2 1 1 2 2 1 1 2 2 2 2 2 2 2 2 2
+## [141] 2 2 2 2 2 2 2 1 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3
+## [176] 3 3 1 3 3 3 3 3 3 3 3 1 3 3 3 3 3 1 3 3 1 3 3 3 1 3 3 3 3 3 3 3 3 3 3
+## [211] 3 3 3 1 3 3 3 3 3 3 1 3 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [246] 3 3 3 3 3
+## 
+## Within cluster sum of squares by cluster:
+## [1] 100.3076 154.1080 170.9162
+##  (between_SS / total_SS =  68.4 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
+## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+## [9] &quot;ifault&quot;</code></pre>
+<p>The output tells you what you can extract, under “Available components”. You can extract them using the <code>$</code> symbol. Let’s look at some of them.</p>
+<p>Here are the assigned clusters:</p>
+<pre class="r"><code>fit1$cluster</code></pre>
+<pre><code>##   [1] 1 3 3 3 1 3 3 1 2 1 1 1 1 1 1 1 1 2 3 1 1 1 3 3 1 1 3 1 1 1 1 1 1 3 1
+##  [36] 1 1 1 1 1 1 1 3 1 1 1 1 1 1 1 2 2 2 2 2 2 1 3 2 2 2 2 2 1 2 2 2 2 2 2
+##  [71] 2 2 2 2 1 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 1 2 2 2 2
+## [106] 2 2 2 2 2 1 2 2 2 2 2 2 1 2 2 2 2 2 2 2 1 1 2 2 1 1 2 2 2 2 2 2 2 2 2
+## [141] 2 2 2 2 2 2 2 1 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3
+## [176] 3 3 1 3 3 3 3 3 3 3 3 1 3 3 3 3 3 1 3 3 1 3 3 3 1 3 3 3 3 3 3 3 3 3 3
+## [211] 3 3 3 1 3 3 3 3 3 3 1 3 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [246] 3 3 3 3 3</code></pre>
+<pre class="r"><code>qplot(x, y, alpha=I(0.5), colour=factor(fit1$cluster))</code></pre>
+<p><img src="/tutorials/kmeans_in_r_files/figure-html/unnamed-chunk-3-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Here are the three means/centers of each group:</p>
+<pre class="r"><code>fit1$centers</code></pre>
+<pre><code>##            x          y
+## 1  0.3725131  0.2750934
+## 2  2.5109499 -1.2199721
+## 3 -1.5793637 -1.5174017</code></pre>
+<p>We can also extract the squared distances.</p>
+<pre class="r"><code>fit1$totss        # Total sum of squares.</code></pre>
+<pre><code>## [1] 1343.956</code></pre>
+<pre class="r"><code>fit1$withinss     # Within group sum of squares.</code></pre>
+<pre><code>## [1] 100.3076 154.1080 170.9162</code></pre>
+<pre class="r"><code>fit1$tot.withinss # Total within group. **Objective function**</code></pre>
+<pre><code>## [1] 425.3318</code></pre>
+<pre class="r"><code>fit1$betweenss    # Between group sum of squares.</code></pre>
+<pre><code>## [1] 918.6239</code></pre>
+</div>
+<div id="tweaks" class="section level3">
+<h3>Tweaks</h3>
+<p>In addition to running basic <span class="math inline">\(k\)</span>-means, we can also run <em>multiple</em> <span class="math inline">\(k\)</span>-means with the <code>nstart</code> argument. For each run, different initial values are used (different centroids). The run with the best fit is the one that is reported. What is the “best fit” anyway? It’s the one with the smallest total <em>within group</em> sum of squares – that is, <code>$tot.withinss</code>.</p>
+<p>Let’s take the best of 20 runs:</p>
+<pre class="r"><code>(fit2 &lt;- kmeans(dat, 3, nstart=20))</code></pre>
+<pre><code>## K-means clustering with 3 clusters of sizes 60, 103, 87
+## 
+## Cluster means:
+##            x          y
+## 1  0.3725131  0.2750934
+## 2 -1.5793637 -1.5174017
+## 3  2.5109499 -1.2199721
+## 
+## Clustering vector:
+##   [1] 1 2 2 2 1 2 2 1 3 1 1 1 1 1 1 1 1 3 2 1 1 1 2 2 1 1 2 1 1 1 1 1 1 2 1
+##  [36] 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 3 3 3 3 3 3 1 2 3 3 3 3 3 1 3 3 3 3 3 3
+##  [71] 3 3 3 3 1 3 3 3 3 3 3 3 1 1 3 3 3 3 3 3 3 3 3 1 3 3 3 3 3 3 1 3 3 3 3
+## [106] 3 3 3 3 3 1 3 3 3 3 3 3 1 3 3 3 3 3 3 3 1 1 3 3 1 1 3 3 3 3 3 3 3 3 3
+## [141] 3 3 3 3 3 3 3 1 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2
+## [176] 2 2 1 2 2 2 2 2 2 2 2 1 2 2 2 2 2 1 2 2 1 2 2 2 1 2 2 2 2 2 2 2 2 2 2
+## [211] 2 2 2 1 2 2 2 2 2 2 1 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [246] 2 2 2 2 2
+## 
+## Within cluster sum of squares by cluster:
+## [1] 100.3076 170.9162 154.1080
+##  (between_SS / total_SS =  68.4 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
+## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+## [9] &quot;ifault&quot;</code></pre>
+<p>The structure of the output is no different from before.</p>
+<p>You may also choose the centroids to start the algorithm with. To do this, instead of indicating <span class="math inline">\(k\)</span> for the <code>centers</code> argument, use a matrix of the centroids you wish to begin with.</p>
+<p>Let’s start with the true means: (0,0), (2.5,-1), and (-1.5, -1.5):</p>
+<pre class="r"><code>(xstart &lt;- matrix(c(0,0, 2.5,-1, -1.5,-1.5), ncol=2, byrow=TRUE))</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]  0.0  0.0
+## [2,]  2.5 -1.0
+## [3,] -1.5 -1.5</code></pre>
+<pre class="r"><code>(fit3 &lt;- kmeans(dat, xstart))</code></pre>
+<pre><code>## K-means clustering with 3 clusters of sizes 60, 87, 103
+## 
+## Cluster means:
+##            x          y
+## 1  0.3725131  0.2750934
+## 2  2.5109499 -1.2199721
+## 3 -1.5793637 -1.5174017
+## 
+## Clustering vector:
+##   [1] 1 3 3 3 1 3 3 1 2 1 1 1 1 1 1 1 1 2 3 1 1 1 3 3 1 1 3 1 1 1 1 1 1 3 1
+##  [36] 1 1 1 1 1 1 1 3 1 1 1 1 1 1 1 2 2 2 2 2 2 1 3 2 2 2 2 2 1 2 2 2 2 2 2
+##  [71] 2 2 2 2 1 2 2 2 2 2 2 2 1 1 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2 1 2 2 2 2
+## [106] 2 2 2 2 2 1 2 2 2 2 2 2 1 2 2 2 2 2 2 2 1 1 2 2 1 1 2 2 2 2 2 2 2 2 2
+## [141] 2 2 2 2 2 2 2 1 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3
+## [176] 3 3 1 3 3 3 3 3 3 3 3 1 3 3 3 3 3 1 3 3 1 3 3 3 1 3 3 3 3 3 3 3 3 3 3
+## [211] 3 3 3 1 3 3 3 3 3 3 1 3 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [246] 3 3 3 3 3
+## 
+## Within cluster sum of squares by cluster:
+## [1] 100.3076 154.1080 170.9162
+##  (between_SS / total_SS =  68.4 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
+## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+## [9] &quot;ifault&quot;</code></pre>
+</div>
+</div>
+<div id="k-means-1" class="section level2">
+<h2><span class="math inline">\(k\)</span>-means++</h2>
+<div id="basics-1" class="section level3">
+<h3>Basics</h3>
+<p>The <code>kmeans</code> function is quite specific – it only looks at squared distances. There’s a package called <code>flexclust</code> that allows for more flexible cluster analysis. The <code>kcca</code> function is particularly useful.</p>
+<p>At its basic, <code>kcca</code> works similarly to <code>kmeans</code>. In fact, this will run a standard <span class="math inline">\(k\)</span>-means algorithm:</p>
+<pre class="r"><code>suppressMessages(library(flexclust))
+(fit4 &lt;- kcca(dat, 3))</code></pre>
+<pre><code>## kcca object of family &#39;kmeans&#39; 
+## 
+## call:
+## kcca(x = dat, k = 3)
+## 
+## cluster sizes:
+## 
+##  1  2  3 
+## 92 59 99</code></pre>
+<p>But, the output is less friendly than <code>kmeans</code> (because <code>kcca</code> uses a formal S4 object-oriented format). The multitude of output can be extracted by <code>@</code> instead of <code>$</code>. For example, here are the cluster assignments, and the final three centers:</p>
+<pre class="r"><code>fit4@cluster</code></pre>
+<pre><code>##   [1] 2 3 3 3 2 3 3 2 1 2 1 2 2 2 2 2 2 1 3 2 2 2 3 3 2 2 2 2 2 2 2 2 2 3 2
+##  [36] 2 2 2 2 2 2 2 3 2 2 2 2 2 2 2 1 1 1 1 1 1 2 3 1 1 1 1 1 2 1 1 1 1 1 1
+##  [71] 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1
+## [106] 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 2 1 1 2 2 1 1 1 1 1 1 1 1 1
+## [141] 1 1 1 1 1 1 1 2 1 1 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 2 3 3 3 3 3 3 3 3 3
+## [176] 3 3 2 3 3 3 3 3 3 3 3 1 2 3 3 3 3 2 3 3 2 3 3 3 2 3 3 3 3 2 3 3 3 3 3
+## [211] 3 3 3 2 2 3 3 3 3 3 2 3 3 3 3 3 3 3 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+## [246] 3 3 3 3 3</code></pre>
+<pre class="r"><code>fit4@centers</code></pre>
+<pre><code>##               x          y
+## [1,]  2.4487745 -1.1781922
+## [2,]  0.1910489  0.3025144
+## [3,] -1.6003047 -1.5694850</code></pre>
+<p>Notice that there is no sum of squares output, like there is in <code>kmeans</code> – this is because <code>kcca</code> doesn’t necessarily use the euclidean distance. However, there <em>is</em> a way to convert a <code>kcca</code> output to a <code>kmeans</code> output, though this output is more limited than usual (the only <code>ss</code> available is <code>$withinss</code>):</p>
+<pre class="r"><code>fit4b &lt;- as(fit4, &quot;kmeans&quot;)
+fit4b$withinss</code></pre>
+<pre><code>## [1] 167.92353  96.14623 161.87687</code></pre>
+</div>
+<div id="tweaks-1" class="section level3">
+<h3>Tweaks</h3>
+<p>The most useful thing about <code>kcca</code> regarding Lab 1 is <code>kcca</code>’s ability to do <span class="math inline">\(k\)</span>-means++. This can be done through the <code>control</code> argument.</p>
+<p>The <code>control</code> argument should be a named list, with each name corresponding to some property you’d like to indicate. See <code>?cclustControl</code> for the various options. But the one we’re interested in is “initcent”, which controls how the initial centers are chosen. From the documentation, this should be:</p>
+<blockquote>
+<p>Character string, name of function for initial centroids, currently “randomcent” (the default) and “kmeanspp” are available.</p>
+</blockquote>
+<p>So to do <span class="math inline">\(k\)</span>-means++, this amounts to:</p>
+<pre class="r"><code>(fit5 &lt;- kcca(dat, 3, control=list(initcent=&quot;kmeanspp&quot;)))</code></pre>
+<pre><code>## kcca object of family &#39;kmeans&#39; 
+## 
+## call:
+## kcca(x = dat, k = 3, control = list(initcent = &quot;kmeanspp&quot;))
+## 
+## cluster sizes:
+## 
+##  1  2  3 
+## 95 68 87</code></pre>
+<p>Another feature of <code>kcca</code> is that it allows for different distance metrics besides euclidean. This can be indicated through the <code>family</code> argument. Take a look at the <code>kcca</code> documentation under “Predefined Families” to see what distance metrics you can use.</p>
+</div>
+</div>
