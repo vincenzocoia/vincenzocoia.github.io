@@ -1,6 +1,10 @@
 ---
-layout: page
-title: Vincenzo Coia's CV
+title: "Vincenzo Coia's CV"
+output:
+  html_document:
+    theme: cosmo
+    toc: true
+    toc_float: true
 ---
 
 email: vincenzo.coia@gmail.com

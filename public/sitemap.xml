@@ -14,16 +14,6 @@
   </url>
   
   <url>
-    <loc>/post/20190316-ubc-sfu.knit/</loc>
-    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/20190316-ubc-sfu.utf8/</loc>
-    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -142,11 +132,6 @@
   </url>
   
   <url>
-    <loc>/career/teaching/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/notes/stat545cm003/</loc>
     <priority>0</priority>
   </url>
@@ -184,12 +169,7 @@
   </url>
   
   <url>
-    <loc>/career/goals/</loc>
-  </url>
-  
-  <url>
-    <loc>/career/</loc>
-    <priority>0</priority>
+    <loc>/goals/</loc>
   </url>
   
   <url>
@@ -236,11 +216,11 @@
   </url>
   
   <url>
-    <loc>/notes/binomial/</loc>
+    <loc>/teaching/</loc>
   </url>
   
   <url>
-    <loc>/tutorials/</loc>
+    <loc>/notes/binomial/</loc>
   </url>
   
   <url>
@@ -248,7 +228,7 @@
   </url>
   
   <url>
-    <loc>/career/cv/</loc>
+    <loc>/cv/</loc>
   </url>
   
   <url>

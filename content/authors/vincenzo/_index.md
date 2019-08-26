@@ -31,12 +31,12 @@ role: Lecturer of Data Science
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'
+  link: 'vincenzo DOT coia AT stat DOT ubc DOT ca'
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/VincenzoCoia
 - icon: linkedin
-  icon_pack: fas
+  icon_pack: fab
   link: https://www.linkedin.com/in/vincenzocoia
 - icon: github
   icon_pack: fab
@@ -46,8 +46,6 @@ user_groups:
 - Example1
 - Example2
 ---
-
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 Hi!
 

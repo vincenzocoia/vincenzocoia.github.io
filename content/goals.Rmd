@@ -1,6 +1,8 @@
 ---
-layout: page
-title: Career Goals
+title: "Career Goals"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
 ---
 
 Over the years, I've discovered that my ideal career is composed of four interrelated pillars, all with respect to data science. In a roughly "cumulative" order, the pillars are application, research, development, and teaching.

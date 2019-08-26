@@ -249,568 +249,6 @@
     </item>
     
     <item>
-      <title>The squared error has friends, too!</title>
-      <link>/post/20190316-ubc-sfu.knit/</link>
-      <pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/post/20190316-ubc-sfu.knit/</guid>
-      <description>
-
-&lt;p&gt;I was invited to the SFU/UBC Joint Seminar in Spring 2019 where I gave this talk.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## Warning: package &#39;tibble&#39; was built under R version 3.5.2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## Warning: package &#39;dplyr&#39; was built under R version 3.5.2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
-
-&lt;h1 id=&#34;quiz&#34;&gt;Quiz&lt;/h1&gt;
-
-&lt;h2 id=&#34;true-or-false&#34;&gt;True or False:&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;true-or-false-1&#34;&gt;True or False:&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;li&gt;If errors are not Gaussian, we can&amp;rsquo;t use least squares to estimate our regression coefficients.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;true-or-false-2&#34;&gt;True or False:&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;li&gt;If errors are not Gaussian, we can&amp;rsquo;t use least squares to estimate our regression coefficients.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Answers&lt;/strong&gt;: Both FALSE!&lt;/p&gt;
-
-&lt;h2 id=&#34;question&#34;&gt;Question:&lt;/h2&gt;
-
-&lt;p&gt;When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?&lt;/p&gt;
-
-&lt;h2 id=&#34;question-1&#34;&gt;Question:&lt;/h2&gt;
-
-&lt;p&gt;When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Answer&lt;/strong&gt;: The mean of Y given X.&lt;/p&gt;
-
-&lt;h1 id=&#34;concept-1&#34;&gt;Concept #1&lt;/h1&gt;
-
-&lt;p&gt;We minimize the SSE in regression because it&amp;rsquo;s a proper scoring rule for the mean.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;On the board, lets:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Write ybar as a minimization problem.&lt;/li&gt;
-&lt;li&gt;Extend to regression&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;concept-2&#34;&gt;Concept #2&lt;/h1&gt;
-
-&lt;p&gt;When doing regression, we ought to consider quantiles, too!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median:&lt;/li&gt;
-&lt;li&gt;low-quantile:&lt;/li&gt;
-&lt;li&gt;high-quantile:&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile:&lt;/li&gt;
-&lt;li&gt;high-quantile:&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile: You&amp;rsquo;ll &amp;ldquo;at least&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;high-quantile:&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile: You&amp;rsquo;ll &amp;ldquo;at least&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;high-quantile: You&amp;rsquo;ll &amp;ldquo;at most&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile: You&amp;rsquo;ll &amp;ldquo;at least&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;high-quantile: You&amp;rsquo;ll &amp;ldquo;at most&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;mean: Multiply by &lt;code&gt;m&lt;/code&gt; to estimate total $ after &lt;code&gt;m&lt;/code&gt; months.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;concept-3&#34;&gt;Concept #3&lt;/h1&gt;
-
-&lt;p&gt;Each quantile has its own proper scoring rule that we can use instead of the squared error.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;On the board:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Write median as an optimization problem&lt;/li&gt;
-&lt;li&gt;Extend to generic quantile&lt;/li&gt;
-&lt;li&gt;Extend to regression&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The &amp;ldquo;check function&amp;rdquo;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;20190316-ubc-sfu_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;concept-4&#34;&gt;Concept #4&lt;/h1&gt;
-
-&lt;p&gt;Make a distributional assumption to reduce estimation uncertainty.&lt;/p&gt;
-
-&lt;h2 id=&#34;univariate-estimation&#34;&gt;Univariate Estimation&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;univariate-estimation-1&#34;&gt;Univariate Estimation&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;sample versions&amp;rdquo;: ybar, s^2, &lt;code&gt;quantile()&lt;/code&gt;, &amp;hellip;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;MLE&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;regression-setting&#34;&gt;Regression setting&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$ AND predictors:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;regression-setting-1&#34;&gt;Regression setting&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$ AND predictors:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Optimize scoring rule for desired quantity.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;MLE&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&#34;return-of-the-quiz&#34;&gt;Return of the Quiz&lt;/h1&gt;
-
-&lt;h2 id=&#34;return-of-the-quiz-1&#34;&gt;Return of the Quiz&lt;/h2&gt;
-
-&lt;p&gt;Can we see why these are false?&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;li&gt;If errors are not Gaussian, we can&amp;rsquo;t use least squares to estimate our regression coefficients.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;time-left&#34;&gt;Time left?&lt;/h1&gt;
-
-&lt;h2 id=&#34;time-left-1&#34;&gt;Time left?&lt;/h2&gt;
-
-&lt;p&gt;Give two ways to estimate the conditional variance.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Hint&lt;/strong&gt;: Think about the definition of variance.&lt;/p&gt;
-
-&lt;p&gt;Talk to your neighbour for 1 minute&lt;/p&gt;
-
-&lt;h1 id=&#34;resources&#34;&gt;Resources&lt;/h1&gt;
-
-&lt;p&gt;This talk was inspired by the activity generated by &lt;a href=&#34;https://vincenzocoia.github.io/20180218-mean/&#34; target=&#34;_blank&#34;&gt;my blog post &amp;ldquo;The missing question in supervised learning&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;For proper scoring rules, see
-&lt;a href=&#34;https://www.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf&#34; target=&#34;_blank&#34;&gt;Gneiting, T., and Raftery, A.E. (2007) &amp;ldquo;Strictly Proper Scoring Rules, Prediction,
-and Estimation&amp;rdquo;. Journal of the American Statistical Association, 102:477&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The squared error has friends, too!</title>
-      <link>/post/20190316-ubc-sfu.utf8/</link>
-      <pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>/post/20190316-ubc-sfu.utf8/</guid>
-      <description>
-
-&lt;p&gt;I was invited to the SFU/UBC Joint Seminar in Spring 2019 where I gave this talk.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## Warning: package &#39;tibble&#39; was built under R version 3.5.2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;## Warning: package &#39;dplyr&#39; was built under R version 3.5.2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;who-am-i&#34;&gt;Who am I?&lt;/h1&gt;
-
-&lt;h1 id=&#34;quiz&#34;&gt;Quiz&lt;/h1&gt;
-
-&lt;h2 id=&#34;true-or-false&#34;&gt;True or False:&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;true-or-false-1&#34;&gt;True or False:&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;li&gt;If errors are not Gaussian, we can&amp;rsquo;t use least squares to estimate our regression coefficients.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;true-or-false-2&#34;&gt;True or False:&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;li&gt;If errors are not Gaussian, we can&amp;rsquo;t use least squares to estimate our regression coefficients.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Answers&lt;/strong&gt;: Both FALSE!&lt;/p&gt;
-
-&lt;h2 id=&#34;question&#34;&gt;Question:&lt;/h2&gt;
-
-&lt;p&gt;When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?&lt;/p&gt;
-
-&lt;h2 id=&#34;question-1&#34;&gt;Question:&lt;/h2&gt;
-
-&lt;p&gt;When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Answer&lt;/strong&gt;: The mean of Y given X.&lt;/p&gt;
-
-&lt;h1 id=&#34;concept-1&#34;&gt;Concept #1&lt;/h1&gt;
-
-&lt;p&gt;We minimize the SSE in regression because it&amp;rsquo;s a proper scoring rule for the mean.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;On the board, lets:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Write ybar as a minimization problem.&lt;/li&gt;
-&lt;li&gt;Extend to regression&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&#34;concept-2&#34;&gt;Concept #2&lt;/h1&gt;
-
-&lt;p&gt;When doing regression, we ought to consider quantiles, too!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median:&lt;/li&gt;
-&lt;li&gt;low-quantile:&lt;/li&gt;
-&lt;li&gt;high-quantile:&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile:&lt;/li&gt;
-&lt;li&gt;high-quantile:&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile: You&amp;rsquo;ll &amp;ldquo;at least&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;high-quantile:&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile: You&amp;rsquo;ll &amp;ldquo;at least&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;high-quantile: You&amp;rsquo;ll &amp;ldquo;at most&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;mean:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Consider Y = monthly expenditure (in $). Interpretation of quantities:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;median: There&amp;rsquo;s a 50-50 chance that you&amp;rsquo;ll have to pay more than this.&lt;/li&gt;
-&lt;li&gt;low-quantile: You&amp;rsquo;ll &amp;ldquo;at least&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;high-quantile: You&amp;rsquo;ll &amp;ldquo;at most&amp;rdquo; have to pay this much.&lt;/li&gt;
-&lt;li&gt;mean: Multiply by &lt;code&gt;m&lt;/code&gt; to estimate total $ after &lt;code&gt;m&lt;/code&gt; months.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;concept-3&#34;&gt;Concept #3&lt;/h1&gt;
-
-&lt;p&gt;Each quantile has its own proper scoring rule that we can use instead of the squared error.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;On the board:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Write median as an optimization problem&lt;/li&gt;
-&lt;li&gt;Extend to generic quantile&lt;/li&gt;
-&lt;li&gt;Extend to regression&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The &amp;ldquo;check function&amp;rdquo;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;20190316-ubc-sfu_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;concept-4&#34;&gt;Concept #4&lt;/h1&gt;
-
-&lt;p&gt;Make a distributional assumption to reduce estimation uncertainty.&lt;/p&gt;
-
-&lt;h2 id=&#34;univariate-estimation&#34;&gt;Univariate Estimation&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;univariate-estimation-1&#34;&gt;Univariate Estimation&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;&amp;ldquo;sample versions&amp;rdquo;: ybar, s^2, &lt;code&gt;quantile()&lt;/code&gt;, &amp;hellip;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;MLE&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;regression-setting&#34;&gt;Regression setting&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$ AND predictors:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;regression-setting-1&#34;&gt;Regression setting&lt;/h2&gt;
-
-&lt;p&gt;If you have a univariate sample $Y_1, \ldots, Y_n$ AND predictors:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Distributional Assumption?&lt;/th&gt;
-&lt;th&gt;Estimation Method&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;No&lt;/td&gt;
-&lt;td&gt;Optimize scoring rule for desired quantity.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Yes&lt;/td&gt;
-&lt;td&gt;MLE&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&#34;return-of-the-quiz&#34;&gt;Return of the Quiz&lt;/h1&gt;
-
-&lt;h2 id=&#34;return-of-the-quiz-1&#34;&gt;Return of the Quiz&lt;/h2&gt;
-
-&lt;p&gt;Can we see why these are false?&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The least squares estimator is derived by maximizing the likelihood.&lt;/li&gt;
-&lt;li&gt;If errors are not Gaussian, we can&amp;rsquo;t use least squares to estimate our regression coefficients.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;time-left&#34;&gt;Time left?&lt;/h1&gt;
-
-&lt;h2 id=&#34;time-left-1&#34;&gt;Time left?&lt;/h2&gt;
-
-&lt;p&gt;Give two ways to estimate the conditional variance.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Hint&lt;/strong&gt;: Think about the definition of variance.&lt;/p&gt;
-
-&lt;p&gt;Talk to your neighbour for 1 minute&lt;/p&gt;
-
-&lt;h1 id=&#34;resources&#34;&gt;Resources&lt;/h1&gt;
-
-&lt;p&gt;This talk was inspired by the activity generated by &lt;a href=&#34;https://vincenzocoia.github.io/20180218-mean/&#34; target=&#34;_blank&#34;&gt;my blog post &amp;ldquo;The missing question in supervised learning&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;For proper scoring rules, see
-&lt;a href=&#34;https://www.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf&#34; target=&#34;_blank&#34;&gt;Gneiting, T., and Raftery, A.E. (2007) &amp;ldquo;Strictly Proper Scoring Rules, Prediction,
-and Estimation&amp;rdquo;. Journal of the American Statistical Association, 102:477&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Factor Analysis</title>
       <link>/post/factor_analysis/</link>
       <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
@@ -1318,25 +756,6 @@ for (i in 1:1000) {
 &lt;li&gt;To get the density from the mixing probabilities and component distributions, we can use the formula indicated in the above section (based on the law of total probability).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/career/teaching/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/career/teaching/</guid>
-      <description>
-
-&lt;h1 id=&#34;teaching-statement&#34;&gt;Teaching Statement&lt;/h1&gt;
-
-&lt;p&gt;This page indicates my teaching philosophy.&lt;/p&gt;
-
-&lt;p&gt;My teaching takes to heart what I learned from Greg Wilson, that teaching is much more about motivating students than it is knowledge transfer. Students have access to any information they want through the internet, but a classroom environment has the powerful advantage of the presence of peers and a knowledgeable instructor. I take a semi-spontaneous approach to teaching, as inspired by improv comedy &amp;ndash; I have a rough guideline that I abide to, but am not afraid to deviate from this where necessary, responding to how the class is feeling about a topic. I use various methods to keep constant awareness of how the class is feeling, through simple methods such as asking questions, to more modern active learning strategies such as think-pair-share, which leverages the knowledge of peers.&lt;/p&gt;
-
-&lt;p&gt;I believe in quality over quantity, and this is especially important for a program as time-sensitive as the Master of Data Science program at UBC that I currently teach in. Here, I focus on fundamental concepts, asking the question &amp;ldquo;what must the students absolutely know by the end of this course?&amp;rdquo; To help answer this, I look to fundamental concepts &lt;em&gt;as they relate to applications&lt;/em&gt;, not necessarily how they are developed in academia. I stick to these core concepts, and show students just how far they can go by exploring deeper concepts and data science methods &amp;ndash; again, going back to motivation over knowledge transfer.&lt;/p&gt;
-
-&lt;p&gt;I believe that teaching is far less effective when done &amp;ldquo;in a vacuum&amp;rdquo;, as opposed to collaboratively with the input and feedback from peers. I&amp;rsquo;m lucky to be involved with open and communicative colleagues who can share their input, to build world-class courses in data science. And I&amp;rsquo;m happy to be on the other end as well, providing input and feedback to my colleagues.&lt;/p&gt;
 </description>
     </item>
     
@@ -2333,46 +1752,38 @@ X, y = make_classification(n_features=4, random_state=0)&lt;/code&gt;&lt;/pre&gt
     
     <item>
       <title>Career Goals</title>
-      <link>/career/goals/</link>
+      <link>/goals/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/career/goals/</guid>
+      <guid>/goals/</guid>
       <description>
 
-&lt;p&gt;Over the years, I&amp;rsquo;ve discovered that my ideal career is composed of four interrelated pillars, all with respect to data science. In a roughly &amp;ldquo;cumulative&amp;rdquo; order, the pillars are application, research, development, and teaching.&lt;/p&gt;
 
-&lt;h3 id=&#34;application&#34;&gt;Application&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;I&amp;rsquo;m passionate about addressing real problems with data science.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Currently, my main focus is on mentoring MDS students for their capstone projects &amp;ndash; a 2-month-long project that students complete in collaboration with various organizations.&lt;/p&gt;
-
+&lt;p&gt;Over the years, I’ve discovered that my ideal career is composed of four interrelated pillars, all with respect to data science. In a roughly “cumulative” order, the pillars are application, research, development, and teaching.&lt;/p&gt;
+&lt;div id=&#34;application&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Application&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;I’m passionate about addressing real problems with data science.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Currently, my main focus is on mentoring MDS students for their capstone projects – a 2-month-long project that students complete in collaboration with various organizations.&lt;/p&gt;
 &lt;p&gt;For the future, I intend to also have long-term collaborations with various organizations, to help them achieve missions that resonate with me.&lt;/p&gt;
-
-&lt;h3 id=&#34;research&#34;&gt;Research&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;I&amp;rsquo;m passionate about discovering better ways to do data science, with application in mind.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Currently, my main focus is on reframing statistics from the perspective of applications. For example, why the typical &amp;ldquo;assumptions&amp;rdquo; of linear regression are not actually needed, and (rather) what we gain when the reality more closely reflects these assumptions.&lt;/p&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;research&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Research&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;I’m passionate about discovering better ways to do data science, with application in mind.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Currently, my main focus is on reframing statistics from the perspective of applications. For example, why the typical “assumptions” of linear regression are not actually needed, and (rather) what we gain when the reality more closely reflects these assumptions.&lt;/p&gt;
 &lt;p&gt;Another focus is on bringing to light the importance of finding indicators of extreme events by measuring tail index reduction in the regression context, and not just the typical variance-reduction measurements such as the coefficient of determination. One approach of doing this is through quantile regression using vine copulas.&lt;/p&gt;
-
-&lt;h3 id=&#34;development&#34;&gt;Development&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;I&amp;rsquo;m passionate about turning new research into programs and tools that are accessible to the public.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Currently, my main focus is on developing the Master of Data Science (MDS) program at The University of British Columbia (Vancouver). I&amp;rsquo;m involved with bettering the teaching and the content of the program, especially focussing on the statistical perspective, often integrated with machine learning. I&amp;rsquo;m also working on turning our material and lesson plans into a public-facing resource.&lt;/p&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;development&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Development&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;I’m passionate about turning new research into programs and tools that are accessible to the public.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Currently, my main focus is on developing the Master of Data Science (MDS) program at The University of British Columbia (Vancouver). I’m involved with bettering the teaching and the content of the program, especially focussing on the statistical perspective, often integrated with machine learning. I’m also working on turning our material and lesson plans into a public-facing resource.&lt;/p&gt;
 &lt;p&gt;Another focus is on developing software, currently as packages for the R programming language. Examples include a package to assist in manipulating copulas, and a package for extreme quantile regression.&lt;/p&gt;
-
 &lt;p&gt;For the future, I intend to also collaborate with software development teams. I also intend to start an organization whose mission reflects the four pillars I define on this page.&lt;/p&gt;
-
-&lt;h3 id=&#34;teaching&#34;&gt;Teaching&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;I&amp;rsquo;m passionate about spreading data literacy to the world.&lt;/em&gt;&lt;/p&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;teaching&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Teaching&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;I’m passionate about spreading data literacy to the world.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Currently, my main focus is on teaching in the MDS program.&lt;/p&gt;
-
 &lt;p&gt;For the future, I intend to also hold data science workshops at research centers and other organizations. I intend to volunteer for data science outreach programs.&lt;/p&gt;
+&lt;/div&gt;
 </description>
     </item>
     
@@ -3373,6 +2784,21 @@ cowplot::plot_grid(
     </item>
     
     <item>
+      <title>Teaching Philosophy</title>
+      <link>/teaching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/teaching/</guid>
+      <description>
+
+
+&lt;p&gt;This page indicates my teaching philosophy.&lt;/p&gt;
+&lt;p&gt;My teaching takes to heart what I learned from Greg Wilson, that teaching is much more about motivating students than it is knowledge transfer. Students have access to any information they want through the internet, but a classroom environment has the powerful advantage of the presence of peers and a knowledgeable instructor. I take a semi-spontaneous approach to teaching, as inspired by improv comedy – I have a rough guideline that I abide to, but am not afraid to deviate from this where necessary, responding to how the class is feeling about a topic. I use various methods to keep constant awareness of how the class is feeling, through simple methods such as asking questions, to more modern active learning strategies such as think-pair-share, which leverages the knowledge of peers.&lt;/p&gt;
+&lt;p&gt;I believe in quality over quantity, and this is especially important for a program as time-sensitive as the Master of Data Science program at UBC that I currently teach in. Here, I focus on fundamental concepts, asking the question “what must the students absolutely know by the end of this course?” To help answer this, I look to fundamental concepts &lt;em&gt;as they relate to applications&lt;/em&gt;, not necessarily how they are developed in academia. I stick to these core concepts, and show students just how far they can go by exploring deeper concepts and data science methods – again, going back to motivation over knowledge transfer.&lt;/p&gt;
+&lt;p&gt;I believe that teaching is far less effective when done “in a vacuum”, as opposed to collaboratively with the input and feedback from peers. I’m lucky to be involved with open and communicative colleagues who can share their input, to build world-class courses in data science. And I’m happy to be on the other end as well, providing input and feedback to my colleagues.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The Binomial Distribution</title>
       <link>/notes/binomial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -3479,21 +2905,6 @@ cowplot::plot_grid(
     </item>
     
     <item>
-      <title>Tutorials</title>
-      <link>/tutorials/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/tutorials/</guid>
-      <description>&lt;p&gt;Over the years, I&amp;rsquo;ve written some tutorials/lessons for my students, and have delivered some talks. You might find them useful, so, here they are! I&amp;rsquo;ll be updating this page now and then.&lt;/p&gt;
-
-&lt;p&gt;Talks:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;2019-03-16: I was invited to the SFU/UBC Joint Seminar to give a talk, called &lt;a href=&#34;tutorials/20190316-ubc-sfu.html&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;The squared error has friends, too!&amp;rdquo;&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Varimax Rotation</title>
       <link>/post/varimax/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -3523,107 +2934,93 @@ cowplot::plot_grid(
     
     <item>
       <title>Vincenzo Coia&#39;s CV</title>
-      <link>/career/cv/</link>
+      <link>/cv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/career/cv/</guid>
+      <guid>/cv/</guid>
       <description>
 
-&lt;p&gt;email: vincenzo.coia@gmail.com&lt;/p&gt;
 
-&lt;h2 id=&#34;work-experience&#34;&gt;Work Experience&lt;/h2&gt;
-
-&lt;p&gt;&lt;sup&gt;2017&lt;/sup&gt;&amp;frasl;&lt;sub&gt;01&lt;/sub&gt; - present&lt;br /&gt;
+&lt;p&gt;email: &lt;a href=&#34;mailto:vincenzo.coia@gmail.com&#34;&gt;vincenzo.coia@gmail.com&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;work-experience&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Work Experience&lt;/h2&gt;
+&lt;p&gt;2017/01 - present&lt;br /&gt;
 &lt;strong&gt;Postdoctoral Teaching and Learning Fellow&lt;/strong&gt;&lt;br /&gt;
 Masters of Data Science Program, the University of British Columbia&lt;br /&gt;
 Vancouver, BC&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2009&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt; - &lt;sup&gt;2014&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt;&lt;br /&gt;
+&lt;p&gt;2009/05 - 2014/05&lt;br /&gt;
 &lt;strong&gt;Short-term statistical consulting&lt;/strong&gt; (6 projects)&lt;br /&gt;
 UBC and private&lt;/p&gt;
-
-&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;education&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Education&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;PhD in Statistics&lt;/strong&gt;&lt;br /&gt;
-&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2017&lt;/sup&gt;&amp;frasl;&lt;sub&gt;02&lt;/sub&gt;&lt;br /&gt;
+2012/09 - 2017/02&lt;br /&gt;
 The University of British Columbia&lt;br /&gt;
 Conferred May 29, 2017&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;MSc in Mathematics and Statistics (Statistics)&lt;/strong&gt;&lt;br /&gt;
-&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;&lt;br /&gt;
+2011/09 - 2012/08&lt;br /&gt;
 Brock University&lt;br /&gt;
 Conferred on October 13, 2012&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;BSc (3-year) in Biological Sciences&lt;/strong&gt;&lt;br /&gt;
 Minor in Earth Sciences&lt;br /&gt;
-&lt;sup&gt;2005&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt;&lt;br /&gt;
+2005/09 - 2011/04&lt;br /&gt;
 Brock University&lt;br /&gt;
-Conferred &amp;ldquo;With Distinction&amp;rdquo; on October 22, 2011&lt;/p&gt;
-
+Conferred “With Distinction” on October 22, 2011&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;BSc (Honours) Mathematics Integrated with Computers and Applications&lt;/strong&gt;&lt;br /&gt;
 Concentration in Statistics&lt;br /&gt;
-&lt;sup&gt;2005&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt;&lt;br /&gt;
+2005/09 - 2011/04&lt;br /&gt;
 Brock University&lt;br /&gt;
-Conferred &amp;ldquo;With First-Class Standing&amp;rdquo; on June 7, 2011&lt;/p&gt;
-
-&lt;h3 id=&#34;volunteer-positions&#34;&gt;Volunteer Positions&lt;/h3&gt;
-
-&lt;p&gt;&lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;02&lt;/sub&gt;&lt;br /&gt;
-**Science World at TELUS World of Science **&lt;br /&gt;
+Conferred “With First-Class Standing” on June 7, 2011&lt;/p&gt;
+&lt;div id=&#34;volunteer-positions&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Volunteer Positions&lt;/h3&gt;
+&lt;p&gt;2016/09 - 2016/02&lt;br /&gt;
+&lt;strong&gt;Science World at TELUS World of Science &lt;/strong&gt;&lt;br /&gt;
 Vancouver, BC&lt;br /&gt;
 78.15 hours&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2013&lt;/sup&gt;&amp;frasl;&lt;sub&gt;10&lt;/sub&gt; - &lt;sup&gt;2014&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt;&lt;br /&gt;
+&lt;p&gt;2013/10 - 2014/05&lt;br /&gt;
 &lt;strong&gt;Beaty Biodiversity Museum: Events Volunteer&lt;/strong&gt;&lt;br /&gt;
 Vancouver, BC&lt;br /&gt;
 35.0 hours&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2013&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt; - &lt;sup&gt;2013&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;&lt;br /&gt;
+&lt;p&gt;2013/04 - 2013/09&lt;br /&gt;
 &lt;strong&gt;UBC Farm&lt;/strong&gt;&lt;br /&gt;
 Vancouver, BC&lt;br /&gt;
 102.5 hours&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt; - &lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;&lt;br /&gt;
+&lt;p&gt;2011/06 - 2011/08&lt;br /&gt;
 &lt;strong&gt;Project S.H.A.R.E. community garden&lt;/strong&gt;&lt;br /&gt;
 Niagara Falls, ON&lt;br /&gt;
 15.0 hours&lt;/p&gt;
-
-&lt;h3 id=&#34;research-assistantships&#34;&gt;Research Assistantships&lt;/h3&gt;
-
-&lt;p&gt;&lt;sup&gt;2013&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt; - &lt;sup&gt;2013&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;&lt;br /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;research-assistantships&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Research Assistantships&lt;/h3&gt;
+&lt;p&gt;2013/05 - 2013/08&lt;br /&gt;
 &lt;strong&gt;Robust penalized regression&lt;/strong&gt;&lt;br /&gt;
-Supervisor: Dr. Gabriela Cohen-Freue&lt;br /&gt;
+Supervisor: Dr. Gabriela Cohen-Freue&lt;br /&gt;
 Department of Statistics&lt;br /&gt;
 The University of British Columbia&lt;br /&gt;
 Vancouver, BC&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt; - &lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;&lt;br /&gt;
-&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt; - &lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;&lt;br /&gt;
-&lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt; - &lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;&lt;br /&gt;
+&lt;p&gt;2012/05 - 2012/08&lt;br /&gt;
+2011/05 - 2011/08&lt;br /&gt;
+2010/05 - 2010/08&lt;br /&gt;
 &lt;strong&gt;Extreme value modelling&lt;/strong&gt;&lt;br /&gt;
-Supervisor: Dr. Mei Ling Huang&lt;br /&gt;
+Supervisor: Dr. Mei Ling Huang&lt;br /&gt;
 Department of Mathematics&lt;br /&gt;
 Brock University&lt;br /&gt;
-St. Catharines, ON&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt;&lt;br /&gt;
+St. Catharines, ON&lt;/p&gt;
+&lt;p&gt;2010/09 - 2011/06&lt;br /&gt;
 &lt;strong&gt;Quantum monte carlo simulations&lt;/strong&gt;&lt;br /&gt;
-Supervisors: Dr. Stuart Rothstein; Dr. Wai Kong (John) Yuen&lt;br /&gt;
+Supervisors: Dr. Stuart Rothstein; Dr. Wai Kong (John) Yuen&lt;br /&gt;
 Department of Chemistry and Department of Mathematics&lt;br /&gt;
 Brock University&lt;br /&gt;
-St. Catharines, ON&lt;/p&gt;
-
-&lt;h3 id=&#34;teaching-assistantships&#34;&gt;Teaching Assistantships&lt;/h3&gt;
-
+St. Catharines, ON&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;teaching-assistantships&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Teaching Assistantships&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Duration&lt;/strong&gt;: From the latter part of my undergrad, to the end of my PhD.&lt;/p&gt;
-
 &lt;p&gt;UBC:&lt;/p&gt;
-
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;SCIE 300: Communicating Science&lt;/strong&gt; (5x)&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SCIE 300: Communicating Science&lt;/strong&gt; (5x)&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;Brock University:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;MATH 4P82/5P82: Non-parametric Statistics&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MATH 3P82: Regression Analysis&lt;/strong&gt;&lt;/li&gt;
@@ -3631,132 +3028,103 @@ St. Catharines, ON&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;MATH 3P81: Experimental Design&lt;/strong&gt; (2x)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;MATH 2F40: Mathematics Integrated w/ Computers and Applications II&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;publications-and-talks&#34;&gt;Publications and Talks&lt;/h2&gt;
-
-&lt;h3 id=&#34;articles-submitted-to-refereed-journals&#34;&gt;Articles Submitted to Refereed Journals&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;publications-and-talks&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Publications and Talks&lt;/h2&gt;
+&lt;div id=&#34;articles-submitted-to-refereed-journals&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Articles Submitted to Refereed Journals&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Huang, M.L., Coia, V., and Brill, P.H. (2013) A cluster truncated
-Pareto distribution and its applications. ISRN Probability and
-Statistics 2013: Article ID 265373.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Ayad, M., Coia, V., and Kihel, O. (2014) The number of relatively
-prime subsets of a finite union of sets of consecutive integers.
-Journal of Integer Sequences 17: Article 14.3.7&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Coia, V., and Huang, M.L. (2014) A sieve model for extreme
-values. Journal of Statistical Computation and Simulation.
-84(8):16921710.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Huang, M.L., Coia, V., and Brill, P.H. (2013) A cluster truncated Pareto distribution and its applications. ISRN Probability and Statistics 2013: Article ID 265373.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Ayad, M., Coia, V., and Kihel, O. (2014) The number of relatively prime subsets of a finite union of sets of consecutive integers. Journal of Integer Sequences 17: Article 14.3.7&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Coia, V., and Huang, M.L. (2014) A sieve model for extreme values. Journal of Statistical Computation and Simulation. 84(8):16921710.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;articles-submitted-to-conference-proceedings&#34;&gt;Articles Submitted to Conference Proceedings&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;articles-submitted-to-conference-proceedings&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Articles Submitted to Conference Proceedings&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Huang, M. L., Coia, V., and Brill, P.H., A mixture truncated
-Pareto distribution, In JSM Proceedings 2012, Statistical Computing
-Section, Alexandria, VA: American Statistical Association, pp.
-24882498.&lt;/li&gt;
+&lt;li&gt;Huang, M. L., Coia, V., and Brill, P.H., A mixture truncated Pareto distribution, In JSM Proceedings 2012, Statistical Computing Section, Alexandria, VA: American Statistical Association, pp. 24882498.&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;conference-and-roundtable-contributions&#34;&gt;Conference and Roundtable Contributions&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;conference-and-roundtable-contributions&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Conference and Roundtable Contributions&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Coia, V., Nolde, N., and Joe, H. Forecasting Extremes for Flooding
-(Invited Talk). The 44th Annual Meeting of the Statistical Society
-of Canada. May 29June 1, 2016 at Brock University, St. Catharines,
-ON.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Coia, V., and Jeanniard du Dot, T. (Invited Demonstration) &amp;ldquo;Using
-the Grammar of Graphics and Interactivity to explore Biologging Data
-in R&amp;rdquo;. May 6, 2015. Building a Bioanalytical Theory for Analysis of
-Marine Mammal Movements: A Peter Wall International Research
-Roundtable. The University of British Columbia, Vancouver, BC.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Coia, V. &amp;ldquo;Flood Warning: An Application of High-Quantile Regression&amp;rdquo;
-(Contributed Talk). SFU/UBC Joint Graduate Student Seminar (Winter).
-February 28, 2015 at the SFU Harbour Centre, Vancouver, BC.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Coia, V. &amp;ldquo;A New Sieve Model for Extreme Values&amp;rdquo; (Contributed Talk).
-SFU/UBC Joint Graduate Student Seminar (Fall). September 29, 2012 at
-the SFU Harbour Centre, Vancouver, BC.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Coia, V., and Huang, M.L. &amp;ldquo;On Estimation of Heavy Tailed
-Distributions&amp;rdquo; (Contributed Talk). The 40th Annual Meeting of the
-Statistical Society of Canada. June 36, 2012 at the University of
-Guelph, Guelph, ON.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Huang, M.L., Coia, V., and Brill, P.H. &amp;ldquo;A Mixture Truncated Pareto
-Distribution&amp;rdquo; (Contributed Talk). The 2012 Joint Statistical
-Meetings. July 28August 2, 2012 at San Diego, California&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Coia, V., Nolde, N., and Joe, H. Forecasting Extremes for Flooding (Invited Talk). The 44th Annual Meeting of the Statistical Society of Canada. May 29June 1, 2016 at Brock University, St. Catharines, ON.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Coia, V., and Jeanniard du Dot, T. (Invited Demonstration) “Using the Grammar of Graphics and Interactivity to explore Biologging Data in R”. May 6, 2015. Building a Bioanalytical Theory for Analysis of Marine Mammal Movements: A Peter Wall International Research Roundtable. The University of British Columbia, Vancouver, BC.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Coia, V. “Flood Warning: An Application of High-Quantile Regression” (Contributed Talk). SFU/UBC Joint Graduate Student Seminar (Winter). February 28, 2015 at the SFU Harbour Centre, Vancouver, BC.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Coia, V. “A New Sieve Model for Extreme Values” (Contributed Talk). SFU/UBC Joint Graduate Student Seminar (Fall). September 29, 2012 at the SFU Harbour Centre, Vancouver, BC.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Coia, V., and Huang, M.L. “On Estimation of Heavy Tailed Distributions” (Contributed Talk). The 40th Annual Meeting of the Statistical Society of Canada. June 36, 2012 at the University of Guelph, Guelph, ON.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Huang, M.L., Coia, V., and Brill, P.H. “A Mixture Truncated Pareto Distribution” (Contributed Talk). The 2012 Joint Statistical Meetings. July 28August 2, 2012 at San Diego, California&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;awards&#34;&gt;Awards&lt;/h2&gt;
-
-&lt;h3 id=&#34;university-issued&#34;&gt;University Issued&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;awards&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Awards&lt;/h2&gt;
+&lt;div id=&#34;university-issued&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;University Issued&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;: Four-Year Fellowship&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;: Faculty of Science Graduate Award&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;: Dean of Graduate Studies Excellence Scholarship&lt;/li&gt;
-&lt;li&gt;2011/06/07: Dean&amp;rsquo;s Gold Medal&lt;/li&gt;
+&lt;li&gt;2012/09 - 2016/08: Four-Year Fellowship&lt;/li&gt;
+&lt;li&gt;2012/09 - 2016/08: Faculty of Science Graduate Award&lt;/li&gt;
+&lt;li&gt;2011/09: Dean of Graduate Studies Excellence Scholarship&lt;/li&gt;
+&lt;li&gt;2011/06/07: Dean’s Gold Medal&lt;/li&gt;
 &lt;li&gt;2011/06/07: Distinguished Undergraduate Student Award in Mathematics&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;03&lt;/sub&gt;: President&amp;rsquo;s Surgite Award&lt;/li&gt;
+&lt;li&gt;2011/03: President’s Surgite Award&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;nationally-recognized&#34;&gt;Nationally Recognized&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;nationally-recognized&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Nationally Recognized&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;sup&gt;2013&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt;: Governor General of Canada&amp;rsquo;s Gold Medal&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2015&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;: NSERC Postgraduate Award (Doctoral, 3-year)&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt; - &lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;: NSERC Alexander Graham Bell Canada Graduate Scholarship (Masters)&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt; - &lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;08&lt;/sub&gt;: NSERC Undergraduate Student Research Award&lt;/li&gt;
+&lt;li&gt;2013/06: Governor General of Canada’s Gold Medal&lt;/li&gt;
+&lt;li&gt;2012/09 - 2015/08: NSERC Postgraduate Award (Doctoral, 3-year)&lt;/li&gt;
+&lt;li&gt;2011/09 - 2012/08: NSERC Alexander Graham Bell Canada Graduate Scholarship (Masters)&lt;/li&gt;
+&lt;li&gt;2010/05 - 2010/08: NSERC Undergraduate Student Research Award&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;individual-donors&#34;&gt;Individual Donors&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;individual-donors&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Individual Donors&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt;: Dr. Jack Lightstone &amp;amp; Dorothy Markiewicz Scholarship&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt;: Dr. Raymond &amp;amp; Mrs. Sachi Moriyama Grad. Fellowship&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;03&lt;/sub&gt;: Tomlinson Entrance Scholarship for Excellence in Mathematics and Science&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt;: John and Roslyn Reed Book Prize&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;: Art Bicknell Scholarship in Mathematics&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;: Ian D. Beddis Family Scholarship&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2010&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;: Terry and Sue White Mathematics and Science Scholarship&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2007&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;: M.J. (&amp;ldquo;Mel&amp;rdquo;) Farquharson Scholarship&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2006&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;: Scholler Foundation Scholarship in Chemistry&lt;/li&gt;
+&lt;li&gt;2012/04: Dr. Jack Lightstone &amp;amp; Dorothy Markiewicz Scholarship&lt;/li&gt;
+&lt;li&gt;2012/04: Dr. Raymond &amp;amp; Mrs. Sachi Moriyama Grad. Fellowship&lt;/li&gt;
+&lt;li&gt;2012/03: Tomlinson Entrance Scholarship for Excellence in Mathematics and Science&lt;/li&gt;
+&lt;li&gt;2011/06: John and Roslyn Reed Book Prize&lt;/li&gt;
+&lt;li&gt;2010/09: Art Bicknell Scholarship in Mathematics&lt;/li&gt;
+&lt;li&gt;2010/09: Ian D. Beddis Family Scholarship&lt;/li&gt;
+&lt;li&gt;2010/09: Terry and Sue White Mathematics and Science Scholarship&lt;/li&gt;
+&lt;li&gt;2007/09: M.J. (“Mel”) Farquharson Scholarship&lt;/li&gt;
+&lt;li&gt;2006/09: Scholler Foundation Scholarship in Chemistry&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;athletic-awards&#34;&gt;Athletic Awards&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;athletic-awards&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Athletic Awards&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;2016/04/03: Sportsmanship Award, UBC Thunderbirds Sport Clubs (Fencing)&lt;/li&gt;
 &lt;li&gt;2016/02/28: Bronze Medal in Senior Mixed Epee (Intercollegiate Tournament, UBC)&lt;/li&gt;
 &lt;li&gt;2015/11/16: Bronze Medal in Senior Mixed Epee (Remembrance Day Tournament, UBC)&lt;/li&gt;
 &lt;li&gt;2012/03/28: RM Davis Surgite Award&lt;/li&gt;
 &lt;li&gt;2009/12/12: First Place Award Winter Epeedemic, Toronto Fencing Club&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2009&lt;/sup&gt;&amp;frasl;&lt;sub&gt;03&lt;/sub&gt;: Varsity Fencing Rookie of the Year Award&lt;/li&gt;
+&lt;li&gt;2009/03: Varsity Fencing Rookie of the Year Award&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&#34;declined-awards&#34;&gt;Declined Awards&lt;/h3&gt;
-
+&lt;/div&gt;
+&lt;div id=&#34;declined-awards&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Declined Awards&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;sup&gt;2012&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt;: Ontario Graduate Scholarship (Doctoral)&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2011&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt;: Ontario Graduate Scholarship (Masters)&lt;/li&gt;
+&lt;li&gt;2012/04: Ontario Graduate Scholarship (Doctoral)&lt;/li&gt;
+&lt;li&gt;2011/05: Ontario Graduate Scholarship (Masters)&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&#34;professional-activities&#34;&gt;Professional Activities&lt;/h2&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;professional-activities&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Professional Activities&lt;/h2&gt;
 &lt;p&gt;Dept. of Statistics, The University of British Columbia:&lt;/p&gt;
-
 &lt;ul&gt;
-&lt;li&gt;&lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt; - &lt;sup&gt;2016&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt;: &lt;strong&gt;Search committee member (for CRC 2 faculty position)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;2015/04/30: &lt;strong&gt;Organizer of the &amp;ldquo;&lt;a href=&#34;http://stat.ubc.ca/~vincen.coia/abstractworkshop.html&#34; target=&#34;_blank&#34;&gt;How to Write an Awesome Abstract&lt;/a&gt;&amp;rdquo; workshop&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2014&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt; - &lt;sup&gt;2015&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt;: &lt;strong&gt;Organizer of the &lt;a href=&#34;http://stat.ubc.ca/~vincen.coia/seminar.html&#34; target=&#34;_blank&#34;&gt;SFU/UBC Joint Seminar&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2014&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt; - &lt;sup&gt;2014&lt;/sup&gt;&amp;frasl;&lt;sub&gt;09&lt;/sub&gt;: &lt;strong&gt;Organizer of the Graduate Student Trip&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2014&lt;/sup&gt;&amp;frasl;&lt;sub&gt;04&lt;/sub&gt; - &lt;sup&gt;2015&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt;: &lt;strong&gt;Co-founder of the Graduate Writing Forums&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;sup&gt;2013&lt;/sup&gt;&amp;frasl;&lt;sub&gt;06&lt;/sub&gt; - &lt;sup&gt;2014&lt;/sup&gt;&amp;frasl;&lt;sub&gt;05&lt;/sub&gt;: &lt;strong&gt;Statistics Graduate Student Representative&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;2016/05 - 2016/06: &lt;strong&gt;Search committee member (for CRC 2 faculty position)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;2015/04/30: &lt;strong&gt;Organizer of the “&lt;a href=&#34;http://stat.ubc.ca/~vincen.coia/abstractworkshop.html&#34;&gt;How to Write an Awesome Abstract&lt;/a&gt;” workshop&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;2014/06 - 2015/05: &lt;strong&gt;Organizer of the &lt;a href=&#34;http://stat.ubc.ca/~vincen.coia/seminar.html&#34;&gt;SFU/UBC Joint Seminar&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;2014/06 - 2014/09: &lt;strong&gt;Organizer of the Graduate Student Trip&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;2014/04 - 2015/05: &lt;strong&gt;Co-founder of the Graduate Writing Forums&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;2013/06 - 2014/05: &lt;strong&gt;Statistics Graduate Student Representative&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/div&gt;
 </description>
     </item>
     

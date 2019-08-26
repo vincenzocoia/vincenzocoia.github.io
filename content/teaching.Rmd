@@ -1,4 +1,9 @@
-# Teaching Statement
+---
+title: "Teaching Philosophy"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+---
 
 This page indicates my teaching philosophy.
 
