@@ -1,0 +1,204 @@
+---
+title: "The squared error has friends, too!"
+author: "Dr. Vincenzo Coia, UBC"
+date: '2019-03-16'
+output: ioslides_presentation
+---
+
+I was invited to the SFU/UBC Joint Seminar in Spring 2019 where I gave this talk.
+
+```{r, echo=FALSE}
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+# Who am I?
+
+# Quiz
+
+## True or False: 
+
+- The least squares estimator is derived by maximizing the likelihood.
+
+## True or False: 
+
+- The least squares estimator is derived by maximizing the likelihood.
+- If errors are not Gaussian, we can't use least squares to estimate our regression coefficients.
+
+## True or False: 
+
+- The least squares estimator is derived by maximizing the likelihood.
+- If errors are not Gaussian, we can't use least squares to estimate our regression coefficients.
+
+__Answers__: Both FALSE! 
+
+## Question:
+
+When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?
+
+## Question:
+
+When we fit a regression model (linear, kNN, random forest, etc.), what is the interpretation of the resulting model function / regression curve?
+
+__Answer__: The mean of Y given X.
+
+# Concept #1
+
+We minimize the SSE in regression because it's a proper scoring rule for the mean.
+
+----
+
+On the board, lets:
+
+1. Write ybar as a minimization problem.
+2. Extend to regression
+
+# Concept #2
+
+When doing regression, we ought to consider quantiles, too!
+
+----
+
+Consider Y = monthly expenditure (in $). Interpretation of quantities:
+
+- median: 
+- low-quantile: 
+- high-quantile: 
+- mean:
+
+----
+
+Consider Y = monthly expenditure (in $). Interpretation of quantities:
+
+- median: There's a 50-50 chance that you'll have to pay more than this.
+- low-quantile: 
+- high-quantile: 
+- mean: 
+
+----
+
+Consider Y = monthly expenditure (in $). Interpretation of quantities:
+
+- median: There's a 50-50 chance that you'll have to pay more than this.
+- low-quantile: You'll "at least" have to pay this much.
+- high-quantile: 
+- mean: 
+
+----
+
+Consider Y = monthly expenditure (in $). Interpretation of quantities:
+
+- median: There's a 50-50 chance that you'll have to pay more than this.
+- low-quantile: You'll "at least" have to pay this much.
+- high-quantile: You'll "at most" have to pay this much.
+- mean: 
+
+----
+
+Consider Y = monthly expenditure (in $). Interpretation of quantities:
+
+- median: There's a 50-50 chance that you'll have to pay more than this.
+- low-quantile: You'll "at least" have to pay this much.
+- high-quantile: You'll "at most" have to pay this much.
+- mean: Multiply by `m` to estimate total $ after `m` months.
+
+# Concept #3
+
+Each quantile has its own proper scoring rule that we can use instead of the squared error.
+
+----
+
+On the board:
+
+1. Write median as an optimization problem
+2. Extend to generic quantile
+2. Extend to regression
+
+----
+
+The "check function":
+
+```{r, echo=FALSE, fig.width=8, fig.height=4, warning=FALSE}
+base <- ggplot(data.frame(x=c(-2,2)), aes(x)) + 
+    theme_bw() +
+    labs(y=expression(rho)) +
+    theme(axis.title.y=element_text(angle=0, vjust=0.5)) +
+    ylim(c(0, 1.5))
+rho <- function(tau) function(x) (tau - (x<0))*x
+cowplot::plot_grid(
+    base + stat_function(fun=rho(0.2)) + 
+        ggtitle(expression(paste(tau, "=0.2"))),
+    base + stat_function(fun=rho(0.5)) + 
+        ggtitle(expression(paste(tau, "=0.5"))),
+    base + stat_function(fun=rho(0.8)) + 
+        ggtitle(expression(paste(tau, "=0.8"))),
+    ncol=3
+)
+```
+
+
+# Concept #4
+
+Make a distributional assumption to reduce estimation uncertainty.
+
+## Univariate Estimation
+
+If you have a univariate sample $Y_1, \ldots, Y_n$:
+
+| Distributional Assumption? | Estimation Method |
+|---|---|
+| No  |    |
+| Yes |    |
+
+## Univariate Estimation
+
+If you have a univariate sample $Y_1, \ldots, Y_n$:
+
+| Distributional Assumption? | Estimation Method |
+|---|---|
+| No  | "sample versions": ybar, s^2, `quantile()`, ...    |
+| Yes | MLE |
+
+## Regression setting
+
+If you have a univariate sample $Y_1, \ldots, Y_n$ AND predictors:
+
+| Distributional Assumption? | Estimation Method |
+|---|---|
+| No  |  |
+| Yes |  |
+
+## Regression setting
+
+If you have a univariate sample $Y_1, \ldots, Y_n$ AND predictors:
+
+| Distributional Assumption? | Estimation Method |
+|---|---|
+| No  | Optimize scoring rule for desired quantity. |
+| Yes | MLE |
+
+# Return of the Quiz
+
+## Return of the Quiz
+
+Can we see why these are false?
+
+- The least squares estimator is derived by maximizing the likelihood.
+- If errors are not Gaussian, we can't use least squares to estimate our regression coefficients.
+
+# Time left?
+
+## Time left?
+
+Give two ways to estimate the conditional variance.
+
+__Hint__: Think about the definition of variance. 
+
+Talk to your neighbour for 1 minute
+
+# Resources
+
+This talk was inspired by the activity generated by [my blog post "The missing question in supervised learning"](https://vincenzocoia.github.io/20180218-mean/).
+
+For proper scoring rules, see 
+[Gneiting, T., and Raftery, A.E. (2007) "Strictly Proper Scoring Rules, Prediction,
+and Estimation". Journal of the American Statistical Association, 102:477](https://www.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf)

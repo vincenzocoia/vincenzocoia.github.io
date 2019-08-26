@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hello-world | Vincenzo Coia</title>
+    <title>hello world | Vincenzo Coia</title>
     <link>/tags/hello-world/</link>
       <atom:link href="/tags/hello-world/index.xml" rel="self" type="application/rss+xml" />
-    <description>hello-world</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <description>hello world</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 31 Dec 2017 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/img/icon-192.png</url>
-      <title>hello-world</title>
+      <title>hello world</title>
       <link>/tags/hello-world/</link>
     </image>
     
     <item>
-      <title>Hello, World! Here&#39;s why I&#39;m writing for you.</title>
-      <link>/_posts/2017-12-31-hello_world/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/_posts/2017-12-31-hello_world/</guid>
+      <title>Hello, World!</title>
+      <link>/project/2017-12-31-hello_world/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>/project/2017-12-31-hello_world/</guid>
       <description>&lt;p&gt;I find myself writing a lot. Usually, I squirrel my notes away in my local file management system. But that&amp;rsquo;s not very useful for you, and it&amp;rsquo;s not ideal for me, either.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m hoping to write for the public, for three main reasons:&lt;/p&gt;

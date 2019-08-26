@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Vincenzo Coia</title>
+    <title>admin | Vincenzo Coia</title>
     <link>/authors/admin/</link>
       <atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
-    <description>Vincenzo Coia</description>
+    <description>admin</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
     <image>
       <url>/img/icon-192.png</url>
-      <title>Vincenzo Coia</title>
+      <title>admin</title>
       <link>/authors/admin/</link>
     </image>
     
     <item>
       <title></title>
-      <link>/authors/admin/</link>
+      <link>/authors/vincenzo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/authors/admin/</guid>
+      <guid>/authors/vincenzo/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://creativecommons.org/licenses/by/4.0/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg&#34; alt=&#34;License: CC BY 4.0&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Hi!&lt;/p&gt;

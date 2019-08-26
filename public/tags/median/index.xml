@@ -5,7 +5,7 @@
     <link>/tags/median/</link>
       <atom:link href="/tags/median/index.xml" rel="self" type="application/rss+xml" />
     <description>median</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 18 Feb 2018 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/img/icon-192.png</url>
       <title>median</title>
@@ -14,9 +14,9 @@
     
     <item>
       <title>The missing question in supervised learning</title>
-      <link>/_posts/2018-02-18-mean/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/_posts/2018-02-18-mean/</guid>
+      <link>/project/2018-02-18-mean/</link>
+      <pubDate>Sun, 18 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>/project/2018-02-18-mean/</guid>
       <description>
 
 &lt;p&gt;You all know the drill &amp;ndash; you&amp;rsquo;re asked to make predictions of a continuous variable, so you turn to your favourite supervised learning method to do the trick. But have you ever suspected that you could be after the wrong type of output before you even begin?&lt;/p&gt;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects | Academic</title>
+    <title>Projects | Vincenzo Coia</title>
     <link>/project/</link>
       <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 18 Feb 2018 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/img/icon-192.png</url>
       <title>Projects</title>
@@ -13,27 +13,153 @@
     </image>
     
     <item>
-      <title>External Project</title>
-      <link>/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/external-project/</guid>
-      <description></description>
+      <title>The missing question in supervised learning</title>
+      <link>/project/2018-02-18-mean/</link>
+      <pubDate>Sun, 18 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>/project/2018-02-18-mean/</guid>
+      <description>
+
+&lt;p&gt;You all know the drill &amp;ndash; you&amp;rsquo;re asked to make predictions of a continuous variable, so you turn to your favourite supervised learning method to do the trick. But have you ever suspected that you could be after the wrong type of output before you even begin?&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Decision_tree_learning&#34; target=&#34;_blank&#34;&gt;Regression trees&lt;/a&gt;, &lt;a href=&#34;https://en.wikipedia.org/wiki/Local_regression&#34; target=&#34;_blank&#34;&gt;loess&lt;/a&gt;, &lt;a href=&#34;https://en.wikipedia.org/wiki/Linear_regression&#34; target=&#34;_blank&#34;&gt;linear regression&lt;/a&gt;&amp;hellip; you name it, they&amp;rsquo;re all in pursuit of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Expected_value&#34; target=&#34;_blank&#34;&gt;mean&lt;/a&gt; (well, almost all). But the true outcome is random. It has a distribution. Are you sure you want the mean of that distribution?&lt;/p&gt;
+
+&lt;p&gt;You might say &amp;ldquo;Yes! It ensures my prediction is as close as possible to the outcome!&amp;rdquo; If this is indeed what you want, the mean still might not be your best choice &amp;ndash; it only ensures the &lt;a href=&#34;https://en.wikipedia.org/wiki/Mean_squared_error&#34; target=&#34;_blank&#34;&gt;mean squared error&lt;/a&gt; is minimized.&lt;/p&gt;
+
+&lt;p&gt;There are a suite of other options that might be more appropriate than the mean. The good thing is, your favourite supervised learning method probably has a natural extension for estimating these alternatives. Let&amp;rsquo;s investigate the quantities you might care about.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-median&#34;&gt;The Median&lt;/h3&gt;
+
+&lt;p&gt;No, the median &lt;em&gt;isn&amp;rsquo;t&lt;/em&gt; just an inferior version of the mean, to be used under the unfortunate presence of outliers.&lt;/p&gt;
+
+&lt;p&gt;If I randomly pick a data scientist, what do you think their salary would be? This distribution has a right-skew, so chances are, your data scientist earns less than the mean. Predict the &lt;a href=&#34;https://en.wikipedia.org/wiki/Median&#34; target=&#34;_blank&#34;&gt;median&lt;/a&gt;, and you&amp;rsquo;ll have a 50% chance that your data scientist &lt;em&gt;does&lt;/em&gt; earn at least what you predict.&lt;/p&gt;
+
+&lt;p&gt;In short, use the median when you want your prediction to be exceeded with a coin toss.&lt;/p&gt;
+
+&lt;p&gt;Minimize the &lt;a href=&#34;https://en.wikipedia.org/wiki/Mean_absolute_error&#34; target=&#34;_blank&#34;&gt;mean absolute error&lt;/a&gt; to get this prediction.&lt;/p&gt;
+
+&lt;h3 id=&#34;higher-or-lower-quantiles&#34;&gt;Higher (or lower) Quantiles&lt;/h3&gt;
+
+&lt;p&gt;Want to make it to an interview on time? You add some &amp;ldquo;buffer time&amp;rdquo; to the expected travel time, right? What you&amp;rsquo;re after is a high &lt;a href=&#34;https://en.wikipedia.org/wiki/Quantile&#34; target=&#34;_blank&#34;&gt;quantile&lt;/a&gt; of travel time &amp;ndash; something like the 0.99-quantile, so that there is only a small chance you&amp;rsquo;ll be late (1% in this case).&lt;/p&gt;
+
+&lt;p&gt;Use a high (or low) quantile if you want a conservative (or liberal) prediction &amp;ndash; or both, if you want a prediction interval.&lt;/p&gt;
+
+&lt;p&gt;Minimize the mean &lt;a href=&#34;https://en.wikipedia.org/wiki/Quantile_regression#Quantiles&#34; target=&#34;_blank&#34;&gt;rho function&lt;/a&gt; to get this prediction.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-mean&#34;&gt;The Mean&lt;/h3&gt;
+
+&lt;p&gt;The mean is useful when we care about &lt;em&gt;totals&lt;/em&gt;. Want to know how much gas a vehicle uses?  You&amp;rsquo;re after the mean, because the total quantity drawn out over time is what matters.&lt;/p&gt;
+
+&lt;p&gt;Minimize the mean squared error to get this prediction.&lt;/p&gt;
+
+&lt;h3 id=&#34;other-options&#34;&gt;Other Options&lt;/h3&gt;
+
+&lt;p&gt;Do you really need to distill your prediction down to a single number? Consider looking at the entire distribution of the outcome as your prediction (typically conditional on predictors) &amp;ndash; after all, this conveys the entire uncertainty about the outcome. This is known as &lt;a href=&#34;https://en.wikipedia.org/wiki/Probabilistic_forecasting&#34; target=&#34;_blank&#34;&gt;probabilistic forecasting&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are other measures, too. &lt;a href=&#34;https://en.wikipedia.org/wiki/Expected_shortfall&#34; target=&#34;_blank&#34;&gt;Expected shortfall&lt;/a&gt; is useful for risk analysis, or even &lt;a href=&#34;http://www.statcan.gc.ca/pub/12-001-x/2016001/article/14545/03-eng.htm&#34; target=&#34;_blank&#34;&gt;expectiles&lt;/a&gt;. Maybe you care about variance or skewness for some reason. Whatever you want to get at, just make sure you ask yourself what you actually care about. You have an entire distribution to distill!&lt;/p&gt;
+
+&lt;p&gt;(&lt;a href=&#34;https://www.pexels.com/photo/abstract-blackboard-bulb-chalk-355948/&#34; target=&#34;_blank&#34;&gt;Photo from Pexels&lt;/a&gt;)&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Internal Project</title>
-      <link>/project/internal-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/internal-project/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+      <title>Is your backpack fuss-proof? Look for these eight game-changing features.</title>
+      <link>/project/2018-01-05-backpack/</link>
+      <pubDate>Fri, 05 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>/project/2018-01-05-backpack/</guid>
+      <description>
 
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;I love backpacks. They are my go-to way of carrying stuff around. But many backpacks cause fuss that we&amp;rsquo;ve resigned to deal with. Look for these top eight features that will make your backpack work &lt;em&gt;for&lt;/em&gt; you instead of against you.&lt;/p&gt;
 
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;h3 id=&#34;8-loops-for-carabiners&#34;&gt;8. Loops for Carabiners&lt;/h3&gt;
 
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Having these on the outside of your pack can be tremendously useful. They allow for quick, easy-access &amp;ldquo;storage&amp;rdquo; of miscellaneous things like a water bottle or handbag. More useful than you might think!&lt;/p&gt;
 
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+&lt;h3 id=&#34;7-size&#34;&gt;7. Size&lt;/h3&gt;
+
+&lt;p&gt;I like to err on the side of too big, because cramming stuff isn&amp;rsquo;t fun. Plus, you can get some large packs that are also lightweight.&lt;/p&gt;
+
+&lt;h3 id=&#34;6-rain-protector&#34;&gt;6. Rain Protector&lt;/h3&gt;
+
+&lt;p&gt;A rain protector not only helps by keeping your stuff dry inside the backpack (like your laptop), but the bag gets heavier as it gets saturated with water.&lt;/p&gt;
+
+&lt;p&gt;Think an umbrella will do the trick? Just feel the top of your bag after using an umbrella on a rainy day.&lt;/p&gt;
+
+&lt;h3 id=&#34;5-wide-and-thin-straps&#34;&gt;5. Wide and Thin Straps&lt;/h3&gt;
+
+&lt;p&gt;It&amp;rsquo;s not the padding that makes a pack sit softly on your shoulders, it&amp;rsquo;s the width. In fact, I look for &lt;em&gt;thinner&lt;/em&gt; padding to prevent stench and bacteria buildup. After all, the straps go under the armpits!&lt;/p&gt;
+
+&lt;h3 id=&#34;4-top-loading&#34;&gt;4. Top-loading&lt;/h3&gt;
+
+&lt;p&gt;I prefer top-loading packs. It&amp;rsquo;s just easier to load and access your stuff than front-loading packs are.&lt;/p&gt;
+
+&lt;p&gt;I only see front-loading packs to be useful if you intend to access your stuff like you would a suitcase &amp;ndash; by putting the back down on a flat surface, and opening the entire front. I almost never do this &amp;ndash; I almost always access the pack in an up-right position.&lt;/p&gt;
+
+&lt;h3 id=&#34;3-no-zippers&#34;&gt;3. No zippers&lt;/h3&gt;
+
+&lt;p&gt;Zippers are trouble. They almost always fail. Any of these scenarios sound familiar?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your zipper loses connection with other side.&lt;/li&gt;
+&lt;li&gt;The bindings come apart.&lt;/li&gt;
+&lt;li&gt;Zipper bites on fabric.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Instead, I look for a drawstring. Or just recently, I&amp;rsquo;ve taken to the style present on dry bags that involve folding over the top, and buckling the ends together.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-simplicity&#34;&gt;2. Simplicity&lt;/h3&gt;
+
+&lt;p&gt;Where did I put that thingamajig? Perhaps this pocket here&amp;hellip; no, maybe it&amp;rsquo;s in the zippered pocket inside this other pocket.&lt;/p&gt;
+
+&lt;p&gt;Simplify your life, and stick to one or two compartments. If you do encounter the need for further organization (such as separating little things from big), consider using smaller packs instead of compartments. I like &lt;a href=&#34;https://en.wikipedia.org/wiki/Dry_bag&#34; target=&#34;_blank&#34;&gt;dry bags&lt;/a&gt;) for this purpose, because you can also compress them.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-airflow&#34;&gt;1. Airflow&lt;/h3&gt;
+
+&lt;p&gt;The flow of air between your back and the pack is a feature that I think is far too overlooked. If the pack sits flat up against your back, you can expect to sweat, &lt;em&gt;especially&lt;/em&gt; if you&amp;rsquo;re a fast walker like I am. I even look for this feature in my everyday backpack.&lt;/p&gt;
+
+&lt;p&gt;Do your back a favour and allow it to breathe!&lt;/p&gt;
+
+&lt;p&gt;Do you share these sentiments? Or perhaps disagree? Have something to add? Share your thoughts in the comments section below!&lt;/p&gt;
+
+&lt;p&gt;(&lt;a href=&#34;https://www.pexels.com/photo/man-in-blue-dress-shirt-and-blue-jeans-and-orange-backpack-standing-on-mountain-cliff-looking-at-town-under-blue-sky-and-white-clouds-732629/&#34; target=&#34;_blank&#34;&gt;Photo by Sassu anas from Pexels&lt;/a&gt;)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello, World!</title>
+      <link>/project/2017-12-31-hello_world/</link>
+      <pubDate>Sun, 31 Dec 2017 00:00:00 +0000</pubDate>
+      <guid>/project/2017-12-31-hello_world/</guid>
+      <description>&lt;p&gt;I find myself writing a lot. Usually, I squirrel my notes away in my local file management system. But that&amp;rsquo;s not very useful for you, and it&amp;rsquo;s not ideal for me, either.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m hoping to write for the public, for three main reasons:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;You (hopefully) gain something of value&lt;/strong&gt;. And that makes me happy, too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;It forces me to clarify my thoughts&lt;/strong&gt;. Even though I write regularly, putting content online forces me to make my notes clearer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;It encourages me to write more often&lt;/strong&gt;. Because when a note is just for me, there&amp;rsquo;s less incentive for me to write it in the first place.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I write about my passions &amp;ndash; naturally, because I think about them a lot. They can be summarized as three main themes that I think will make up the contents of this website:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Data science&lt;/li&gt;
+&lt;li&gt;Systems for personal effectiveness&lt;/li&gt;
+&lt;li&gt;Nature&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I&amp;rsquo;m not entirely sure how often this website will be updated, because regular public writing is new for me. But I&amp;rsquo;m quite confident it will be somewhat active, since my vision for this is fairly clear. And, I have lots of things to say.&lt;/p&gt;
+
+&lt;p&gt;Some things you might expect to see on this site are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to organize project files&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Change Management&amp;rdquo; is a misnomer. Here&amp;rsquo;s the real change management.&lt;/li&gt;
+&lt;li&gt;Understanding principal components analysis&lt;/li&gt;
+&lt;li&gt;Stories about my hikes in British Columbia&lt;/li&gt;
+&lt;li&gt;How and why to use copulas for regression/machine learning&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I hope you&amp;rsquo;ll find this website/blog useful. Have you had the itch to write for the public? Please share your experience and your feedback in the comments section below!&lt;/p&gt;
 </description>
     </item>
     

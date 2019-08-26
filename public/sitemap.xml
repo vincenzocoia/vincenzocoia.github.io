@@ -3,14 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/tutorials/20190316-ubc-sfu/</loc>
+    <loc>/post/</loc>
+    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/20190316-ubc-sfu/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tutorials/</loc>
+    <loc>/post/20190316-ubc-sfu.knit/</loc>
     <lastmod>2019-03-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/20190316-ubc-sfu.utf8/</loc>
+    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -20,22 +30,115 @@
   </url>
   
   <url>
-    <loc>/tutorials/factor_analysis/</loc>
+    <loc>/post/factor_analysis/</loc>
     <lastmod>2019-01-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tutorials/contour_plots/</loc>
+    <loc>/project/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/project/2018-02-18-mean/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/mean/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/median/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/probabilistic-forecasting/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/quantile/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/supervised-learning/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/project/2018-01-05-backpack/</loc>
+    <lastmod>2018-01-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/backpack/</loc>
+    <lastmod>2018-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/efficiency/</loc>
+    <lastmod>2018-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/no-fuss/</loc>
+    <lastmod>2018-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/outdoors/</loc>
+    <lastmod>2018-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/project/2017-12-31-hello_world/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/blogging/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/hello-world/</loc>
+    <lastmod>2017-12-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/contour_plots/</loc>
     <lastmod>2017-02-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tutorials/mixture_distributions/</loc>
+    <loc>/post/mixture_distributions/</loc>
     <lastmod>2017-02-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/authors/admin/</loc>
+    <loc>/authors/vincenzo/</loc>
   </url>
   
   <url>
@@ -69,15 +172,15 @@
   </url>
   
   <url>
-    <loc>/tutorials/cart/</loc>
+    <loc>/post/cart/</loc>
   </url>
   
   <url>
-    <loc>/tutorials/ensembles/</loc>
+    <loc>/post/ensembles/</loc>
   </url>
   
   <url>
-    <loc>/tutorials/svm/</loc>
+    <loc>/post/svm/</loc>
   </url>
   
   <url>
@@ -95,19 +198,15 @@
   </url>
   
   <url>
-    <loc>/_posts/2018-08-14-git_github/</loc>
+    <loc>/post/2018-08-14-git_github/</loc>
   </url>
   
   <url>
-    <loc>/tutorials/gam_in_r/</loc>
+    <loc>/post/gam_in_r/</loc>
   </url>
   
   <url>
-    <loc>/tutorials/kmeans_in_r/</loc>
-  </url>
-  
-  <url>
-    <loc>/_posts/2017-12-31-hello_world/</loc>
+    <loc>/post/kmeans_in_r/</loc>
   </url>
   
   <url>
@@ -115,15 +214,11 @@
   </url>
   
   <url>
-    <loc>/_posts/2018-01-05-backpack/</loc>
+    <loc>/post/jags/</loc>
   </url>
   
   <url>
-    <loc>/tutorials/jags/</loc>
-  </url>
-  
-  <url>
-    <loc>/tutorials/effective_plotting/</loc>
+    <loc>/post/effective_plotting/</loc>
   </url>
   
   <url>
@@ -137,12 +232,7 @@
   </url>
   
   <url>
-    <loc>/tutorials/useful_linalg_results/</loc>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <priority>0</priority>
+    <loc>/post/useful_linalg_results/</loc>
   </url>
   
   <url>
@@ -150,15 +240,11 @@
   </url>
   
   <url>
-    <loc>/_posts/2018-02-18-mean/</loc>
-  </url>
-  
-  <url>
     <loc>/tutorials/</loc>
   </url>
   
   <url>
-    <loc>/tutorials/varimax/</loc>
+    <loc>/post/varimax/</loc>
   </url>
   
   <url>
@@ -166,22 +252,12 @@
   </url>
   
   <url>
-    <loc>/_posts/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/backpack/</loc>
+    <loc>/authors/admin/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/collaboration/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/efficiency/</loc>
     <priority>0</priority>
   </url>
   
@@ -196,47 +272,7 @@
   </url>
   
   <url>
-    <loc>/tags/hello-world/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/mean/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/median/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/no-fuss/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/probabilistic-forecasting/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/quantile/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/supervised-learning/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/version-control/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/vincenzo-coia/</loc>
     <priority>0</priority>
   </url>
   

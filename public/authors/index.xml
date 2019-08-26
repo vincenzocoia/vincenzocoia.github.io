@@ -14,9 +14,9 @@
     
     <item>
       <title></title>
-      <link>/authors/admin/</link>
+      <link>/authors/vincenzo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/authors/admin/</guid>
+      <guid>/authors/vincenzo/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://creativecommons.org/licenses/by/4.0/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg&#34; alt=&#34;License: CC BY 4.0&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Hi!&lt;/p&gt;
@@ -37,6 +37,14 @@
 
 &lt;p&gt;I can also identify birds, and other things about nature.&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>admin</title>
+      <link>/authors/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/authors/admin/</guid>
+      <description></description>
     </item>
     
   </channel>

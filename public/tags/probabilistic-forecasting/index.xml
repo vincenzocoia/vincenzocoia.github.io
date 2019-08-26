@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>probabilistic-forecasting | Vincenzo Coia</title>
+    <title>probabilistic forecasting | Vincenzo Coia</title>
     <link>/tags/probabilistic-forecasting/</link>
       <atom:link href="/tags/probabilistic-forecasting/index.xml" rel="self" type="application/rss+xml" />
-    <description>probabilistic-forecasting</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <description>probabilistic forecasting</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Sun, 18 Feb 2018 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/img/icon-192.png</url>
-      <title>probabilistic-forecasting</title>
+      <title>probabilistic forecasting</title>
       <link>/tags/probabilistic-forecasting/</link>
     </image>
     
     <item>
       <title>The missing question in supervised learning</title>
-      <link>/_posts/2018-02-18-mean/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/_posts/2018-02-18-mean/</guid>
+      <link>/project/2018-02-18-mean/</link>
+      <pubDate>Sun, 18 Feb 2018 00:00:00 +0000</pubDate>
+      <guid>/project/2018-02-18-mean/</guid>
       <description>
 
 &lt;p&gt;You all know the drill &amp;ndash; you&amp;rsquo;re asked to make predictions of a continuous variable, so you turn to your favourite supervised learning method to do the trick. But have you ever suspected that you could be after the wrong type of output before you even begin?&lt;/p&gt;
