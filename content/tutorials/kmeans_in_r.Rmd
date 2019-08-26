@@ -1,0 +1,129 @@
+---
+title: "DSCI 563 Lab1 Tutorial: k-means"
+author: "Vincenzo Coia"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width=4, fig.height=4, fig.align="center")
+```
+
+This tutorial discusses the implementation of $k$-means (and variants) in R.
+
+Let's use a simulated dataset. Throughout, we'll take $k=3$ groups.
+
+```{r}
+suppressMessages(library(ggplot2))
+set.seed(345)
+x <- rnorm(250)
+y <- rnorm(250)
+## Shift group 2:
+x[51:150] <- x[51:150] + 2.5
+y[51:150] <- y[51:150] - 1
+## Shift group 3:
+x[151:250] <- x[151:250] - 1.5
+y[151:250] <- y[151:250] - 1.5
+## Plot:
+dat <- data.frame(x=x, y=y)
+qplot(x, y, alpha=I(0.5))
+```
+
+## $k$-means
+
+### Basics
+
+Let's fit a $k$-means algorithm to the data with the `kmeans` function, to $k=3$ groups. Indicate the data first, then $k$ in the second (`centers`) argument.
+
+```{r}
+set.seed(22)
+(fit1 <- kmeans(dat, 3))
+```
+
+The output tells you what you can extract, under "Available components". You can extract them using the `$` symbol. Let's look at some of them.
+
+Here are the assigned clusters:
+
+```{r}
+fit1$cluster
+qplot(x, y, alpha=I(0.5), colour=factor(fit1$cluster))
+```
+
+Here are the three means/centers of each group:
+
+```{r}
+fit1$centers
+```
+
+We can also extract the squared distances.
+
+```{r}
+fit1$totss        # Total sum of squares.
+fit1$withinss     # Within group sum of squares.
+fit1$tot.withinss # Total within group. **Objective function**
+fit1$betweenss    # Between group sum of squares.
+```
+
+### Tweaks
+
+In addition to running basic $k$-means, we can also run _multiple_ $k$-means with the `nstart` argument. For each run, different initial values are used (different centroids). The run with the best fit is the one that is reported. What is the "best fit" anyway? It's the one with the smallest total _within group_ sum of squares -- that is, `$tot.withinss`.
+
+Let's take the best of 20 runs:
+
+```{r}
+(fit2 <- kmeans(dat, 3, nstart=20))
+```
+
+The structure of the output is no different from before.
+
+You may also choose the centroids to start the algorithm with. To do this, instead of indicating $k$ for the `centers` argument, use a matrix of the centroids you wish to begin with.
+
+Let's start with the true means: (0,0), (2.5,-1), and (-1.5, -1.5):
+
+```{r}
+(xstart <- matrix(c(0,0, 2.5,-1, -1.5,-1.5), ncol=2, byrow=TRUE))
+(fit3 <- kmeans(dat, xstart))
+```
+
+
+## $k$-means++ 
+
+### Basics
+
+The `kmeans` function is quite specific -- it only looks at squared distances. There's a package called `flexclust` that allows for more flexible cluster analysis. The `kcca` function is particularly useful.
+
+At its basic, `kcca` works similarly to `kmeans`. In fact, this will run a standard $k$-means algorithm:
+
+```{r}
+suppressMessages(library(flexclust))
+(fit4 <- kcca(dat, 3))
+```
+
+But, the output is less friendly than `kmeans` (because `kcca` uses a formal S4 object-oriented format). The multitude of output can be extracted by `@` instead of `$`. For example, here are the cluster assignments, and the final three centers:
+
+```{r}
+fit4@cluster
+fit4@centers
+```
+
+Notice that there is no sum of squares output, like there is in `kmeans` -- this is because `kcca` doesn't necessarily use the euclidean distance. However, there _is_ a way to convert a `kcca` output to a `kmeans` output, though this output is more limited than usual (the only `ss` available is `$withinss`):
+
+```{r}
+fit4b <- as(fit4, "kmeans")
+fit4b$withinss
+```
+
+### Tweaks
+
+The most useful thing about `kcca` regarding Lab 1 is `kcca`'s ability to do $k$-means++. This can be done through the `control` argument.
+
+The `control` argument should be a named list, with each name corresponding to some property you'd like to indicate. See `?cclustControl` for the various options. But the one we're interested in is "initcent", which controls how the initial centers are chosen. From the documentation, this should be:
+
+> Character string, name of function for initial centroids, currently "randomcent" (the default) and "kmeanspp" are available.
+
+So to do $k$-means++, this amounts to:
+
+```{r}
+(fit5 <- kcca(dat, 3, control=list(initcent="kmeanspp")))
+```
+
+Another feature of `kcca` is that it allows for different distance metrics besides euclidean. This can be indicated through the `family` argument. Take a look at the `kcca` documentation under "Predefined Families" to see what distance metrics you can use. 

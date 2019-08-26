@@ -1,0 +1,731 @@
+---
+title: "cm005 Notes and Exercises"
+date: "September 19, 2017"
+output: 
+    github_document:
+        toc: true
+---
+
+
+
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.0       ✔ purrr   0.2.5  
+## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+## ✔ tidyr   0.8.1       ✔ stringr 1.3.1  
+## ✔ readr   1.1.1       ✔ forcats 0.3.0</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(gapminder)</code></pre>
+<div id="a-quick-look-at-data-types-in-r" class="section level2">
+<h2>1. A quick look at data types in R</h2>
+<div id="overview" class="section level3">
+<h3>1.1 Overview</h3>
+<p>Data types are summarized nicely in <a href="https://speakerdeck.com/jennybc/simple-view-of-r-objects">JB’s small slideshow</a>.</p>
+</div>
+<div id="investigation-using-r" class="section level3">
+<h3>1.2 Investigation using R</h3>
+<p>We’ve seen that R understands numbers – a <em>data type</em>. What other type of objects does R recognize? Let’s identify them, and test them with the <code>typeof</code> function. There are</p>
+<ul>
+<li><code>Double</code>s (as we’ve seen – they’re numbers)</li>
+</ul>
+<pre class="r"><code>typeof(5.6)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<ul>
+<li><code>Integer</code>s: (special type of number – need an <code>L</code> at the end)</li>
+</ul>
+<pre class="r"><code>typeof(4L)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>typeof(4)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<ul>
+<li><code>logical</code>s are true/false (known as <code>boolean</code>s in other languages). We highly recommend using TRUE/FALSE instead of T/F (you can assign T/F as variables, as we’ll see later).</li>
+</ul>
+<pre class="r"><code>typeof(TRUE)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(T)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(FALSE)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(F)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<ul>
+<li><code>character</code>s:</li>
+</ul>
+<pre class="r"><code>typeof(&quot;Hi, my name is Vincenzo.&quot;)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>Exercise</strong>: Find the data type of <code>&quot;5&quot;</code>. Explain the output.</p>
+<pre class="r"><code>typeof(&quot;5&quot;)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>Exercise</strong>: Use the <code>as.numeric</code> function to convert <code>&quot;5&quot;</code> to an object of type <code>&quot;double&quot;</code>.</p>
+<pre class="r"><code>as.numeric(&quot;5&quot;)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<p><strong>Exercise</strong>: Describe this output:</p>
+<pre class="r"><code>typeof(typeof(15.2))</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+</div>
+<div id="data-frames-in-r" class="section level2">
+<h2>2. Data Frames in R</h2>
+<div id="care-and-feeding-of-data-exercises" class="section level3">
+<h3>2.1 “Care and Feeding of Data”: Exercises</h3>
+<p>Last class, we went through the <a href="http://stat545.com/block006_care-feeding-data.html">Care and Feeding of Data in R</a> tutorial. Let’s do some exercises, this time with the <code>iris</code> dataset (comes pre-loaded in the <code>datasets</code> package). Use any method you’d like to answer the following questions.</p>
+<ol style="list-style-type: decimal">
+<li>How many variables (columns) are in the <code>iris</code> dataset, and what are their names?</li>
+</ol>
+<pre class="r"><code>ncol(iris)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>How many rows are in the data set?</li>
+</ol>
+<pre class="r"><code>nrow(iris)</code></pre>
+<pre><code>## [1] 150</code></pre>
+<pre class="r"><code>dim(iris)</code></pre>
+<pre><code>## [1] 150   5</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>What are the smallest values of each numeric variable?</li>
+</ol>
+<pre class="r"><code>summary(iris)</code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Extract the <code>Petal.Width</code> column to get a vector of observations (we’ll see vectors in more detail in a later class), and
+<ol style="list-style-type: lower-alpha">
+<li>Make a histogram</li>
+<li>Make a table of frequencies</li>
+</ol></li>
+</ol>
+<pre class="r"><code>x &lt;- iris$Petal.Width
+hist(x)</code></pre>
+<p><img src="/teaching/stat545/cm005-notes_and_exercises_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>table(x)</code></pre>
+<pre><code>## x
+## 0.1 0.2 0.3 0.4 0.5 0.6   1 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9   2 2.1 
+##   5  29   7   7   1   1   7   3   5  13   8  12   4   2  12   5   6   6 
+## 2.2 2.3 2.4 2.5 
+##   3   8   3   3</code></pre>
+</div>
+<div id="dplyr-fundamentals" class="section level3">
+<h3>2.2 <code>dplyr</code> fundamentals</h3>
+<p>Next, we’ll learn about <code>dplyr</code>, a handy R package for manipulating data frames, through six main functions. According to the <a href="http://r4ds.had.co.nz/transform.html">R for data science</a> book, the main five (in different order) are:</p>
+<blockquote>
+<ul>
+<li>Pick observations by their values (<code>filter()</code>).</li>
+<li>Pick variables by their names (<code>select()</code>).</li>
+</ul>
+</blockquote>
+<ul>
+<li>(We’ll sneak “piping” into here)</li>
+</ul>
+<blockquote>
+<ul>
+<li>Reorder the rows (<code>arrange()</code>).</li>
+<li>Create new variables with functions of existing variables (<code>mutate()</code>).</li>
+<li>Collapse many values down to a single summary (<code>summarise()</code>).</li>
+</ul>
+</blockquote>
+<p>Then there’s <code>group_by()</code>, which can be used in conjunction with all of these.</p>
+<p>We’ll get through as much as we can in this class, and will continue in cm006, possibly with some more exercises and more features of <code>dplyr</code>.</p>
+<p>Resources underpinning this section can be found in two parts: <a href="http://stat545.com/block009_dplyr-intro.html">part 1</a> and <a href="http://stat545.com/block010_dplyr-end-single-table.html">part 2</a>.</p>
+<div id="filter" class="section level4">
+<h4><code>filter</code></h4>
+<p><code>filter</code> subsets data frames according to some logical expression.</p>
+<p>Basic example:</p>
+<pre class="r"><code>filter(gapminder, country==&quot;Canada&quot;)</code></pre>
+<pre><code>## # A tibble: 12 x 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Canada  Americas   1952    68.8 14785584    11367.
+##  2 Canada  Americas   1957    70.0 17010154    12490.
+##  3 Canada  Americas   1962    71.3 18985849    13462.
+##  4 Canada  Americas   1967    72.1 20819767    16077.
+##  5 Canada  Americas   1972    72.9 22284500    18971.
+##  6 Canada  Americas   1977    74.2 23796400    22091.
+##  7 Canada  Americas   1982    75.8 25201900    22899.
+##  8 Canada  Americas   1987    76.9 26549700    26627.
+##  9 Canada  Americas   1992    78.0 28523502    26343.
+## 10 Canada  Americas   1997    78.6 30305843    28955.
+## 11 Canada  Americas   2002    79.8 31902268    33329.
+## 12 Canada  Americas   2007    80.7 33390141    36319.</code></pre>
+<p>Logical expressions are governed by <strong>relational operators</strong>, that output either <code>TRUE</code> or <code>FALSE</code> based on the validity of the statement you give it. Here’s a summary of the operators:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Outputs <code>TRUE</code> or <code>FALSE</code> based on the validity of the statement…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>a == b</code></td>
+<td><code>a</code> is equal to <code>b</code></td>
+</tr>
+<tr class="even">
+<td><code>a != b</code></td>
+<td><code>a</code> is not equal to <code>b</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>a &gt; b</code></td>
+<td><code>a</code> is greater than <code>b</code>.</td>
+</tr>
+<tr class="even">
+<td><code>a &lt; b</code></td>
+<td><code>a</code> is less than <code>b</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>a &gt;= b</code></td>
+<td><code>a</code> is greater than or equal to <code>b</code>.</td>
+</tr>
+<tr class="even">
+<td><code>a &lt;= b</code></td>
+<td><code>a</code> is less than or equal to <code>b</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>a %in% b</code></td>
+<td><code>a</code> is an element in <code>b</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s see some examples:</p>
+<pre class="r"><code>5 == 3</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>c(1, 2, 3) &lt; 3   # vectorized!</code></pre>
+<pre><code>## [1]  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code>4 %in% c(1, 2, 3, 4, 5)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>my_equality &lt;- 5 == 3
+print(my_equality)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>There are <strong>logical</strong> operators too, and they follow Boolean Algebra. They’re listed below – the first three are fundamental, but the others are useful too.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Outputs <code>TRUE</code> or <code>FALSE</code> based on the validity of the statement…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>a &amp; b</code>, <code>a &amp;&amp; b</code></td>
+<td>Both <code>a</code> <strong>and</strong> <code>b</code> are <code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>a | b</code>, <code>a || b</code></td>
+<td>Either <code>a</code> <strong>or</strong> <code>b</code> is <code>TRUE</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>!a</code></td>
+<td><code>a</code> is <strong>not</strong> <code>TRUE</code> (in other words, take the complement or “flip” <code>a</code>)</td>
+</tr>
+<tr class="even">
+<td><code>xor(a, b)</code></td>
+<td>Either <code>a</code> or <code>b</code> is <code>TRUE</code>, but not both.</td>
+</tr>
+<tr class="odd">
+<td><code>all(a,b,c,...)</code></td>
+<td><code>a</code>, <code>b</code>, <code>c</code>, … are <strong>all</strong> <code>TRUE</code>.</td>
+</tr>
+<tr class="even">
+<td><code>any(a,b,c,...)</code></td>
+<td><strong>Any</strong> one of <code>a</code>, <code>b</code>, <code>c</code>, … is <code>TRUE</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>We can <code>filter</code> by more than one condition:</p>
+<pre class="r"><code>#filter(gapminder, country==&quot;Canada&quot; &amp; year &lt; 1980) # same as...
+filter(gapminder, country==&quot;Canada&quot;, year &lt; 1970)</code></pre>
+<pre><code>## # A tibble: 4 x 6
+##   country continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Canada  Americas   1952    68.8 14785584    11367.
+## 2 Canada  Americas   1957    70.0 17010154    12490.
+## 3 Canada  Americas   1962    71.3 18985849    13462.
+## 4 Canada  Americas   1967    72.1 20819767    16077.</code></pre>
+<pre class="r"><code>filter(gapminder, country==&quot;Canada&quot; | year == 1952)</code></pre>
+<pre><code>## # A tibble: 153 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Albania     Europe     1952    55.2  1282697     1601.
+##  3 Algeria     Africa     1952    43.1  9279525     2449.
+##  4 Angola      Africa     1952    30.0  4232095     3521.
+##  5 Argentina   Americas   1952    62.5 17876956     5911.
+##  6 Australia   Oceania    1952    69.1  8691212    10040.
+##  7 Austria     Europe     1952    66.8  6927772     6137.
+##  8 Bahrain     Asia       1952    50.9   120447     9867.
+##  9 Bangladesh  Asia       1952    37.5 46886859      684.
+## 10 Belgium     Europe     1952    68    8730405     8343.
+## # … with 143 more rows</code></pre>
+<p>From the Part 1 notes… never do the following!</p>
+<blockquote>
+<pre><code>excerpt &lt;- gapminder[241:252, ]</code></pre>
+<p>Why is this a terrible idea?</p>
+<ul>
+<li>It is not self-documenting. What is so special about rows 241 through 252?</li>
+<li>It is fragile. This line of code will produce different results if someone changes the row order of <code>gapminder</code>, e.g. sorts the data earlier in the script.</li>
+</ul>
+</blockquote>
+<p><strong>Exercises</strong>: Let’s try some exercises using the <code>gapminder</code> data set.</p>
+<ol style="list-style-type: decimal">
+<li>Find all entries of Canada and Algeria.</li>
+</ol>
+<pre class="r"><code>filter(gapminder, 
+       country == &quot;Canada&quot; |
+           country == &quot;Algeria&quot;)</code></pre>
+<pre><code>## # A tibble: 24 x 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Algeria Africa     1952    43.1  9279525     2449.
+##  2 Algeria Africa     1957    45.7 10270856     3014.
+##  3 Algeria Africa     1962    48.3 11000948     2551.
+##  4 Algeria Africa     1967    51.4 12760499     3247.
+##  5 Algeria Africa     1972    54.5 14760787     4183.
+##  6 Algeria Africa     1977    58.0 17152804     4910.
+##  7 Algeria Africa     1982    61.4 20033753     5745.
+##  8 Algeria Africa     1987    65.8 23254956     5681.
+##  9 Algeria Africa     1992    67.7 26298373     5023.
+## 10 Algeria Africa     1997    69.2 29072015     4797.
+## # … with 14 more rows</code></pre>
+<pre class="r"><code>filter(gapminder,
+       country %in% c(&quot;Canada&quot;, &quot;Algeria&quot;))</code></pre>
+<pre><code>## # A tibble: 24 x 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Algeria Africa     1952    43.1  9279525     2449.
+##  2 Algeria Africa     1957    45.7 10270856     3014.
+##  3 Algeria Africa     1962    48.3 11000948     2551.
+##  4 Algeria Africa     1967    51.4 12760499     3247.
+##  5 Algeria Africa     1972    54.5 14760787     4183.
+##  6 Algeria Africa     1977    58.0 17152804     4910.
+##  7 Algeria Africa     1982    61.4 20033753     5745.
+##  8 Algeria Africa     1987    65.8 23254956     5681.
+##  9 Algeria Africa     1992    67.7 26298373     5023.
+## 10 Algeria Africa     1997    69.2 29072015     4797.
+## # … with 14 more rows</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Find all entries of Canada and Algeria, occuring in the ’60s.</li>
+</ol>
+<pre class="r"><code>filter(gapminder,
+       country %in% c(&quot;Canada&quot;, &quot;Algeria&quot;), year &lt; 1970, year &gt;= 1960)</code></pre>
+<pre><code>## # A tibble: 4 x 6
+##   country continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Algeria Africa     1962    48.3 11000948     2551.
+## 2 Algeria Africa     1967    51.4 12760499     3247.
+## 3 Canada  Americas   1962    71.3 18985849    13462.
+## 4 Canada  Americas   1967    72.1 20819767    16077.</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Find all entries of Canada, and entries of Algeria occuring in the ’60s.</li>
+</ol>
+<pre class="r"><code>filter(gapminder,
+       (country == &quot;Canada&quot;) |
+           (country == &quot;Algeria&quot; &amp; 
+            year %in% 1960:1969))</code></pre>
+<pre><code>## # A tibble: 14 x 6
+##    country continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Algeria Africa     1962    48.3 11000948     2551.
+##  2 Algeria Africa     1967    51.4 12760499     3247.
+##  3 Canada  Americas   1952    68.8 14785584    11367.
+##  4 Canada  Americas   1957    70.0 17010154    12490.
+##  5 Canada  Americas   1962    71.3 18985849    13462.
+##  6 Canada  Americas   1967    72.1 20819767    16077.
+##  7 Canada  Americas   1972    72.9 22284500    18971.
+##  8 Canada  Americas   1977    74.2 23796400    22091.
+##  9 Canada  Americas   1982    75.8 25201900    22899.
+## 10 Canada  Americas   1987    76.9 26549700    26627.
+## 11 Canada  Americas   1992    78.0 28523502    26343.
+## 12 Canada  Americas   1997    78.6 30305843    28955.
+## 13 Canada  Americas   2002    79.8 31902268    33329.
+## 14 Canada  Americas   2007    80.7 33390141    36319.</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Find all entries <em>not</em> including European countries.</li>
+</ol>
+<pre class="r"><code>filter(gapminder, 
+       continent != &quot;Europe&quot;)</code></pre>
+<pre><code>## # A tibble: 1,344 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # … with 1,334 more rows</code></pre>
+</div>
+<div id="select" class="section level4">
+<h4><code>select</code></h4>
+<p><code>select</code> subsets data by columns/variable names.</p>
+<pre class="r"><code>select(gapminder, continent, country)</code></pre>
+<pre><code>## # A tibble: 1,704 x 2
+##    continent country    
+##    &lt;fct&gt;     &lt;fct&gt;      
+##  1 Asia      Afghanistan
+##  2 Asia      Afghanistan
+##  3 Asia      Afghanistan
+##  4 Asia      Afghanistan
+##  5 Asia      Afghanistan
+##  6 Asia      Afghanistan
+##  7 Asia      Afghanistan
+##  8 Asia      Afghanistan
+##  9 Asia      Afghanistan
+## 10 Asia      Afghanistan
+## # … with 1,694 more rows</code></pre>
+<ul>
+<li>Always returns a tibble.</li>
+<li>Drop variables with <code>-</code>.</li>
+<li>Note that re-ordering happens here.</li>
+</ul>
+</div>
+<div id="piping" class="section level4">
+<h4>piping</h4>
+<p>What if we wanted to do more than one operation? For example:</p>
+<ul>
+<li>take all entries of Canada and Algeria occuring in the ’60s, and</li>
+<li>select the <code>country</code>, <code>year</code>, and <code>gdpPercap</code> columns.</li>
+</ul>
+<p>We could do…</p>
+<pre class="r"><code>select(filter(gapminder, 
+              country %in% c(&quot;Canada&quot;, &quot;Algeria&quot;), 
+              year &lt;= 1969, year &gt;= 1960),
+       country, year, gdpPercap)</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##   country  year gdpPercap
+##   &lt;fct&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Algeria  1962     2551.
+## 2 Algeria  1967     3247.
+## 3 Canada   1962    13462.
+## 4 Canada   1967    16077.</code></pre>
+<p>But the chain of functions can get quite long and hard to read.</p>
+<p>The <strong>pipe</strong> operator <code>%&gt;%</code> feeds the output of a function into another function. Syntax:</p>
+<pre><code>gapminder %&gt;% 
+    f1() %&gt;% 
+    f2() %&gt;% 
+    f3(options=something)</code></pre>
+<p>This says:</p>
+<ol style="list-style-type: decimal">
+<li>Start with the <code>gapminder</code> data, then</li>
+<li>apply <code>f1</code> to it, then</li>
+<li>apply <code>f2</code>, then</li>
+<li>apply <code>f3</code> with the <code>options=something</code> argument.</li>
+</ol>
+<p>The same operation above becomes:</p>
+<pre class="r"><code>gapminder %&gt;% 
+    filter(country %in% c(&quot;Canada&quot;, &quot;Algeria&quot;), 
+           year &lt;= 1969, year &gt;= 1960) %&gt;% 
+    select(country, year, gdpPercap)</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##   country  year gdpPercap
+##   &lt;fct&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Algeria  1962     2551.
+## 2 Algeria  1967     3247.
+## 3 Canada   1962    13462.
+## 4 Canada   1967    16077.</code></pre>
+<p>You can read this as:</p>
+<ol style="list-style-type: decimal">
+<li>start with the <code>gapminder</code> data, then</li>
+<li>take all entries of Canada and Algeria occuring in the ’60s (<code>filter</code>), then</li>
+<li>select the <code>country</code>, <code>year</code>, and <code>gdpPercap</code> columns.</li>
+</ol>
+<p><strong>Exercise</strong>: Take all countries in Europe that have a GPD per capita greater than 10000, and select all variables except <code>gdpPercap</code>. (Hint: use <code>-</code>).</p>
+<pre class="r"><code>gapminder %&gt;% 
+    filter(continent == &quot;Europe&quot;,
+           gdpPercap &gt; 10000) %&gt;% 
+    select(-gdpPercap)</code></pre>
+<pre><code>## # A tibble: 214 x 5
+##    country continent  year lifeExp     pop
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;
+##  1 Austria Europe     1962    69.5 7129864
+##  2 Austria Europe     1967    70.1 7376998
+##  3 Austria Europe     1972    70.6 7544201
+##  4 Austria Europe     1977    72.2 7568430
+##  5 Austria Europe     1982    73.2 7574613
+##  6 Austria Europe     1987    74.9 7578903
+##  7 Austria Europe     1992    76.0 7914969
+##  8 Austria Europe     1997    77.5 8069876
+##  9 Austria Europe     2002    79.0 8148312
+## 10 Austria Europe     2007    79.8 8199783
+## # … with 204 more rows</code></pre>
+</div>
+<div id="arrange" class="section level4">
+<h4><code>arrange</code></h4>
+<p><code>arrange</code> sorts a data frame by shuffling the order of the rows appropriately. Use <code>desc</code> to sort by descending order.</p>
+<p>Order <code>gapminder</code> by population, then life expectancy:</p>
+<pre class="r"><code>arrange(gapminder, pop, lifeExp)</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country               continent  year lifeExp   pop gdpPercap
+##    &lt;fct&gt;                 &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt;
+##  1 Sao Tome and Principe Africa     1952    46.5 60011      880.
+##  2 Sao Tome and Principe Africa     1957    48.9 61325      861.
+##  3 Djibouti              Africa     1952    34.8 63149     2670.
+##  4 Sao Tome and Principe Africa     1962    51.9 65345     1072.
+##  5 Sao Tome and Principe Africa     1967    54.4 70787     1385.
+##  6 Djibouti              Africa     1957    37.3 71851     2865.
+##  7 Sao Tome and Principe Africa     1972    56.5 76595     1533.
+##  8 Sao Tome and Principe Africa     1977    58.6 86796     1738.
+##  9 Djibouti              Africa     1962    39.7 89898     3021.
+## 10 Sao Tome and Principe Africa     1982    60.4 98593     1890.
+## # … with 1,694 more rows</code></pre>
+<p><strong>Exercises</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Order the data frame by year, then descending by life expectancy.</li>
+</ol>
+<pre class="r"><code>arrange(gapminder, year, desc(lifeExp))</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country        continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;          &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Norway         Europe     1952    72.7  3327728    10095.
+##  2 Iceland        Europe     1952    72.5   147962     7268.
+##  3 Netherlands    Europe     1952    72.1 10381988     8942.
+##  4 Sweden         Europe     1952    71.9  7124673     8528.
+##  5 Denmark        Europe     1952    70.8  4334000     9692.
+##  6 Switzerland    Europe     1952    69.6  4815000    14734.
+##  7 New Zealand    Oceania    1952    69.4  1994794    10557.
+##  8 United Kingdom Europe     1952    69.2 50430000     9980.
+##  9 Australia      Oceania    1952    69.1  8691212    10040.
+## 10 Canada         Americas   1952    68.8 14785584    11367.
+## # … with 1,694 more rows</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>In addition to the above exercise, rearrange the variables so that <code>year</code> comes first, followed by life expectancy. (Hint: check the documentation for the <code>select</code> function for a related handy function).</li>
+</ol>
+<pre class="r"><code>gapminder %&gt;% 
+    arrange(year, desc(lifeExp)) %&gt;% 
+    select(year, lifeExp, everything())</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##     year lifeExp country        continent      pop gdpPercap
+##    &lt;int&gt;   &lt;dbl&gt; &lt;fct&gt;          &lt;fct&gt;        &lt;int&gt;     &lt;dbl&gt;
+##  1  1952    72.7 Norway         Europe     3327728    10095.
+##  2  1952    72.5 Iceland        Europe      147962     7268.
+##  3  1952    72.1 Netherlands    Europe    10381988     8942.
+##  4  1952    71.9 Sweden         Europe     7124673     8528.
+##  5  1952    70.8 Denmark        Europe     4334000     9692.
+##  6  1952    69.6 Switzerland    Europe     4815000    14734.
+##  7  1952    69.4 New Zealand    Oceania    1994794    10557.
+##  8  1952    69.2 United Kingdom Europe    50430000     9980.
+##  9  1952    69.1 Australia      Oceania    8691212    10040.
+## 10  1952    68.8 Canada         Americas  14785584    11367.
+## # … with 1,694 more rows</code></pre>
+</div>
+<div id="mutate" class="section level4">
+<h4><code>mutate</code></h4>
+<p><code>mutate</code> creates a new variable by calculating from other variables. Let’s get GDP by multiplying GPD per capita with population:</p>
+<pre class="r"><code>mutate(gapminder, gdp = gdpPercap * pop)</code></pre>
+<pre><code>## # A tibble: 1,704 x 7
+##    country     continent  year lifeExp      pop gdpPercap          gdp
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.  6567086330.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.  7585448670.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.  8758855797.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.  9648014150.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.  9678553274.
+##  6 Afghanistan Asia       1977    38.4 14880372      786. 11697659231.
+##  7 Afghanistan Asia       1982    39.9 12881816      978. 12598563401.
+##  8 Afghanistan Asia       1987    40.8 13867957      852. 11820990309.
+##  9 Afghanistan Asia       1992    41.7 16317921      649. 10595901589.
+## 10 Afghanistan Asia       1997    41.8 22227415      635. 14121995875.
+## # … with 1,694 more rows</code></pre>
+<p>You can define multiple new variables – even back-dependent on new ones! Let’s also create a column for GDP in billions, rounded to one decimal:</p>
+<pre class="r"><code>mutate(gapminder, 
+       gdp     = gdpPercap * pop, 
+       gdpBill = round(gdp/1000000000, 1))</code></pre>
+<pre><code>## # A tibble: 1,704 x 8
+##    country    continent  year lifeExp      pop gdpPercap        gdp gdpBill
+##    &lt;fct&gt;      &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Afghanist… Asia       1952    28.8  8425333      779.    6.57e 9     6.6
+##  2 Afghanist… Asia       1957    30.3  9240934      821.    7.59e 9     7.6
+##  3 Afghanist… Asia       1962    32.0 10267083      853.    8.76e 9     8.8
+##  4 Afghanist… Asia       1967    34.0 11537966      836.    9.65e 9     9.6
+##  5 Afghanist… Asia       1972    36.1 13079460      740.    9.68e 9     9.7
+##  6 Afghanist… Asia       1977    38.4 14880372      786.    1.17e10    11.7
+##  7 Afghanist… Asia       1982    39.9 12881816      978.    1.26e10    12.6
+##  8 Afghanist… Asia       1987    40.8 13867957      852.    1.18e10    11.8
+##  9 Afghanist… Asia       1992    41.7 16317921      649.    1.06e10    10.6
+## 10 Afghanist… Asia       1997    41.8 22227415      635.    1.41e10    14.1
+## # … with 1,694 more rows</code></pre>
+<p><code>transmute</code> works the same way, but drops all other variables.</p>
+<p><strong>Exercise</strong>: Make a new column called <code>cc</code> that pastes the country name followed by the continent, separated by a comma. (Hint: use the <code>paste</code> function with the <code>sep=&quot;, &quot;</code> argument).</p>
+<pre class="r"><code>mutate(gapminder, cc = paste(country, continent, sep=&quot;, &quot;))</code></pre>
+<pre><code>## # A tibble: 1,704 x 7
+##    country     continent  year lifeExp      pop gdpPercap cc               
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;            
+##  1 Afghanistan Asia       1952    28.8  8425333      779. Afghanistan, Asia
+##  2 Afghanistan Asia       1957    30.3  9240934      821. Afghanistan, Asia
+##  3 Afghanistan Asia       1962    32.0 10267083      853. Afghanistan, Asia
+##  4 Afghanistan Asia       1967    34.0 11537966      836. Afghanistan, Asia
+##  5 Afghanistan Asia       1972    36.1 13079460      740. Afghanistan, Asia
+##  6 Afghanistan Asia       1977    38.4 14880372      786. Afghanistan, Asia
+##  7 Afghanistan Asia       1982    39.9 12881816      978. Afghanistan, Asia
+##  8 Afghanistan Asia       1987    40.8 13867957      852. Afghanistan, Asia
+##  9 Afghanistan Asia       1992    41.7 16317921      649. Afghanistan, Asia
+## 10 Afghanistan Asia       1997    41.8 22227415      635. Afghanistan, Asia
+## # … with 1,694 more rows</code></pre>
+</div>
+<div id="summarize-and-group_by" class="section level4">
+<h4><code>summarize</code> and <code>group_by</code></h4>
+<p><code>summarize</code> reduces a tibble according to summary statistics.</p>
+<pre class="r"><code>summarize(gapminder, mean_pop=mean(pop), sd_pop=sd(pop))</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##    mean_pop     sd_pop
+##       &lt;dbl&gt;      &lt;dbl&gt;
+## 1 29601212. 106157897.</code></pre>
+<p>Not very useful by itself! But, with the <code>group_by</code> function, the <code>summarize</code> function is very useful:</p>
+<pre class="r"><code>gapminder %&gt;% 
+    group_by(country) %&gt;% 
+    summarize(mean_pop=mean(pop), sd_pop=sd(pop))</code></pre>
+<pre><code>## # A tibble: 142 x 3
+##    country      mean_pop    sd_pop
+##    &lt;fct&gt;           &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan 15823715.  7114583.
+##  2 Albania      2580249.   828586.
+##  3 Algeria     19875406.  8613355.
+##  4 Angola       7309390.  2672281.
+##  5 Argentina   28602240.  7546609.
+##  6 Australia   14649312.  3915203.
+##  7 Austria      7583298.   437660.
+##  8 Bahrain       373913.   210893.
+##  9 Bangladesh  90755395. 34711661.
+## 10 Belgium      9725119.   520636.
+## # … with 132 more rows</code></pre>
+<p>The <code>group_by</code> function splits the tibble into parts – in the above case, by country. Notice the “Groups” indicator in the following output:</p>
+<pre class="r"><code>group_by(gapminder, continent, country, year &lt; 1970)</code></pre>
+<pre><code>## # A tibble: 1,704 x 7
+## # Groups:   continent, country, year &lt; 1970 [284]
+##    country     continent  year lifeExp      pop gdpPercap `year &lt; 1970`
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;lgl&gt;        
+##  1 Afghanistan Asia       1952    28.8  8425333      779. TRUE         
+##  2 Afghanistan Asia       1957    30.3  9240934      821. TRUE         
+##  3 Afghanistan Asia       1962    32.0 10267083      853. TRUE         
+##  4 Afghanistan Asia       1967    34.0 11537966      836. TRUE         
+##  5 Afghanistan Asia       1972    36.1 13079460      740. FALSE        
+##  6 Afghanistan Asia       1977    38.4 14880372      786. FALSE        
+##  7 Afghanistan Asia       1982    39.9 12881816      978. FALSE        
+##  8 Afghanistan Asia       1987    40.8 13867957      852. FALSE        
+##  9 Afghanistan Asia       1992    41.7 16317921      649. FALSE        
+## 10 Afghanistan Asia       1997    41.8 22227415      635. FALSE        
+## # … with 1,694 more rows</code></pre>
+<p>Let’s get a summary of this grouping:</p>
+<pre class="r"><code>(out1 &lt;- gapminder %&gt;% 
+    group_by(continent, country, year &lt; 1970) %&gt;% 
+    summarize(mean_pop=mean(pop), sd_pop=sd(pop)))</code></pre>
+<pre><code>## # A tibble: 284 x 5
+## # Groups:   continent, country [142]
+##    continent country      `year &lt; 1970`  mean_pop   sd_pop
+##    &lt;fct&gt;     &lt;fct&gt;        &lt;lgl&gt;             &lt;dbl&gt;    &lt;dbl&gt;
+##  1 Africa    Algeria      FALSE         24399131. 6745137.
+##  2 Africa    Algeria      TRUE          10827957  1468860.
+##  3 Africa    Angola       FALSE          8605718. 2319733.
+##  4 Africa    Angola       TRUE           4716735   429200.
+##  5 Africa    Benin        FALSE          4995905. 1908684.
+##  6 Africa    Benin        TRUE           2060679.  297230.
+##  7 Africa    Botswana     FALSE          1208873.  392509.
+##  8 Africa    Botswana     TRUE            495813    48066.
+##  9 Africa    Burkina Faso FALSE          8919146. 3178418.
+## 10 Africa    Burkina Faso TRUE           4807740.  281676.
+## # … with 274 more rows</code></pre>
+<p>Note that the output is still a tibble, but one “layer” of grouping has been peeled back: the <code>year &lt; 1970</code> variable. <code>summarize</code> again and you’ll see that the tibble was no longer grouped by <code>year &lt; 1970</code>.</p>
+<pre class="r"><code>out1 %&gt;% 
+    summarize(mean_pop=mean(mean_pop))</code></pre>
+<pre><code>## # A tibble: 142 x 3
+## # Groups:   continent [5]
+##    continent country                   mean_pop
+##    &lt;fct&gt;     &lt;fct&gt;                        &lt;dbl&gt;
+##  1 Africa    Algeria                  17613544.
+##  2 Africa    Angola                    6661226.
+##  3 Africa    Benin                     3528292.
+##  4 Africa    Botswana                   852343.
+##  5 Africa    Burkina Faso              6863443.
+##  6 Africa    Burundi                   4201584.
+##  7 Africa    Cameroon                  8768619.
+##  8 Africa    Central African Republic  2292041.
+##  9 Africa    Chad                      4760924.
+## 10 Africa    Comoros                    317134.
+## # … with 132 more rows</code></pre>
+<p><strong>Exercise</strong>: Find the minimum GDP per capita experienced by each country</p>
+<pre class="r"><code>gapminder %&gt;%
+    group_by(country) %&gt;% 
+    summarize(mingdp=min(gdpPercap))</code></pre>
+<pre><code>## # A tibble: 142 x 2
+##    country     mingdp
+##    &lt;fct&gt;        &lt;dbl&gt;
+##  1 Afghanistan   635.
+##  2 Albania      1601.
+##  3 Algeria      2449.
+##  4 Angola       2277.
+##  5 Argentina    5911.
+##  6 Australia   10040.
+##  7 Austria      6137.
+##  8 Bahrain      9867.
+##  9 Bangladesh    630.
+## 10 Belgium      8343.
+## # … with 132 more rows</code></pre>
+<p><strong>Exercise</strong>: How many years of record does each country have?</p>
+<pre class="r"><code>gapminder %&gt;%
+    group_by(country) %&gt;% 
+    summarize(n_distinct(year))</code></pre>
+<pre><code>## # A tibble: 142 x 2
+##    country     `n_distinct(year)`
+##    &lt;fct&gt;                    &lt;int&gt;
+##  1 Afghanistan                 12
+##  2 Albania                     12
+##  3 Algeria                     12
+##  4 Angola                      12
+##  5 Argentina                   12
+##  6 Australia                   12
+##  7 Austria                     12
+##  8 Bahrain                     12
+##  9 Bangladesh                  12
+## 10 Belgium                     12
+## # … with 132 more rows</code></pre>
+<p><strong>Exercise</strong>: Within Asia, what are the min and max life expectancies experienced in each year?</p>
+<pre class="r"><code>gapminder %&gt;% 
+    filter(continent==&quot;Asia&quot;) %&gt;% 
+    group_by(year) %&gt;% 
+    summarize(minexp=min(lifeExp),
+              maxexp=max(lifeExp))</code></pre>
+<pre><code>## # A tibble: 12 x 3
+##     year minexp maxexp
+##    &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1  1952   28.8   65.4
+##  2  1957   30.3   67.8
+##  3  1962   32.0   69.4
+##  4  1967   34.0   71.4
+##  5  1972   36.1   73.4
+##  6  1977   31.2   75.4
+##  7  1982   39.9   77.1
+##  8  1987   40.8   78.7
+##  9  1992   41.7   79.4
+## 10  1997   41.8   80.7
+## 11  2002   42.1   82  
+## 12  2007   43.8   82.6</code></pre>
+</div>
+</div>
+</div>

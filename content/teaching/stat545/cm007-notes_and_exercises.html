@@ -1,0 +1,171 @@
+---
+title: "cm007 Notes and Exercises: ggplot2, Round 2"
+date: '2017-09-26'
+output: 
+    github_document:
+        toc: true
+---
+
+
+
+<pre class="r"><code>suppressPackageStartupMessages(library(tidyverse))  # The tidyverse contains ggplot2!</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
+<pre class="r"><code>suppressPackageStartupMessages(library(gapminder))
+knitr::opts_chunk$set(fig.width=4, fig.height=3)</code></pre>
+<div id="continuation-of-scatterplots" class="section level2">
+<h2>Continuation of Scatterplots</h2>
+<div id="regression-curve" class="section level3">
+<h3>Regression curve</h3>
+<ul>
+<li>Crash course on regression
+<ul>
+<li>Regression analysis fits some curve through the data, representing the mean of Y given the specified X value.</li>
+<li>Sometimes we assume it’s a line, and take this “mean curve” to be the line of best fit.</li>
+<li>Sometimes we fit a generic curve by averaging “nearby” points.</li>
+</ul></li>
+</ul>
+<p>To add a regression line/curve, add a layer <code>geom_smooth</code> to your plot. Probably two of the most useful arguments to <code>geom_smooth</code> are:</p>
+<ul>
+<li><code>method=</code>…
+<ul>
+<li>…<code>&quot;lm&quot;</code> for a straight line. Stands for “Linear Model”.</li>
+<li>…other for a generic curve (called a smoother; default, hence the “smooth” part of <code>geom_smooth</code>).</li>
+</ul></li>
+<li><code>se=</code>… controls whether or not a confidence interval is plotted.</li>
+</ul>
+<p>Examples:</p>
+<pre class="r"><code>vc1 &lt;- ggplot(gapminder, aes(year, lifeExp)) +
+    geom_point() 
+vc1 + geom_smooth(se=FALSE)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-2-1.png" width="384" /></p>
+<pre class="r"><code>vc1 + geom_smooth(method=&quot;lm&quot;)</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-2-2.png" width="384" /></p>
+<p><strong>Exercise 1</strong>: Make a plot of <code>year</code> (x) vs <code>lifeExp</code> (y), with points coloured by continent. Then, to that same plot, fit a straight regression line to each continent, without the error bars. If you can, try piping the data frame into the <code>ggplot</code> function.</p>
+<pre class="r"><code>ggplot(gapminder, aes(year, lifeExp,
+                      colour=continent)) +
+    geom_point() +
+    geom_smooth(method=&quot;lm&quot;, se=FALSE)</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-3-1.png" width="384" /></p>
+<p><strong>Exercise 2</strong>: Repeat Exercise 1, but switch the <em>regression line</em> and <em>geom_point</em> layers. How is this plot different from that of Exercise 1?</p>
+<pre class="r"><code>ggplot(gapminder, aes(year, lifeExp,
+                      colour=continent)) +
+    geom_smooth(method=&quot;lm&quot;, se=FALSE) +
+    geom_point()</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-4-1.png" width="384" /></p>
+<p><strong>Exercise 3</strong>: Omit the <code>geom_point</code> layer from either of the above two plots (it doesn’t matter which). Does the line still show up, even though the data aren’t shown? Why or why not?</p>
+<pre class="r"><code>ggplot(gapminder, aes(year, lifeExp,
+                      colour=continent)) +
+    geom_smooth(method=&quot;lm&quot;, se=FALSE)</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-5-1.png" width="384" /></p>
+</div>
+<div id="facetting" class="section level3">
+<h3>Facetting</h3>
+<p>We saw that we can <strong>group</strong> by using scales. For example, we can distinguish continents by using different shape or colour:</p>
+<pre class="r"><code>ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+    geom_point(aes(colour=continent))</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-6-1.png" width="384" /></p>
+<pre class="r"><code>ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+    geom_point(aes(shape=continent))</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-6-2.png" width="384" /></p>
+<p>But these plots can get overloaded. In comes <strong>facetting</strong> to save the day! Let’s add this to our list of concepts:</p>
+<ul>
+<li>:white_check_mark: <strong>geometric objects</strong>, or <code>geom_</code>s.</li>
+<li>:white_check_mark: <strong>scales</strong>, linked by…</li>
+<li>:white_check_mark: <strong>aesthetics</strong>, through the <code>aes</code> function.</li>
+<li>*NEW* <strong>facetting</strong>.</li>
+</ul>
+<p>Facetting separates data from each group into its own “mini plot”, called a <em>panel</em>. These panels are arranged next to each otherfor easier comparison. There are two facetting functions in <code>ggplot2</code>:</p>
+<ul>
+<li><code>facet_wrap</code>: 1D facetting – we’ll focus on this first.</li>
+<li><code>facet_grid</code>: 2D facetting</li>
+</ul>
+<p><code>facet_wrap</code> puts the panels in “reading order”, and goes to a new line if there’s not enough room. Mandatory argument specification is <code>facet_wrap(~ VARIABLE)</code>. Example:</p>
+<pre class="r"><code>ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+    facet_wrap(~ continent) +
+    geom_point()</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
+<p>As for other arguments of <code>facet_wrap</code> that I find to be most useful, check the documentation for <code>scales</code> and <code>ncol</code> – and if you’re brave, <code>labeller</code>.</p>
+<p><strong>Exercise 4</strong>: Make a plot of <code>year</code> (x) vs <code>lifeExp</code> (y), facetted by continent. Then, fit a smoother through the data for each continent, without the error bars. Choose a span that you feel is appropriate.</p>
+<pre class="r"><code>ggplot(gapminder, aes(year, lifeExp)) +
+    facet_wrap(~ continent) +
+    geom_point() +
+    geom_smooth(se=FALSE, span=1, method=&quot;loess&quot;)</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-8-1.png" width="384" /></p>
+<p>A small span results in a more jagged curve; a larger one results in a smoother curve. Here’s a better example of using the <code>span</code> argument – first too small, then too big, then “just right”. The idea is to “play” with this parameter to get it just right. NOTE: <code>span</code> only works with <code>method=&quot;loess&quot;</code>!</p>
+<pre class="r"><code>vc3 &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+    facet_wrap(~ continent) +
+    geom_point() +
+    scale_x_log10()
+vc3 + geom_smooth(method=&quot;loess&quot;, span=0.2) # Span too small</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-9-1.png" width="384" /></p>
+<pre class="r"><code>vc3 + geom_smooth(method=&quot;loess&quot;, span=10) # Span too big</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-9-2.png" width="384" /></p>
+<pre class="r"><code>vc3 + geom_smooth(method=&quot;loess&quot;, span=0.9) # Span just right</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-9-3.png" width="384" /></p>
+<p><code>facet_grid</code> puts the panels in a grid. Each row corresponds to one grouping, and each column corresponds to another grouping. Mandatory argument specification: <code>facet_grid(GROUPING_VARIABLE_1 ~ GROUPING_VARIABLE_2)</code>.</p>
+<p>Example: Let’s also facet by “small” (&lt;=7,000,000 population) and “large” (&gt;7,000,000 population) countries. We’ll need to add a “size” variable; we’ll do that with <code>dplyr</code>, and pipe the result into the <code>ggplot</code> function:</p>
+<pre class="r"><code>vc2 &lt;- gapminder %&gt;% 
+    mutate(size=ifelse(pop &gt; 7000000, &quot;large&quot;, &quot;small&quot;)) %&gt;% 
+    ggplot(aes(gdpPercap, lifeExp)) +
+    facet_grid(size ~ continent) 
+vc2 + geom_point()</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-10-1.png" width="768" /></p>
+<p>Everything we’ve learned prior to this works in conjunction with facetting:</p>
+<ul>
+<li>Colours:</li>
+</ul>
+<pre class="r"><code>vc2 + geom_point(aes(colour=year))</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-11-1.png" width="768" /></p>
+<ul>
+<li>Regression curves and log scales:</li>
+</ul>
+<pre class="r"><code>vc2 + 
+    geom_point(colour=&quot;brown&quot;,
+               alpha=0.2) +
+    geom_smooth() +
+    scale_x_log10()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-12-1.png" width="768" /></p>
+</div>
+<div id="connect-the-dots-with-geom_line" class="section level3">
+<h3>Connect the dots with <code>geom_line</code></h3>
+<p>Sometimes it makes sense to “connect the dots” in a scatterplot, especially if time is involved. The two functions to help us do this are:</p>
+<ul>
+<li><code>geom_line</code>: connect the dots from left-to-right.</li>
+<li><code>geom_path</code>: connect the dots in the order that they appear in the data frame.</li>
+</ul>
+<p>With these <code>geom</code>s, it’s so important to remember to specify <code>group=VARIABLE</code> in your aesthetics (<code>aes</code> function), otherwise ggplot won’t distinguish between groups.</p>
+<p>Example: life expectancy over time for each country.</p>
+<pre class="r"><code>## Without the `group` specification:
+ggplot(gapminder, aes(year, lifeExp)) +
+    geom_line()</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-13-1.png" width="384" /></p>
+<pre class="r"><code>## With the group specification:
+ggplot(gapminder, aes(year, lifeExp, group=country)) +
+    geom_line(alpha=0.2)</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-13-2.png" width="384" /></p>
+<p>PS: such “spaghetti plots” <em>are</em> actually useful – they give us a sense of the <em>distribution</em> of trends.</p>
+<p><code>geom_path</code> is typically used when a “time” variable is not shown on an axis. For example, let’s look at a scatterplot of <code>pop</code> vs. <code>gdpPercap</code> of Afghanistan, and let’s “connect the dots” in the order of time.</p>
+<pre class="r"><code>gapminder %&gt;%
+    filter(country==&quot;Afghanistan&quot;) %&gt;% 
+    arrange(year) %&gt;% 
+    ggplot(aes(pop, gdpPercap)) +
+    geom_point() +
+    geom_path()</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-14-1.png" width="384" /></p>
+<p>We can see the <em>path</em> that the population and GDP per capita took for Afghanistan.</p>
+<p><strong>Exercise 5</strong>: Plot the population over time (year) using lines, so that each country has its own line. Colour by <code>gdpPercap</code>. Add alpha transparency to your liking.</p>
+<pre class="r"><code>ggplot(gapminder, aes(year, pop, group=country, colour=gdpPercap)) +
+    geom_line(alpha=0.2) </code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-15-1.png" width="384" /></p>
+<p><strong>Exercise 6</strong>: Add points to the plot in Exercise 5.</p>
+<pre class="r"><code>ggplot(gapminder, aes(year, pop, group=country)) +
+    geom_line(aes(colour=gdpPercap), alpha=0.2) +
+    geom_point() +
+    scale_y_log10()</code></pre>
+<p><img src="/teaching/stat545/cm007-notes_and_exercises_files/figure-html/unnamed-chunk-16-1.png" width="384" /></p>
+</div>
+</div>

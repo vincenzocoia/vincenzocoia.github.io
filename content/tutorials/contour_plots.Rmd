@@ -1,0 +1,156 @@
+---
+title: "Contour Plots"
+author: "Vincenzo Coia"
+date: '2017-02-22'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width=4, fig.height=3, fig.align="center")
+```
+
+This tutorial introduces contour plots, and how to plot them in `ggplot2`.
+
+# What is a contour plot?
+
+Suppose you have a map of a mountainous region. How might you indicate elevation on that map, so that you get to see the shape of the landscape?
+
+The idea is to use _contour lines_, which are curves that indicate a constant height. 
+
+Imagine cutting the tops of the mountains off by removing all land above, say, 900 meters altitude. Then trace (on your map) the shapes formed by the new (flat) mountain tops. These curves are contour lines. Choose a differential such as 50 meters, and draw these curves for altitudes ...800m, 850m, 900m, 950m, 1000m, ... -- the result is a __contour plot__ (or topographic map, if it's a map).
+
+In general, contour plots are useful for functions of two variables (like a bivariate gaussian density).
+
+We'll look at examples in the next section.
+
+Notes on contours:
+
+- They never cross.
+- The steepest slope at a point is parallel to the contour line.
+- They aren't entirely ambiguous. For example, you can't tell whether or not the mountains are actually mountains, or whether they're holes/valleys! Sometimes you can add colour to indicate depth; other times (like in topographic maps) you can indicate elevation directly as numbers beside contour lines. Other times, this is not required, because the context makes it obvious.
+
+# Contour plots in `ggplot2`
+
+There are two ways you can make contour plots in `ggplot2` -- but they're both for quite different purposes. 
+
+## Method 1: Approximate a bivariate density
+
+This method approximates a bivariate density __from data__.
+
+First, recall how this is done in the univariate case. A little kernel function (like a shrunken bell curve) is placed over each data point, and these are added together to get a density estimate:
+
+```{r}
+library(ggplot2)
+set.seed(373)
+x <- rnorm(1000)
+ggplot(data.frame(x=x), aes(x)) + 
+    geom_density()
+```
+
+We can do the same thing to get a bivariate density, except with little bivariate kernel functions (like shrunken bivariate Gaussian densities). But, we can't just simply put "density height" on the vertical axis -- we need that for the second dimension. Instead, we can use contour plots.
+
+This is the contour plot that `ggplot2`'s `geom_density2d()` does: builds a bivariate kernel density estimate (based on data), then makes a contour plot out of it:
+
+```{r}
+y <- rnorm(1000)
+ggplot(data.frame(x=x, y=y), aes(x, y)) + 
+    geom_density2d()
+```
+
+Based on context (this is a density), we know that this is a "hill" and not a "hole". If you were to start at some point at the "bottom" of the hill, the steepest way up would be perpendicular to the contours. The highest point on the hill is within the middle-most circle.
+
+## Method 2: General Contour Plots
+
+You can also make contour plots that _aren't_ a kernel density estimate (necessarily), using `geom_contour()`. This is based off of __any bivariate function__.
+
+### Basics
+
+Suppose we want to make a contour plot of the bivariate function $$f(x,y) = x^2 + sin(y)$$ over the rectangle $-2<x<2$ and $-5<y<5$. First, make a grid over the rectangle (it _must_ be a grid -- `geom_contour()` won't work otherwise). Then, evaluate the function at each of the grid points. Put all this info into a single data frame with three columns (two for the $x$ and $y$ coordinates, and one for the function evaluation). Then, indicate the function evaluation in `geom_contour()` as the aesthetic `z`, and the `x` and `y` aesthetics are as usual. 
+
+```{r}
+f <- function(x) x[1]^2 + sin(x[2])
+x <- seq(-2, 2, length.out=100)
+y <- seq(-5, 5, length.out=100)
+dat <- expand.grid(x=x, y=y)  # Data frame of 100*100=10000 points.
+dat$z <- apply(dat, 1, f)
+ggplot(dat, aes(x, y)) +
+    geom_contour(aes(z=z))
+```
+
+Notice that `expand.grid` is useful for making grids. It returns all pairs from the input vectors. But, this also means that it's easy for the output to explode!
+
+Note that finer grids yield plots with higher accuracy. Here's an example of a rough grid, whose contours are jagged:
+
+```{r}
+f <- function(x) x[1]^2 + sin(x[2])
+x <- seq(-2, 2, length.out=10)
+y <- seq(-5, 5, length.out=10)
+dat <- expand.grid(x=x, y=y) # Data frame of 10*10=100 points.
+dat$z <- apply(dat, 1, f)
+ggplot(dat, aes(x, y)) +
+    geom_contour(aes(z=z))
+```
+
+### Additional Settings
+
+Here, we'll look at colouring the plots, and adding more/less contours.
+
+Here's another example, with the `volcano` data (a matrix of altitudes for a volcano). If you'd like, first take a look at a 3D rendering of the volcano, by running the following code chunk in your R console after un-commenting the last two lines (code taken directly from `rgl`'s `surface3d()` documentation):
+
+```{r}
+data(volcano)
+z <- 2 * volcano        # Exaggerate the relief
+x <- 10 * (1:nrow(z))   # 10 meter spacing (S to N)
+y <- 10 * (1:ncol(z))   # 10 meter spacing (E to W)
+zlim <- range(y)
+zlen <- zlim[2] - zlim[1] + 1
+colorlut <- terrain.colors(zlen) # height color lookup table
+col <- colorlut[ z - zlim[1] + 1 ] # assign colors to heights for each point
+# open3d()
+# surface3d(x, y, z, color = col, back = "lines")
+```
+
+Feel free to move the image around by clicking and dragging. Neat, eh?
+
+We'll make a contour plot with this.
+
+```{r, fig.width=5.5}
+dat <- expand.grid(x=x, y=y)
+dat$z <- as.vector(z)/2   # "De-exaggerate" the relief
+ggplot(dat, aes(x, y)) +
+    geom_contour(aes(z=z)) +
+    xlab("") + ylab("") +
+    theme(axis.text=element_blank(),
+          axis.ticks=element_blank())
+```
+
+But, you can't tell that the inner circles actually represent a hole (a caldera), not a peak. Let's add colour by indicating the "variable" `..height..` in the `colour` aesthetic of `geom_cotour()`, which will also indicate height as a legend:
+
+```{r, fig.width=6}
+dat <- expand.grid(x=x, y=y)
+dat$z <- as.vector(z)/2   # "De-exaggerate" the relief
+ggplot(dat, aes(x, y)) +
+    geom_contour(aes(z=z, colour=..level..)) +
+    xlab("") + ylab("") +
+    theme(axis.text=element_blank(),
+          axis.ticks=element_blank()) +
+    scale_color_continuous("Altitude")
+```
+
+Now we can tell that the highest point is within the lightest blue area, to the left of the caldera. 
+
+Now let's add more contour lines, to get a better sense of the terrain. Do so by indicating the altitudes to make contours for via `breaks`. Let's make 5 unit spacing:
+
+```{r, fig.width=6}
+dat <- expand.grid(x=x, y=y)
+dat$z <- as.vector(z)/2   # "De-exaggerate" the relief
+ggplot(dat, aes(x, y)) +
+    geom_contour(aes(z=z, colour=..level..),
+                 breaks=seq(100, 200, by=5)) +
+    xlab("") + ylab("") +
+    theme(axis.text=element_blank(),
+          axis.ticks=element_blank()) +
+    scale_color_continuous("Altitude")
+```
+
+Although you can change the contours, it's best practice to keep the (height) spacing between contour lines equal -- otherwise, the contour plot becomes harder to read. In the above plot, for example, we know that crossing $n$ contour lines (that are either increasing or decreasing) results in $5n$ units of elevation gain/loss, because the spacing between contours is always 5 units. 

@@ -1,0 +1,124 @@
+---
+title: "cm006 Notes and Exercises: Intro to ggplot2"
+date: '2017-09-21'
+output: 
+    github_document:
+        toc: true
+---
+
+
+
+<pre class="r"><code>suppressPackageStartupMessages(library(tidyverse))  # The tidyverse contains ggplot2!</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
+<pre class="r"><code>suppressPackageStartupMessages(library(gapminder))
+knitr::opts_chunk$set(fig.width=4, fig.height=3)</code></pre>
+<div id="plotting-in-r" class="section level2">
+<h2>Plotting in R</h2>
+<p>There are three main ways you can produce graphics in R. In order of inception, they are</p>
+<ul>
+<li>base R</li>
+<li><code>lattice</code> (an R package)</li>
+<li><code>ggplot2</code> (an R package)</li>
+</ul>
+<p>Base R is tedious and unwieldly. Lattice is a nice option, but I find it requires setting up a plot to then just override everything.</p>
+<p><code>ggplot2</code> is a very powerful plotting system that…</p>
+<ul>
+<li>creates graphics by adding layers.</li>
+<li>is based off of the <a href="http://www.springer.com/gp/book/9780387245447">grammar of graphics</a> (book by Leland Wilkinson) – hence “gg”.</li>
+<li>comes with the <code>tidyverse</code> meta-package.</li>
+<li>has a steep learning curve, but pays dividends.</li>
+</ul>
+<p>Stackoverflow was my main source of learning. Google what you’re trying to do, and persevere. You can do it.</p>
+</div>
+<div id="ggplot2-framework" class="section level2">
+<h2><code>ggplot2</code> framework</h2>
+<p>First, there are two ways you can make a plot wth <code>ggplot2</code>.</p>
+<ol style="list-style-type: decimal">
+<li>The <code>qplot</code> function: limited functionality. “quick plot”
+<ul>
+<li>We won’t be focussing on this. No training wheels!</li>
+</ul></li>
+<li>The <code>ggplot</code> function: full functionality.</li>
+</ol>
+<p>Let’s go through the basic syntax using the <code>gapminder</code> dataset.</p>
+<div id="basic-scatterplot" class="section level4">
+<h4>Basic scatterplot</h4>
+<p>Let’s try to make a basic scatterplot of <code>year</code> vs. <code>lifeExp</code>.</p>
+<p>Quick ways: - <code>plot(gapminder$year, gapminder$lifeExp)</code> – base R - <code>qplot(year, lifeExp, data=gapminder)</code> – <code>ggplot2</code>’s “quick plot”.</p>
+<p>Let’s just see the syntax right off the bat.</p>
+<pre class="r"><code>ggplot(gapminder, aes(x=year, y=lifeExp)) +
+    geom_point()</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-2-1.png" width="384" /></p>
+<p>The first line initiates the plot. The second one <em>adds a layer</em> of points.</p>
+<p>Let’s see the components of each of these.</p>
+<p>Two of the most important aspects of a ggplot are the <strong>geometric objects</strong> and the <strong>scales</strong> (part of the grammar of graphics).</p>
+<ul>
+<li><strong>geometric objects</strong> are things that you can draw to represent data.
+<ul>
+<li>Examples: points, lines, polygons, bars, boxplots, histograms</li>
+<li>Indicated as new layers with <code>geom_*</code> where <code>*</code> is <code>point</code>, <code>line</code>, …</li>
+</ul></li>
+<li><strong>scales</strong> are aspects of a geometric object that correspond to a numeric scale.
+<ul>
+<li>Examples:
+<ul>
+<li>horizontal (x) position can indicate one variable.</li>
+<li>vertical (y) position can indicate another variable.</li>
+<li>size of a point</li>
+<li>shape of a point</li>
+<li>transparency</li>
+</ul></li>
+<li><strong>aesthetic mappings</strong> link variables to scales through the function <code>aes</code>.</li>
+</ul></li>
+</ul>
+<p>Every geometric object has <em>required</em> and <em>optional</em> aesthetic mappings. Check the documentation of the <code>geom_</code> to see what’s required (in bold). Examples: - <em>points</em> require a horizontal (x) and vertical (y) position. - line <em>segments</em> require starting and ending x and y</p>
+<p>Let’s revisit the above plot. The first line outputs an empty plot because there are no <code>geom</code>’s (geometric objects):</p>
+<pre class="r"><code>p &lt;- ggplot(gapminder, aes(x=year, y=lifeExp))
+p</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-3-1.png" width="384" /></p>
+<p>(Yes, we can assign ggplots to variables in R)</p>
+<p>Contains: 1. the data frame, <code>gapminder</code>, and 2. an indication of which variables in the data frame go with which scale.</p>
+<p>Next, we can add a <em>layer</em> with the <code>+</code> symbol. We add the “point” geometry to “execute” the setup and display points, to obtain the original plot.</p>
+<p>This plot would benefit with some <em>alpha transparency</em> – another type of scale. Let’s put in 25% transparency:</p>
+<pre class="r"><code>p + geom_point(alpha=0.25)</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-4-1.png" width="384" /></p>
+<p>Notes: - This scale is <em>outside of an aesthetic mapping</em>, meaning that ggplot will not associate it with a variable. - Scales can be indicated in the <code>geom</code> call. Scales within <code>aes</code> that appear in the <code>ggplot</code> function apply “globally” to the plot.</p>
+<p><strong>Exercises</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Make a scatterplot of <code>gdpPercap</code> vs <code>lifeExp</code>. Store <sub>it</sub> the output of the <code>ggplot</code> function in a variable called <code>p2</code>.</li>
+</ol>
+<pre class="r"><code>p2 &lt;- ggplot(gapminder, 
+             aes(x=gdpPercap,
+                 y=lifeExp))
+p2 + geom_point()</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-5-1.png" width="384" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>To <code>p2</code>, make the size of the points indicate the <code>year</code>, choose a level of alpha transparency that you’re happy with, and make the points your favourite colour.</li>
+</ol>
+<pre class="r"><code>p2 + geom_point(aes(size=year),
+                colour=&quot;blue&quot;, 
+                alpha=0.1)</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-6-1.png" width="384" /></p>
+<pre class="r"><code>## This *doesn&#39;t* work: (why not?)
+p2 + geom_point(aes(size=year, colour=&quot;blue&quot;), 
+                alpha=0.1)</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-6-2.png" width="384" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>To <code>p2</code>, colour the points by <code>continent</code>, <del>but this time</del> with year being represented by the size of the points, like we did in the previous exercise.</li>
+</ol>
+<pre class="r"><code>p2 + geom_point(aes(colour=continent, size=year))</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-7-1.png" width="384" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>To <code>p2</code>, add another layer called <code>scale_x_log10()</code> <em>in addition to the original <code>geom_point()</code> layer</em>. Make a second plot by redoing the plot in (1), but replacing <code>gdpPercap</code> with <code>log10(gdpPercap)</code>. What do you notice?</li>
+</ol>
+<pre class="r"><code>p2 + geom_point() + scale_x_log10()</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-8-1.png" width="384" /></p>
+<pre class="r"><code>ggplot(gapminder, 
+             aes(x=log(gdpPercap),
+                 y=lifeExp)) + geom_point()</code></pre>
+<p><img src="/teaching/stat545/cm006-notes_and_exercises_files/figure-html/unnamed-chunk-8-2.png" width="384" /></p>
+<p>—-Stuff that used to be here has been moved to <a href="cm007-notes_and_exercises.html">cm007’s notes and exercises</a>—-</p>
+</div>
+</div>
