@@ -1,48 +1,75 @@
 ---
 authors:
 - admin
-bio: My research interests include distributed robotics, mobile computing and programmable
-  matter.
+bio: I'm a data scientist at the University of British Columbia, Vancouver. 
 education:
   courses:
-  - course: PhD in Artificial Intelligence
-    institution: Stanford University
+  - course: PhD in Statistics
+    institution: The University of British Columbia
+    year: 2017
+  - course: MSc in Mathematical Statistics
+    institution: Brock University
     year: 2012
-  - course: MEng in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2009
-  - course: BSc in Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    year: 2008
+  - course: BSc in Biology with Earth Science
+    institution: Brock University
+    year: 2011
+  - course: BSc in Mathematics and Statistics
+    institution: Brock University
+    year: 2011
 email: ""
 interests:
-- Artificial Intelligence
-- Computational Linguistics
-- Information Retrieval
-name: Nelson Bighetti
+- Distributional Forecasting
+- Repurposing Statistics for Data Science
+- Software Engineering
+- Extreme Quantile Regression
+- Flood Forecasting
+name: Vincenzo Coia
 organizations:
-- name: Stanford University
+- name: The University of British Columbia
   url: ""
-role: Professor of Artificial Intelligence
+role: Lecturer of Data Science
 social:
 - icon: envelope
   icon_pack: fas
   link: '#contact'
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/GeorgeCushen
-- icon: google-scholar
-  icon_pack: ai
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  link: https://twitter.com/VincenzoCoia
+- icon: linkedin
+  icon_pack: fas
+  link: https://www.linkedin.com/in/vincenzocoia
 - icon: github
   icon_pack: fab
-  link: https://github.com/gcushen
+  link: https://github.com/vincenzocoia
 superuser: true
 user_groups:
-- Researchers
-- Visitors
+- Example1
+- Example2
 ---
 
-Nelson Bighetti is a professor of artificial intelligence at the Stanford AI Lab. His research interests include distributed robotics, mobile computing and programmable matter. He leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Hi!
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. 
+I'm a data scientist at the University of British Columbia, Vancouver. My primary focus is the development and delivery of the Master of Data Science program. 
+
+My hobbies include outdoor recreation such as hiking, birding, skiing, fishing, canoeing, and others. 
+
+Preferred personal pronouns: he/him/his
+
+## Skills
+
+- I solve problems using statistics, machine learning, and data visualizations.
+- I interact with students to make data science more approachable.
+- I use R, git, and friends to help me do these things. 
+
+I can also identify birds, and other things about nature.
+
+## Education
+
+- PhD, MSc, BSc in Statistics
+- BSc in Biology (Earth Science minor)
+
+(Yes, two BSc's)
+
+## More
+
+Want to learn more about my career and goals? Check out the "career" tab!
